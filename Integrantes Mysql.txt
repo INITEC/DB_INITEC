@@ -1,9 +1,0 @@
-insert into integrantes values (
-null, 'Juan Basilio Flores', 'JB',
-'Directorio de Oficina de direccion de Proyectos',
-'964213899', 'jotai.bf.2012@gmail.com', 'jibf_1994@hotmail',
-'Jr.Libertad 210 - Comas', 'FIM', 'Ing. Mecatronica', 'JB.jpg')
-
-insert into integrantes values (
-
-null, 'JHOSEP GUZMAN',	'JG',	'Director General',	'992373894',	'jhosept@gmail.com',	'jhosept@gmail.com',	'ARUNI 3M hab 22',	'Ing. Quimica'

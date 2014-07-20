@@ -1,0 +1,23 @@
+#menu_obligaciones ul{
+    
+    list-style:none; /* Eliminamos los bullets */
+    margin:0px; /* Quitamos los margenes */
+    padding:0px; /* Quitamos el padding */
+}
+#menu_obligaciones ul li {
+	 width: 100%;
+	 text-align: left;
+    float:left; /* Hacemos que el menu se muestre horizontal */
+    padding-left:10px;
+    padding-right:10px;
+    border-right:1px solid #FFFFFF;
+    background-color: #0372b1;
+}
+#menu_obligaciones ul li a{
+    text-decoration:none;
+    color:#FFFFFF;
+    font-weight:bold;
+}
+#menu_obligaciones ul li :hover{
+    background-color: #FFFFFF; color: #88A6DC;
+}

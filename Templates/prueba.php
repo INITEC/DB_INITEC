@@ -1,0 +1,21 @@
+<html>
+<head>
+<script type="text/javascript" >
+var myVar=setInterval(function(){myTimer()},1000);
+
+function myTimer()
+{
+var d=new Date();
+var t=d.toLocaleTimeString();
+document.getElementById("demo").innerHTML=t;
+}
+</script>
+</head>
+<body>
+
+<div id="demo">
+
+</div>
+</body>
+
+</html>

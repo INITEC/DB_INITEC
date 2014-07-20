@@ -28,7 +28,7 @@ catch(err1)
 return req;
 }
 var miPeticion = obtiene_http_request();
-//***************************************************************************************
+/* ************************************************************************************** */
 function from(id,ide,url){
 		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la página en el caché...
 		var vinculo=url+"?id="+id+"&rand="+mi_aleatorio;

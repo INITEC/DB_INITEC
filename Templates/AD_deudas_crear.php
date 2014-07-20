@@ -2,7 +2,7 @@
 session_start();
 require_once ("conexion1.php");
 require_once ("verificar_usuario.php");
-if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD DEUDAS"){
+if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD_DEUDAS"){
 	$sql="insert into deudas values (
 	null, '".$_POST["nombre_deuda"]."', '".$_POST["fecha_creada"]."', 
 	'".$_POST["fecha_final"]."', '".$_POST["cantidad"]."' , '".$_SESSION["temporada"]."', '".$_POST["cobrador"]."')";

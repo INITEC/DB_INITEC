@@ -1,5 +1,4 @@
 <?php
-
 class conexion {
 	
 	private $_conexion;
@@ -8,8 +7,13 @@ class conexion {
 	private $_result;	
 	
 	public function __construct () {
-		$this->_conexion = mysql_connect("localhost", "root", "jibf123");
-		$this->_base_datos = mysql_select_db("cuentas");	
+	/*	$this->_conexion = mysql_connect("localhost", "root", "jibf123");
+		$this->_base_datos = mysql_select_db("redwe_12350066_initec");
+		*/
+		$this->_conexion = mysql_connect("sql307.redwebmaster.com.ar","redwe_12350066","jibf123");
+		$this->_base_datos = mysql_select_db("redwe_12350066_initec");
+		
+		
 	} 
 	public function ejecutar_sentencia ($sql) {
 		$this->_sql = $sql;
@@ -25,6 +29,5 @@ class conexion {
 		return mysql_num_rows($this->_result);
 	}
 }
-						
 ?>
 

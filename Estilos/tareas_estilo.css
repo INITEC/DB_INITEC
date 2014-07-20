@@ -1,0 +1,50 @@
+body { background-color: #88A6DC;}
+
+#contenedor_tr {width: 100%;   background-color:#275096; text-align:center; margin: 0 auto 0 auto; align:center}
+#cabecera_tr {width:100%; height:70px; background-color:#FFFFFF; text-align:center; overflow:hidden; padding: 0px 0px 0px 0px; margin: 0 auto 1% auto}
+#cuerpo_tr {width: 100%; /*height:45%;*/ margin: 0px auto 0px auto; overflow: hidden; float:left;}
+#menu_izquierda_tr {width: 20%; background-color:#88A6DC; margin: 0px 0px 0px 0px; overflow: hidden;float:left;}
+#presentacion_tr {width: 80%; background-color:#275096; margin: 0px auto 0px auto; overflow: hidden;}
+#pie_pagina_tr {background-color:#CDE8F3; margin: 1% 0 0 0; padding: 0 0 0 0px; text-align:center; clear: both; color:#0E3475 ; font: 8pt Verdana;} 
+
+
+#titulo_tr {width:100%;height:45px; background-color:#FFFFFF; color:#275096;}
+
+/*Tablas */
+
+#tabla1_encabezado {background-color:#173872; text-align:center; color:#FFFFFF; font-weight:bold }
+#tabla1_informacion {background-color:#CDE8F3; text-align:center; color:#173872;}
+
+#tabla2_encabezado {background-color:#0B4756; text-align:center; color:#FFFFFF; valign:top; align:center;}
+#tabla2_informacion {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center;}
+
+/*subtitulos*/
+
+#subtitulo1 {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#88A6DC;  }
+#dato_correcto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#00FF00;  }
+#dato_incorrecto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#FF0000;  }
+
+.dato_correcto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#00FF00;  }
+.dato_incorrecto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#FF0000;  }
+
+/* corregir estos estilos, cambiar a Tablas*/
+	/*Estilos para presentacion de tablas*/
+	.registros_tabla {background-color:#CDE8F3; text-align:center; color:#173872;}
+	.encabezado_tabla {background-color:#173872; text-align:center; color:#FFFFFF; font-weight:bold }
+	.informacion_extra {background-color:#0B4756; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_extra {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center;}
+	.datos_extra_2 {background-color:#00BFFF; text-align:center; color:#173872; valign:top; align:center;}
+	/*Tablas de asistencia*/
+	.datos_no_asistio {background-color:#FF0000; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_puntual {background-color:#32CD32; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_tarde {background-color:#B8860B; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_injustificado {background-color:#FFA500; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_asistencia {background-color:#FFFFFF; text-align:center; color:#173872; valign:top; align:center;}
+	/*Tabla de deudas*/
+	.datos_no_pago {background-color:#FF0000; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_debe {background-color:#FFA500; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_pago {background-color:#32CD32; text-align:center; color:#FFFFFF; valign:top; align:center;}
+	.datos_deuda {background-color:#FFFFFF; text-align:center; color:#173872; valign:top; align:center;}
+	/*Texto vertical*/
+	.rotate {-webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+

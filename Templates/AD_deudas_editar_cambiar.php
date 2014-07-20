@@ -2,7 +2,7 @@
 session_start();
 require_once ("conexion1.php");
 require_once ("verificar_usuario.php");
-if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD DEUDAS"){
+if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD_DEUDAS"){
 	$sql="update deudas set
 	nombre_deuda='".$_POST["nombre_deuda"]."', fecha_final='".$_POST["fecha_final"]."', 
 	cantidad='".$_POST["cantidad"]."',cobrador='".$_POST["cobrador"]."'  where id_deuda='".$_POST["id_deuda"]."' ";

@@ -79,10 +79,31 @@ echo $reg2["integrante"];
 <option value="Injustificado">Injustificado</option>
 <option value="Apoyo">Apoyo</option>
 </select>
+<?php 
+$sql3="select count(*) as cuantos from asistencias where id_integrante='".$reg2["id_integrante"]."' AND 
+		id_fecha='".$id_fecha."' ";
+$res3=mysql_query($sql3,$conexion);
+$reg3=mysql_fetch_array($res3);
+$cantidad=$reg3["cuantos"];
+if($cantidad != 0){
+?>
 </td>
 <td align="center" valign="top" width="100" >
+<img src="ima/bien.jpg" width="50" heigth="50" border="0" >
+</td>
+<?php 
+} else {
+?>
+
+</td>
+<td align="center" valign="top" width="100" >
+<?php  echo $cantidad;?>
 <input type="submit" value="Enviar" title="Enviar"/>
 </td>
+<?php 
+}
+?>
+
 </tr>
 <input type="hidden" name="id_integrante" value="<?php echo $reg2["id_integrante"];?>" >
 <input type="hidden" name="id_fecha" value="<?php echo $reg["id_fecha"];?>" >

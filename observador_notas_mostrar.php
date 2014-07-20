@@ -3,7 +3,7 @@ require_once ("conexion1.php");
 $id_examen=$_GET["id"];
 $sql="select * from integrantes,notas
 	where notas.id_examen='".$id_examen."' AND integrantes.id_integrante=notas.id_integrante
-			order by integrantes.integrante asc";
+			order by notas.nota desc";
 $res=mysql_query($sql,$conexion);
 ?>
 <html>

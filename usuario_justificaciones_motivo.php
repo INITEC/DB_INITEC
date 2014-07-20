@@ -1,5 +1,6 @@
 <?php 
 require_once ("conexion1.php");
+require_once ("verificar_usuario.php");
 $id_justificacion=$_GET["id"];
 $sql="select * from justificaciones where id_justificacion='".$id_justificacion."'";
 $res=mysql_query($sql,$conexion);
@@ -21,10 +22,10 @@ if($reg=mysql_fetch_array($res)){
 				</tr>
 				<tr class="datos_extra" >
 					<td width="150px" align="center" valign="top">
-						<?php echo $reg["asistencia_justificacion"];?>
+						<?php echo chao_tilde($reg["asistencia_justificacion"]);?>
 					</td>
 					<td width="150px" align="center" valign="top">
-						<?php echo $reg["condicion_justificacion"];?>
+						<?php echo chao_tilde($reg["condicion_justificacion"]);?>
 					</td>
 				</tr>
 				<tr class="informacion_extra" >
@@ -34,7 +35,7 @@ if($reg=mysql_fetch_array($res)){
 				</tr>
 				<tr class="datos_extra" >
 					<td width="300px" align="center" valign="top" colspan="2">
-						<?php echo $reg["motivo"];?>
+						<?php echo chao_tilde($reg["motivo"]);?>
 					</td>
 				</tr>
 			</table>

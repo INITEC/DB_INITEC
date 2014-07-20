@@ -1,8 +1,10 @@
 <?php 
+session_start();
 require_once("conexion1.php");
+
 $sql="insert into examenes values (
 null, '".$_POST["examen"]."', '".$_POST["fecha"]."',
-'".$_POST["n_maxima"]."', '".$_POST["n_aprobatoria"]."')";
+'".$_POST["n_maxima"]."', '".$_POST["n_aprobatoria"]."', '".$_SESSION["temporada"]."')";
 
 if($res=mysql_query($sql,$conexion)){
 echo "<script type='text/javascript' language='javascript' >

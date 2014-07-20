@@ -3,7 +3,7 @@ session_start();
 require_once ("conexion1.php");
 require_once ("verificar_usuario.php");
 if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD ASISTENCIAS"){
-	if($_POST["asistencia"]="No Asistio"){
+	if($_POST["asistencia"]== "No Asistio"){
 		$sql="insert into asistencias values (
 		null, null, '".$_POST["asistencia"]."',
 		'".$_POST["condicion"]."', '".$_POST["id_integrante"]."', '".$_POST["id_fecha"]."')";

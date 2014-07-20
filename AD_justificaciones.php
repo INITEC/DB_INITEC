@@ -47,7 +47,7 @@ $res_menu=mysql_query($menu,$conexion);
 <?php 
 $obs="select * from justificaciones,reuniones,integrantes where
 		reuniones.id_fecha=justificaciones.id_fecha AND integrantes.id_integrante=justificaciones.id_integrante 
-		order by reuniones.id_fecha desc";
+		order by justificaciones.id_justificacion desc";
 $res_obs=mysql_query($obs,$conexion);
 ?>
 		<table align="center" width="650px" >

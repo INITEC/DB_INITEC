@@ -5,7 +5,7 @@ require_once ("verificar_usuario.php");
 if($_SESSION["id_integrante"] and $_POST["tarea"]=="AD REUNIONES"){
 	$sql="insert into reuniones values (
 	null, '".$_POST["dia_semana"]."', '".$_POST["hora_inicio"]."', 
-	'".$_POST["hora_fin"]."', '".$_POST["lugar"]."', '".$_POST["asunto"]."','".$_POST["fecha"]."' )";
+	'".$_POST["hora_fin"]."', '".$_POST["lugar"]."', '".$_POST["asunto"]."','".$_POST["fecha"]."', '".$_SESSION["temporada"]."' )";
 	
 	if($res=mysql_query($sql,$conexion)){
 		?>

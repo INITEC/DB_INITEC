@@ -12,7 +12,7 @@ $res=mysql_query($sql,$conexion);
 	function validar_datos(){
 		var form=document.form;
 //******************************************************************************************
-		if (form.integrante.value==0  || valida_cadena(form.integrante.value)==false ){
+/*		if (form.integrante.value==0  || valida_cadena(form.integrante.value)==false ){
 			document.getElementById("div_integrante").innerHTML="<font color='#ff0000'>El nombre del integrante no es  valido</font>";
 			form.integrante.value="";
 			form.integrante.focus();
@@ -100,7 +100,7 @@ $res=mysql_query($sql,$conexion);
 			}
 		else {
 			document.getElementById("div_especialidad").innerHTML="";
-			}
+			}    */
 //******************************************************************************************
 			document.form.submit();
 		}

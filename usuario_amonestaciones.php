@@ -63,7 +63,7 @@ $res_menu=mysql_query($menu,$conexion);
 			</td> 
 		</tr>
 <?php $sql= "select * from amonestaciones where receptor=".$_SESSION["id_integrante"]." 
-			order by id_amonestacion asc";
+			order by id_amonestacion desc";
 $res=mysql_query($sql,$conexion);
 while ($asist=mysql_fetch_array($res)){
 ?>

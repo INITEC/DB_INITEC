@@ -24,7 +24,7 @@ if($reg=mysql_fetch_array($res)){
 			<p align="right" >UNI - <?php echo fecha_text($reg["fecha_emision"]); ?></p>
 			&nbsp; <b><?php echo $reg["integrante"];?></b> integrante del INITEC<br>
 			El Directorio de Talento Humano, en ejercicio de sus facultades de direcci&oacuten, a decidido amonestarle por escrito en virtud de los siguientes hechos:<br>
-			<b><?php echo $reg["motivo"];?></b><br>
+			<b><?php echo chao_tilde($reg["motivo"]);?></b><br>
 			Estos hechos constituyen para el INITEC una falta <?php echo $reg["tipo"];?> de conformidad con lo dispuesto en el articulo "<?php echo $reg["articulo"];?>" del cap&iacutetulo <?php echo $reg["capitulo"];?> del vigente estatuto y en su virtud de Director decide:<br>
 			Amonestarle por este comportamiento, y en el caso de acumular seis amonestaciones leves o dos graves, se proceder&aacute a separarlo de la organizaci&oacuten conforme lo estipula el Estatuto.<br>
 			Sin otro particular que manifestarle, se despide atentamente.<br><br>

@@ -1,9 +1,10 @@
 <?php 
 require_once ("conexion1.php");
+require_once ("verificar_usuario.php");
 $id_fecha=$_GET["id"];
 $sql="select * from integrantes,asistencias 
 	where asistencias.id_fecha='".$id_fecha."' AND integrantes.id_integrante=asistencias.id_integrante
-			order by integrantes.integrante asc";
+			order by asistencias.hora asc";
 $res=mysql_query($sql,$conexion);
 ?>
 <html>
@@ -31,8 +32,9 @@ $res=mysql_query($sql,$conexion);
 	</tr>
 <?php 
 while($reg=mysql_fetch_array($res)){
+$color=color_asistencia($reg["asistencia"],$reg["condicion"]);
 ?>
-	<tr class="datos_extra" >
+	<tr class="datos_asistencia" >
 		<td align="center" valign="top" width="50" >
 		<img src="foto_integrantes/<?php echo $reg["foto"];?>" width="50" border="0" >
 		</td>
@@ -46,12 +48,12 @@ while($reg=mysql_fetch_array($res)){
 		echo $reg["hora"];
 		?>
 		</td>
-		<td align="center" valign="top" width="100" >
-		<?php 
+		<td align="center" valign="top" width="100" class="<?php echo $color?>" >
+		<?php
 		echo $reg["asistencia"];
 		?>
 		</td>
-		<td align="center" valign="top" width="100" >
+		<td align="center" valign="top" width="100" class="<?php echo $color?>" >
 		<?php 
 		echo $reg["condicion"];
 		?>

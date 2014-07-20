@@ -17,6 +17,7 @@ $usuario=mysql_fetch_array($inicia_usuario);
 <script type="text/javascript" language="javascript" >
 	function validar_datos(){
 		var form=document.form;
+		//Esta funcion no esta siendo utilizada
 //******************************************************************************************
 		if (form.integrante.value==0  || valida_cadena(form.integrante.value)==false ){
 			document.getElementById("div_integrante").innerHTML="<font color='#ff0000'>El nombre del integrante no es  valido</font>";
@@ -244,7 +245,7 @@ if($reg=mysql_fetch_array($res)){
 		</tr>
 		<tr>
 			<td align="center" colspan="3" >
-				<input type="button" title="Cambiar" value="..::Cambiar::.." onClick="validar_datos()" >
+				<input type="button" title="Cambiar" value="..::Cambiar::.." onClick="document.form.submit()" >
 			</td>
 		</tr>
 	</table>

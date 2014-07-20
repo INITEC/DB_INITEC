@@ -94,7 +94,7 @@ echo $reg["gmail"];
 <a href="javascript:void(0)" class="url" onClick="window.location='ver_completo.php'" title="Datos completos" ><h2>Ver datos completos</h2></a>
 </td>
 <td valign="top" align="right" width="100" colspan="3" >
-<a href="agregar.php" title="Agregar empleados"><img src="ima/agregar.png" border="0" ></a>
+<a href="agregar.php" title="Agregar integrante"><img src="ima/agregar.png" border="0" ></a>
 </td>
 </tr>
 

@@ -8,8 +8,8 @@ integrante varchar (200),
 abreviatura varchar (5),
 cargo varchar (70),
 celular varchar (20),
-gmail varchar (30),
-e_mail varchar (30),
+gmail varchar (50),
+e_mail varchar (50),
 direccion varchar (50),
 facultad varchar (10),
 especialidad varchar (30),
@@ -25,7 +25,7 @@ id_integrante int,
 id_fecha int
 )
 
-create table Reuniones (
+create table reuniones (
 id_fecha int not null auto_increment primary key,
 dia_semana varchar (10),
 dia int,
@@ -35,3 +35,17 @@ hora_inicio time,
 hora_final time,
 lugar varchar (200),
 asunto text)
+
+create table examenes (
+id_examen int not null auto_increment primary key,
+examen varchar (200),
+fecha date,
+n_maxima int,
+n_aprobatoria int)
+
+create table notas(
+id_nota int not null auto_increment primary key,
+nota int,
+condicion varchar(50),
+id_integrante int,
+id_examen int)

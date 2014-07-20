@@ -5,7 +5,6 @@ null, '".$_POST["dia_semana"]."', '".$_POST["dia"]."',
 '".$_POST["mes"]."', '".$_POST["ano"]."', '".$_POST["hora_inicio"]."', 
 '".$_POST["hora_fin"]."', '".$_POST["lugar"]."', '".$_POST["asunto"]."')";
 
-
 if($res=mysql_query($sql,$conexion)){
 echo "<script type='text/javascript' language='javascript' >
 		alert('La reunion fue creada exitosamente');</script>";
@@ -27,7 +26,7 @@ document.form.submit();
 </script>";
 }
 else {
-	echo "<script type=''>
+	echo "<script type='text/javascript' language='javascript'>
 		alert('La reunion no se pudo crear, vuelva a intentarlo');
 		history.back();
 </script>";}	

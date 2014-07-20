@@ -45,7 +45,7 @@ $res_menu=mysql_query($menu,$conexion);
 			<div id="identidad" >
 <!-- *************************************************************************************************** -->
 <?php 
-$sql="select * from reuniones where id_temporada='".$_SESSION["temporada"]."' order by id_fecha desc";
+$sql="select * from reuniones order by id_fecha desc";
 $res=mysql_query($sql,$conexion);
 ?>
 		<table align="center" width="650" >				

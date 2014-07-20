@@ -45,7 +45,7 @@ $res_menu=mysql_query($menu,$conexion);
 			<div id="identidad" >
 <!-- *************************************************************************************************** -->
 
-<form action="AD_general_agregar_enviar.php" method="post" name="form" >
+<form action="AD_general_agregar_enviar.php" method="post" name="form" enctype="multipart/form-data" >
 
 <table align="center" width="400" >
 <tr>

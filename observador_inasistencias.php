@@ -82,7 +82,7 @@ $tarea_actual="OBSERVADOR INASISTENCIAS";
 						</td>
 					</tr>
 					<tr class="encabezado_tabla" >
-						<td valign="top" align="center" width="50" >
+						<td valign="top" align="center" width="80" >
 							Foto
 						</td>
 						<td valign="top" align="center" width="250" >
@@ -105,7 +105,7 @@ $tarea_actual="OBSERVADOR INASISTENCIAS";
 			?>
 					<tr class="registros_tabla" >
 						<td valign="top" align="center" width="50" >
-							<img src="foto_integrantes/<?php echo $reg["foto"];?>" width="50" border="0" >
+							<img src="foto_integrantes/<?php echo $reg["foto"];?>" width="80" height="60" border="0" >
 						</td>
 						<td valign="top" align="center" width="250" >
 							<?php 
@@ -139,7 +139,7 @@ $tarea_actual="OBSERVADOR INASISTENCIAS";
 									$res_faltas=mysql_query($faltas,$conexion);
 									$reg_faltas=mysql_fetch_array($res_faltas);
 									$faltas_total=$reg_faltas["cuantos"];
-									if($faltas_total > 6){$faltas_total = 6;}
+									if($faltas_total > 8){$faltas_total = 8;}
 									?>
 									<img src="ima/barra_<?php echo $faltas_total;?>.png" width="400" height="15" >
 									<br>

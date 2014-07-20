@@ -27,7 +27,7 @@ if($reg=mysql_fetch_array($res)){
 		<tr>
 			<td width="350" class="datos_extra" >
 			<?php 
-				echo chao_tilde($reg["integrante"]);
+				echo escribir_integrante($reg["integrante"]);
 			?>
 			</td>
 			<td width="50" class="datos_extra" >
@@ -149,7 +149,7 @@ if($reg=mysql_fetch_array($res)){
 			$res_faltas=mysql_query($faltas,$conexion);
 			$reg_faltas=mysql_fetch_array($res_faltas);
 			$faltas_total=$reg_faltas["cuantos"];
-			if($faltas_total > 6){$faltas_total = 6;}
+			if($faltas_total > 8){$faltas_total = 8;}
 			?>
 			<br>
 			<img src="ima/barra_<?php echo $faltas_total;?>.png" width="500" >

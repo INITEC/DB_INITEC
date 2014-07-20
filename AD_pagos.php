@@ -62,8 +62,8 @@ $res_menu=mysql_query($menu,$conexion);
 				<td valign="top" width="250" class="informacion_extra" >
 					<select name="id_deuda">
 				<?php 
-				$deud="select id_deuda,nombre_deuda,id_temporada,cobrador from deudas where id_temporada='".$_SESSION["temporada"]."' AND 
-						cobrador='".$_SESSION["id_integrante"]."' order by id_deuda asc";
+				$deud="select * from deudas where id_temporada='".$_SESSION["temporada"]."' AND 
+						id_cobrador='".$_SESSION["id_integrante"]."' order by id_deuda asc";
 				$res_deud=mysql_query($deud,$conexion);
 				while($reg_deud=mysql_fetch_array($res_deud)){
 				?>					

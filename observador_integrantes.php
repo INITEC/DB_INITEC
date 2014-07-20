@@ -77,7 +77,7 @@ $tarea_actual="OBSERVADOR INTEGRANTES";
 		?>
 				<table width="700px" align="center" >
 					<tr>
-						<td valign="top" align="center" width="700" colspan="6" >
+						<td valign="top" align="center" width="710" colspan="6" >
 							<h1 style="color:#CDE8F3" >Integrantes del INITEC</h1>
 						</td>
 					</tr>
@@ -91,7 +91,7 @@ $tarea_actual="OBSERVADOR INTEGRANTES";
 						<td valign="top" align="center" width="300" >
 							Gmail
 						</td>
-						<td valign="top" align="center" width="50" >
+						<td valign="top" align="center" width="60" >
 							Foto
 						</td>
 						<td valign="top" align="center" width="25" >
@@ -107,7 +107,7 @@ $tarea_actual="OBSERVADOR INTEGRANTES";
 					<tr class="registros_tabla" >
 						<td valign="top" align="center" width="200" >
 							<?php 
-							echo $reg["integrante"];
+							echo escribir_integrante($reg["integrante"]);
 							?>
 						</td>
 						<td valign="top" align="center" width="100" >
@@ -121,7 +121,7 @@ $tarea_actual="OBSERVADOR INTEGRANTES";
 							?>
 						</td>
 						<td valign="top" align="center" width="50" >
-							<img src="foto_integrantes/<?php echo $reg["foto"];?>" width="50" heigth="50" border="0" >
+							<img src="foto_integrantes/<?php echo $reg["foto"];?>" width="60" height="48" border="0" >
 						</td>
 						<td valign="top" align="center" width="25" >
 							<img title="Ver mas" src="ima/desplazar_abajo.png"  width="25px"

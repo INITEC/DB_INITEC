@@ -54,19 +54,39 @@ class usuarios {
 		$sql = "SELECT * FROM usuarios WHERE id_persona = '".$id_persona."'";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
+    public function ingresar_nuevo ($id_persona, $usuario, $clave){
+        $id_usuario = $this->crear_usuario($id_persona);
+        if($id_usuario != 0){
+            if($this->buscar_usuario($usuario) > 0){
+                $this->ingresar_usuario($id_persona, $usuario);
+                $this->ingresar_clave($id_persona, $clave);
+                return "Usuario creado exitosamente";
+            }else {
+                return "El nombre de usuario ya existe";
+            }
+        }else {
+            return "La persona ya tiene usuario";
+        }
+    }
+    public function buscar_usuario ($usuario){
+        $sql = "SELECT usuario FROM usuarios WHERE usuario='".$usuario."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->_conexion->tam_respuesta();
+    }
+    public function verificar_usuario ($usuario,$clave){
+        $sql = "SELECT * FROM usuarios WHERE usuario='".$usuario."' AND clave='".$clave."' AND estado=1 ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        $usuario = $this->_conexion->tam_respuesta();
+        if($usuario == 1){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}
-    public function ingresar_nuevo ($id_persona, $nombre, $apellido){
-        $id_usuario = $this->crear_usuario($id_persona);
-        if($id_usuario != 0){
-            $this->ingresar_usuario($id_persona, $usuario);
-            $this->ingresar_clave($id_persona, $clave);
-            return "Usuario creado exitosamente";
-        }else {
-            return "El usuario ya existe";
-        }
-    }
+    
     
 }
 ?>

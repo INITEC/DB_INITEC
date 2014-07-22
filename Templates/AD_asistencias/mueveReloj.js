@@ -1,4 +1,4 @@
-function mueveReloj(){
+function mueveReloj() {
 		momentoActual = new Date()
 	    hora = momentoActual.getHours()
 	    minuto = momentoActual.getMinutes()

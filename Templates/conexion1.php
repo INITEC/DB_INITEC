@@ -1,12 +1,12 @@
 <?php
-/*
+
 $conexion=mysql_connect("localhost","root","jibf123");
 $base_datos=mysql_select_db("redwe_12350066_initec");
-*/
 
+/*
 $conexion=mysql_connect("sql307.redwebmaster.com.ar","redwe_12350066","jibf123");
 $base_datos=mysql_select_db("redwe_12350066_initec");
-
+*/
 function escribir ($entrada) {
 	$traduce = array ('á'=>'&aacute', 'Á'=>'&Aacute', 'é'=>'&eacute', 'É'=>'&Eacute', 'í'=>'&iacute', 'Í'=>'&Iacute',
 	'ó'=>'&oacute', 'Ó'=>'&Oacute', 'ú'=>'&uacute', 'Ú'=>'&Uacute', 'ñ'=>'&ntilde', 'Ñ'=>'&Ntilde' );

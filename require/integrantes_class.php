@@ -42,13 +42,20 @@ class integrantes {
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
     public function ver_condicion_integrante($id_persona){
-        $sql = "SELECT id_persona,id_condicion_int FROM integrantes WHERE id_integrante ='".$id_integrante."'
-					AND estado ='activo' ";
+        $sql = "SELECT id_persona,id_condicion_int FROM datos_integrante WHERE id_persona ='".$id_persona."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
-		return $this->_conexion->tam_respuesta();
+		return $this->_conexion->retornar_array();
+    }
+    public function cambiar_condicion_integrante($id_persona, $id_cond_int){
+        $sql = "UPDATE `datos_integrantes` SET id_cond_int='".$id_cond_int."' WHERE id_persona='".$id_persona."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
     }
 	public function verificar_activo($id_persona){
-		
+	   if($this->ver_condicion_integrante($id_persona)==1){
+            return 0;
+       }else{
+            return 1;
+       }	
 	}
 
 }

@@ -1,8 +1,10 @@
 <?php
 require_once ("../require/conexion_class.php");
+require_once ("../require/tipo_cond_int.php");
 
 class cond_int {
 	private $_conexion;
+    private $_tipo_cond_int;
 	
 	public function __construct (){
 		$this->_conexion = new conexion();
@@ -10,32 +12,22 @@ class cond_int {
     
     public function nueva($id_tipo_cond, $id_persona){
         $sql = "INSERT INTO `cond_int`(`id_cond_int`, `id_tipo_cond`, `id_persona`, `fecha_cond`) VALUES (null, '".$id_tipo_cond."', '".$id_persona."', now() )";
-		if($this->_conexion->ejecutar_sentencia($sql)){
-            return $this->ultima_persona();    
-        }
+		$this->_conexion->ejecutar_sentencia($sql);
     }
-    public function ultima_persona(){
-        $sql = "SELECT `id_persona` FROM `personas` ORDER BY id_persona DESC LIMIT 1";
-        $this->_conexion->ejecutar_sentencia($sql);
-        $persona = $this->_conexion->retornar_array();
-        return $persona["id_persona"];
+    public function cambiar_fecha($id_cond_int, $fecha_new){
+        $sql = "UPDATE `cond_int` SET `fecha_cond`='".$fecha_new."' WHERE `id_cond_int`='".$id_cond_int."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
-    public function ingresar_nombre($id_persona, $nombre){
-        $sql = "UPDATE `personas` SET nombres='".$nombre."' WHERE id_persona='".$id_persona."' ";
-		return $this->_conexion->ejecutar_sentencia($sql);
-    }
-    public function ingresar_apellido($id_persona, $apellido){
-        $sql = "UPDATE `personas` SET apellidos='".$apellido."' WHERE id_persona='".$id_persona."' ";
-		return $this->_conexion->ejecutar_sentencia($sql);
-    }
-    public function ver_personas (){
-		$sql = "SELECT * FROM personas ORDER BY orden ASC";
-		return $this->_conexion->ejecutar_sentencia($sql);		
+    public function ver_tipos (){
+		return $_tipo_cond_int->ver_tipos();		
 	}
-	public function ver_persona ($id_persona){
-		$sql = "SELECT * FROM personas WHERE id_persona = '".$id_persona."'";
-		return $this->_conexion->ejecutar_sentencia($sql);
+	public function ver_tipo ($id_tipo_cond){
+		return $_tipo_cond_int->ver_tipo($id_tipo_cond);
 	}
+    public function ver_cond_actual ($id_cond_int){
+        $sql = "SELECT id_cond_int,id_tipo_cond FROM `cond_int` WHERE id_cond_int='".$id_cond_int."' ";
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

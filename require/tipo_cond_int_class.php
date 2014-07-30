@@ -27,18 +27,17 @@ class tipo_cond_int {
     public function ver_tipos (){
 		$sql = "SELECT * FROM `tipos_cond_int` ORDER BY nombre_tipo ASC";
 		return $this->_conexion->ejecutar_sentencia($sql);
-        
 	}
     
     /* Consulta la existencia de un determinado tipo de condicion */
 	public function ver_tipo ($id_tipo_cond){
 		$sql = "SELECT * FROM `tipo_cond_int` WHERE id_tipo_cond = '".$id_tipo_cond."' LIMIT 1 ";
-		return $this->_conexion->ejecutar_sentencia($sql);
+		$this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
 	}
     
     public function ver_nombre ($id_tipo_cond){
-        $this->ver_tipo($id_tipo_cond);
-        $tipo = $this->retornar_SELECT();
+        $tipo = $this->ver_tipo($id_tipo_cond);
         return $tipo["nombre_tipo"];
     }
     

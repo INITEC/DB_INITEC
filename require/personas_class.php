@@ -20,11 +20,11 @@ class personas {
         $persona = $this->_conexion->retornar_array();
         return $persona["id_persona"];
     }
-    public function ingresar_nombre($id_persona, $nombre){
+    public function cambiar_nombre($id_persona, $nombre){
         $sql = "UPDATE `personas` SET nombres='".$nombre."' WHERE id_persona='".$id_persona."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
-    public function ingresar_apellido($id_persona, $apellido){
+    public function cambiar_apellido($id_persona, $apellido){
         $sql = "UPDATE `personas` SET apellidos='".$apellido."' WHERE id_persona='".$id_persona."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
@@ -41,9 +41,8 @@ class personas {
 	}
     public function ingresar_nuevo($nombre, $apellido){
         $id_persona = $this->crear_persona();
-        $this->ingresar_nombre($id_persona, $nombre);
-        $this->ingresar_apellido($id_persona, $apellido);
+        $this->cambiar_nombre($id_persona, $nombre);
+        $this->cambiar_apellido($id_persona, $apellido);
     }
-    
 }
 ?>

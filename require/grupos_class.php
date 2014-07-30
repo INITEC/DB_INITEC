@@ -1,13 +1,16 @@
 <?php 
 require_once ("../require/conexion_class.php");
+require_once ("../require/lista_grupos_class.php");
 
 class grupos {
 	private $_conexion;
+    private $_lista_grupos;
 	
 	public function __construct (){
 		$this->_conexion = new conexion;
+        $this->_lista_grupos = new lista_grupos;
 	}
-	
+
 	public function numero_grupos (){
 		$sql = "SELECT estado_grupo FROM grupos WHERE estado_grupo ='1' ";
 		$this->_conexion->ejecutar_sentencia($sql);
@@ -27,7 +30,7 @@ class grupos {
 	public function datos_grupo ($id_grupo){
 		$sql = "SELECT * FROM grupos WHERE id_grupo = '".$id_grupo."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
-		return $grupo = $this->_conexion->retornar_array();
+		return $grupo = $this->retornar_SELECT();
 	}
 	
 	private function crear_grupo ($nom_grupo){
@@ -78,10 +81,8 @@ class grupos {
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
 	
-	public function verificar_integrante ($id_integrante, $id_grupo){
-		$sql = "SELECT * FROM lista_grupos WHERE id_integrante ='".$id_integrante."' AND id_grupo ='".$id_grupo."' ";
-		$this->_conexion->ejecutar_sentencia($sql);
-		return $this->_conexion->tam_respuesta();
+	public function verificar_integrante ($id_persona, $id_grupo){
+		return $this->_lista_grupos->verificar_integrante($id_persona, $id_grupo);
 	}
 	
 	private function variar_cantidad ($id_grupo, $cantidad){
@@ -89,29 +90,27 @@ class grupos {
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
 	
-	public function retirar_integrante ($id_integrante, $id_grupo){
-		if($this->verificar_integrante($id_integrante, $id_grupo) != 0 ) {
-		$sql = "DELETE FROM `lista_grupos` WHERE id_integrante ='".$id_integrante."' AND id_grupo ='".$id_grupo."'";
-		if($this->_conexion->ejecutar_sentencia($sql)){
-			if($this->verificar_integrante ($id_integrante, $id_grupo) == 0){
-				$this->variar_cantidad($id_grupo, -1);
-				return 1;
-			}else {
-				$this->retirar_integrante ($id_integrante, $id_grupo);
-			}
-		}else {
-			return 0;
-		}}
+	public function retirar_integrante ($id_persona, $id_grupo){
+		if($this->verificar_integrante($id_persona, $id_grupo) != 0 ) {
+            if($this->_lista_grupos->retirar_integrante($id_integrante, $id_grupo)){
+                if($this->verificar_integrante ($id_persona, $id_grupo) == 0){
+                    $this->variar_cantidad($id_grupo, -1);
+                    return 1;
+                }else {
+                    $this->retirar_integrante ($id_persona, $id_grupo);
+                }
+            }else {
+                return 0;
+            }
+        }
 		else {
 			return 1;
 		}
 	}
 	
-	private function agregar_integrante ($id_integrante,$id_grupo){
-		$sql = "INSERT INTO `lista_grupos`(`id_lista`, `id_integrante`, `id_grupo`) 
-					VALUES (null, '".$id_integrante."', '".$id_grupo."')";
-		$this->variar_cantidad($id_grupo,1);
-		return $this->_conexion->ejecutar_sentencia($sql);
+	private function agregar_integrante ($id_persona,$id_grupo){
+        $this->_lista_grupos->agregar_integrante($id_persona, $id_grupo);
+        return $this->variar_cantidad($id_grupo,1);
 	}
 	
 	public function verificar_registrar ($id_integrante, $id_grupo) {
@@ -121,13 +120,7 @@ class grupos {
 			return 1;
 		}
 	}
-	
-	public function ver_integrantes ($id_grupo){
-		$sql = "SELECT integrantes.*,lista_grupos.* FROM integrantes,lista_grupos WHERE integrantes.id_integrantes=lista_grupos.id_integrante
-					AND lista_grupos.id_grupo ='".$id_grupo."' ";
-		return $this->ejecutar_sentencia($sql);
-	}
-	
+
 	public function retornar_SELECT (){
 		return $this->_conexion->retornar_array();
 	}

@@ -10,8 +10,8 @@ class tareas_int {
 	public function crear_tarea ($nom_tarea,$url_tarea) {
 		$sql = "SELECT orden FROM `tareas_int` ORDER BY orden ASC LIMIT 1";
 		$this->_conexion->ejecutar_sentencia($sql);
-		$retorno = $this->_conexion->retornar_array();
-		$ultimo_orden = $retorno["orden"] + 1;
+		$tarea = $this->_conexion->retornar_array();
+		$ultimo_orden = $tarea["orden"] + 1;
 		$sql = "INSERT INTO `tareas_int`(`id_tarea`, `nom_tarea`, `url_tarea`, `orden`) 
 					VALUES (null, '".$nom_tarea."', '".$url_tarea."', '".$ultimo_orden."' )";
 		return $this->_conexion->ejecutar_sentencia($sql);

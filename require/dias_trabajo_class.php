@@ -19,6 +19,15 @@ class dias_trabajo {
 		return $dia_trab["fecha_dia"];
 	}
     
+    public function obtener_fecha_hoy (){
+        date_default_timezone_set('America/Los_Angeles');
+        $dia=date(d);
+		$mes=date(n);
+		$ano=date(Y);
+        $fecha = $ano."-".$mes."-".$dia;
+        return $fecha;
+    }
+    
     public function verificar_dia (){
 		$sql = "SELECT * FROM dias_trabajo WHERE fecha_dia = curdate() ";
 		$this->_conexion->ejecutar_sentencia($sql);

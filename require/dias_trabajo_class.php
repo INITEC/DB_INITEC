@@ -49,13 +49,20 @@ class dias_trabajo {
 		}
     }
     
-    public function obtener_id_dia (){
-		$this->crear_dia_nuevo();
-		$sql = "SELECT * FROM dias_trabajo WHERE fecha_dia = curdate() ";
+    public function obtener_id_dia ($fecha_dia){
+		$sql = "SELECT * FROM `dias_trabajo` WHERE fecha_dia='".$fecha_dia."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        $dia = $this->retornar_SELECT();
+        return $dia["id_dia_trabajo"];
+	}
+    
+    public function obtener_id_dia_hoy (){
+        $sql = "SELECT * FROM dias_trabajo WHERE fecha_dia = curdate() ";
 		$this->_conexion->ejecutar_sentencia($sql);
 		$dia = $this->_conexion->retornar_array();
 		return $dia["id_dia_trabajo"];
-	}
+    }
+    
     
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();

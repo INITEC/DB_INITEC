@@ -14,18 +14,13 @@ class horas_trabajo {
 		$this->_trab_total = new trabajo_total();
 	}
 	
-	public function ver_horas_trabajo_int ($id_integrante){
-		$sql = "SELECT integrantes.id_integrante, horas_trabajo.* FROM integrantes, horas_trabajo
-				WHERE integrantes.id_integrante=horas_trabajo.id_integrante AND  integrantes.id_integrante ='".$id_integrante."' 
-				AND horas_trabajo.id_cond_hora ='0' ";
+	public function ver_horas_trabajo_int ($id_persona){
+        $sql = "SELECT * FROM horas_trabajo WHERE id_persona='".$id_persona."' AND id_cond_hora='1' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
 
-	public function ver_horas_no_validadas ($id_grupo){
-		$sql = "SELECT integrantes.id_integrante, integrantes.foto, integrantes.integrante, integrantes.estado, horas_trabajo.* 
-				FROM integrantes, horas_trabajo	WHERE horas_trabajo.id_grupo = '".$id_grupo."' 
-				AND horas_trabajo.id_cond_hora ='0' AND integrantes.id_integrante=horas_trabajo.id_integrante AND 
-				integrantes.estado ='activo' ";
+	public function ver_horas_en_espera ($id_grupo){
+        $sql = "SELECT * FROM `horas_trabajo` WHERE id_grupo='".$id_grupo."' AND id_cond_hora='2' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
 
@@ -95,8 +90,8 @@ class horas_trabajo {
 			$id_grupo = $datos_horas["id_grupo"];
 			$n_horas = $datos_horas["n_horas"];
 			if($datos_horas["id_cond_hora"] == '0') {
-			$this->_trab_grupo->cambiar_horas_trab_grupo($id_integrante, $id_grupo, $id_temporada, $n_horas);
-			$this->_trab_total->cambiar_horas_trab_total($id_integrante, $id_temporada, $n_horas);
+			$this->_trab_grupo->variar_horas_trab_grupo($id_integrante, $id_grupo, $id_temporada, $n_horas);
+			$this->_trab_total->variar_horas_trab_total($id_integrante, $id_temporada, $n_horas);
 				$sql = "UPDATE horas_trabajo SET id_cond_hora = '1' WHERE id_horas_trab ='".$id_horas_trab."' ";
 				return $this->_conexion->ejecutar_sentencia($sql);
 			}else {

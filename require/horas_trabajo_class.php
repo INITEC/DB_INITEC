@@ -2,16 +2,19 @@
 require_once ("../require/conexion_class.php");
 require_once ("../require/trabajo_grupos_class.php");
 require_once ("../require/trabajo_total_class.php");
+require_once ("../require/dias_trabajo_class.php");
 
 class horas_trabajo {
 	private $_conexion;
 	private $_trab_grupo;
 	private $_trab_total;
+    private $_dias_trabajo;
 	
 	public function __construct (){
 		$this->_conexion = new conexion();
 		$this->_trab_grupo = new trabajo_grupos();
 		$this->_trab_total = new trabajo_total();
+        $this->_dias_trabajo = new dias_trabajo();
 	}
 	
 	public function ver_horas_trabajo_int ($id_persona){
@@ -25,16 +28,11 @@ class horas_trabajo {
 	}
 
 	public function ver_fecha ($id_dia_trabajo) {
-		$sql = "SELECT id_dia_trabajo,fecha_dia FROM dias_trabajo WHERE id_dia_trabajo ='".$id_dia_trabajo."' LIMIT 1 ";
-		$this->_conexion->ejecutar_sentencia($sql);
-		$dia_trab = $this->_conexion->retornar_array();
-		return $dia_trab["fecha_dia"];
+		return $this->_dias_trabajo->ver_fecha();
 	}
 	
 	public function verificar_dia (){
-		$sql = "SELECT * FROM dias_trabajo WHERE fecha_dia = curdate() ";
-		$this->_conexion->ejecutar_sentencia($sql);
-		return $this->_conexion->tam_respuesta();
+		return $this->_dias_trabajo->verificar_dia();
 	}
 	
 	private function verificar_registro_horas($id_integrante,$id_grupo){

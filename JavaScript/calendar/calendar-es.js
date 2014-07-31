@@ -99,18 +99,18 @@ Calendar._TT["ABOUT_TIME"] = "\n\n" +
 "- o pulse las mayúsculas mientras hace clic para decrementarla\n" +
 "- o haga clic y arrastre el ratón para una selección más rápida.";
 
-Calendar._TT["PREV_YEAR"] = "Año anterior (mantener para menú)";
-Calendar._TT["PREV_MONTH"] = "Mes anterior (mantener para menú)";
+Calendar._TT["PREV_YEAR"] = "A&ntildeo anterior (mantener para men&uacute)";
+Calendar._TT["PREV_MONTH"] = "Mes anterior (mantener para men&uacute)";
 Calendar._TT["GO_TODAY"] = "Ir a hoy";
-Calendar._TT["NEXT_MONTH"] = "Mes siguiente (mantener para menú)";
-Calendar._TT["NEXT_YEAR"] = "Año siguiente (mantener para menú)";
+Calendar._TT["NEXT_MONTH"] = "Mes siguiente (mantener para men&uacute)";
+Calendar._TT["NEXT_YEAR"] = "A&ntildeo siguiente (mantener para men&uacute)";
 Calendar._TT["SEL_DATE"] = "Seleccionar fecha";
 Calendar._TT["DRAG_TO_MOVE"] = "Arrastrar para mover";
 Calendar._TT["PART_TODAY"] = " (hoy)";
 
 // the following is to inform that "%s" is to be the first day of week
 // %s will be replaced with the day name.
-Calendar._TT["DAY_FIRST"] = "Hacer %s primer día de la semana";
+Calendar._TT["DAY_FIRST"] = "Hacer %s primer d&iacutea de la semana";
 
 // This may be locale-dependent.  It specifies the week-end days, as an array
 // of comma-separated numbers.  The numbers are from 0 to 6: 0 means Sunday, 1

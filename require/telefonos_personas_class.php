@@ -53,7 +53,7 @@ class telefonos_personas {
         return $this->_conexion->tam_respuesta();
     }
     
-    public function num_telefonos ($id_persona) {
+    public function cant_telefonos ($id_persona) {
         $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->_conexion->tam_respuesta();
@@ -66,7 +66,7 @@ class telefonos_personas {
             $this->_conexion->ejecutar_sentencia($sql);
             return $this->retornar_SELECT();
         } else {
-            if ($this->num_telefonos($id_persona) !=0){
+            if ($this->cant_telefonos($id_persona) !=0){
                 $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ORDER BY id_telefono_per DESC LIMIT 1";
                 $this->_conexion->ejecutar_sentencia($sql);
                 return $this->retornar_SELECT();

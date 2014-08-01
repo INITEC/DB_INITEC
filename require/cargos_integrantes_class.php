@@ -56,16 +56,7 @@ class cargos_integrantes {
         $sql = "SELECT * FROM `cargos_integrantes` ";
         $this->_conexion->ejecutar_sentencia($sql);
     }
-    
-    public function ver_num_telefono ($id_persona){
-        $telefono = $this->ver_telefono($id_persona);
-        if ($telefono != 0){
-            return $telefono["telefono"]; 
-        } else {
-            return "sin telefono";
-        }
-    }
-    
+
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

@@ -34,9 +34,7 @@ class integrantes {
 		$sql = "SELECT personas.id_persona, personas.nombres, personas.apellidos datos_integrantes.id_persona datos_integrantes.id_cond_int FROM personas, datos_integrantes WHERE datos_integrantes.id_cond_int=1 ORDER BY personas.apellidos ASC";
 		$this->_conexion->ejecutar_sentencia($sql);	
 	}
-	public function retornar_SELECT(){
-		return $this->_conexion->retornar_array();
-	}
+	
 	public function cambiar_trabajo ($id_persona, $id_trabajo){
 		$sql = "UPDATE `datos_integrantes` SET `id_trabajo`='".$id_trabajo."' WHERE `id_persona`= '".$id_persona."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
@@ -57,6 +55,8 @@ class integrantes {
             return 1;
        }	
 	}
-
+    public function retornar_SELECT(){
+		return $this->_conexion->retornar_array();
+	}
 }
 ?>

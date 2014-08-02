@@ -12,7 +12,8 @@ class cond_int {
 	}
     
     public function nuevo($id_tipo_cond, $id_persona){
-        $sql = "INSERT INTO `cond_int`(`id_cond_int`, `id_tipo_cond`, `id_persona`, `fecha_cond`) VALUES (null, '".$id_tipo_cond."', '".$id_persona."', now() )";
+        // visible -> 1=visible -> 2=no visible
+        $sql = "INSERT INTO `cond_int`(`id_cond_int`, `id_tipo_cond`, `id_persona`, `fecha_cond`, `visible`) VALUES (null, '".$id_tipo_cond."', '".$id_persona."', now() , '1')";
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
     public function cambiar_fecha($id_cond_int, $fecha_new){

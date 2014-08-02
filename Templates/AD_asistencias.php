@@ -20,7 +20,7 @@ if($id_integrante) {
 ?>
 <html>
 <head>
-<title>..::HOME::..</title>
+<title>..::<?php echo $tarea_actual; ?>::..</title>
 <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 <script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/funciones_ajax.js"></script>

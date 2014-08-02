@@ -83,6 +83,21 @@ class usuarios {
             return 0;
         }
     }
+    
+    public function obtener_id_persona ($usuario, $clave){
+        if($this->verificar_usuario($usuario, $clave) == 1 ){
+            $sql = "SELECT * FROM usuarios WHERE usuario='".$usuario."' AND clave='".$clave."' AND estado=1 ";
+            $this->_conexion->ejecutar_sentencia($sql);
+            $usuario = $this->retornar_SELECT();
+            return $usuario["id_persona"];
+        } else {
+            echo "<script type='text/javascript'>
+			alert('El usuario o la clave son incorrectas, o estan deshabilitados porfavor vuelva a intentarlo o consulte con el administrador');
+			window.location.assign('index.php');
+			</script>";
+        }
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

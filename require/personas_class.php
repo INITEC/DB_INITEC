@@ -34,7 +34,8 @@ class personas {
 	}
 	public function ver_persona ($id_persona){
 		$sql = "SELECT * FROM personas WHERE id_persona = '".$id_persona."'";
-		return $this->_conexion->ejecutar_sentencia($sql);
+		$this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
 	}
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();

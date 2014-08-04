@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$id_integrante = $_SESSION["id_integrante"];
+$id_integrante = $_SESSION["id_persona"];
 if($id_integrante) {
 	
 	require_once ("../require/obligaciones_int_class.php");

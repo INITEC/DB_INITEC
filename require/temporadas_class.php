@@ -1,7 +1,7 @@
 <?php
 require_once ("../require/conexion_class.php");
 
-class usuarios {
+class temporadas {
 	private $_conexion;
 	
 	public function __construct (){

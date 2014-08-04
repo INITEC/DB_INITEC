@@ -10,7 +10,7 @@ function valida_correo(correo) {
 		  }
 		 }
 // ------------------------------------------------------------------------------------------------------------------
-/* valida números */
+/* valida nÃºmeros */
 function valida_numero(numero)
 {
 if (!/^([0-9])*$/.test(numero)){
@@ -20,7 +20,7 @@ if (!/^([0-9])*$/.test(numero)){
 	}
 }
 // -------------------------------------------------------------------------------------------------------------------
-/* función para validar cadenas de solo letras */
+/* funciÃ³n para validar cadenas de solo letras */
 function valida_cadena(texto)
 	{
 		var RegExPattern = "[1-9]";
@@ -75,7 +75,7 @@ function limpiar()
 		form.asistencia.value="Asistio"
 		// ***********************************************************************************
 		//programa que resta las horas
-		    horas1=entrada.split(":"); /*Mediante la función split separamos el string por ":" y lo convertimos en array. */
+		    horas1=entrada.split(":"); /*Mediante la funciÃ³n split separamos el string por ":" y lo convertimos en array. */
 		    horas2=inicio.split(":");
 		    horatotale=new Array();
 //		    for(a=0;a<3;a++) /*bucle para tratar la hora, los minutos y los segundos*/

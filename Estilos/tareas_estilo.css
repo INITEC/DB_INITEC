@@ -18,6 +18,9 @@ body { background-color: #88A6DC;}
 #tabla2_encabezado {background-color:#0B4756; text-align:center; color:#FFFFFF; valign:top; align:center;}
 #tabla2_informacion {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center;}
 
+/* para href */
+.enlaces {FONT-SIZE: 13px; COLOR: #003399; FONT-FAMILY: Arial; TEXT-DECORATION: none }
+
 /*subtitulos*/
 
 #subtitulo1 {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#88A6DC;  }
@@ -26,6 +29,8 @@ body { background-color: #88A6DC;}
 
 .dato_correcto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#00FF00;  }
 .dato_incorrecto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#FF0000;  }
+
+
 
 /* corregir estos estilos, cambiar a Tablas*/
 	/*Estilos para presentacion de tablas*/

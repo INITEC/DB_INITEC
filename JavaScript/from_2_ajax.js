@@ -29,9 +29,9 @@ return req;
 }
 var miPeticion = obtiene_http_request();
 /* ************************************************************************************** */
-function from_2 (id,estado,ide,url){
+function from_2 (dato,nom_dato,ide,url){
 		var mi_aleatorio=parseInt(Math.random()*99999999);//para que no guarde la página en el caché...
-		var vinculo=url+"?id="+id+"&estado="+estado+"&rand="+mi_aleatorio;
+		var vinculo=url+"?dato="+dato+"&nom_dato="+nom_dato+"&rand="+mi_aleatorio;
 		//alert(vinculo);
 		miPeticion.open("GET",vinculo,true);//ponemos true para que la petición sea asincrónica
 		miPeticion.onreadystatechange=miPeticion.onreadystatechange=function(){

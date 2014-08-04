@@ -1,5 +1,5 @@
-function  callDivs_1 (divid, url, dato) {
-	var divid,secs,url,dato,fetch_unix_timestamp;
+function  callDivs_dato (divid, url, dato, nom_dato) {
+	//var divid,url,dato,fetch_unix_timestamp,nom_dato;
 	/*Revisando que las variables no esteen vacias*/
 	if (divid == "") {alert('Error: Escribe el id del div que quieres refrescar'); return ;}
 	else if (!document.getElementById(divid)) {alert('Error: El div del ID seleccionado no esta definido:' + divid); return;}
@@ -24,13 +24,13 @@ function  callDivs_1 (divid, url, dato) {
 
 	/* Timestamp para evitar que se cachee el array GET */
 
-	fetch_unix_timestamp = function()
+	var fetch_unix_timestamp = function()
 	{
 	return parseInt(new Date().getTime().toString().substring(0, 10))
 	}
 
 	var timestamp = fetch_unix_timestamp();
-	var nocacheurl = url+"?dato="+dato+"&t="+timestamp;
+	var nocacheurl = url+"?dato="+dato+"&nom_dato="+nom_dato+"&t="+timestamp;
 
 	/* the ajax call */
 	xmlHttp.onreadystatechange=function(){

@@ -46,7 +46,7 @@ if($id_integrante) {
 			</div>
 			<div>
 				<table align="center">
-					<tr id="Tabla1_encabezado">
+					<tr id="tabla1_encabezado">
 						<td>
 							INGRESE EL NUMERO DE HORAS
 						</td>

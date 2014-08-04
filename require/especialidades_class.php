@@ -38,8 +38,12 @@ class especialidades {
     }
     
     public function ver_nom_especialidad ($id_especialidad){
-        $especialidad = $this->ver_especialidad($id_especialidad);
-        return $especialidad["nom_especialidad"];
+        if (!empty($id_especialidad)){
+            $especialidad = $this->ver_especialidad($id_especialidad);
+            return $especialidad["nom_especialidad"];
+        } else {
+            return "No especificado";
+        }
     }
     
     public function ver_especialidades () {

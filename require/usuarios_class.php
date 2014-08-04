@@ -95,6 +95,7 @@ class usuarios {
 			alert('El usuario o la clave son incorrectas, o estan deshabilitados porfavor vuelva a intentarlo o consulte con el administrador');
 			window.location.assign('index.php');
 			</script>";
+            return 0;
         }
     }
     

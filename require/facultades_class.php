@@ -43,8 +43,12 @@ class facultades {
     }
     
     public function ver_nom_facultad ($id_facultad){
-        $facultad = $this->ver_facultad ($id_facultad);
-        return $facultad["nom_facultad"];
+        if (!empty($id_facultad)){
+            $facultad = $this->ver_facultad ($id_facultad);
+            return $facultad["nom_facultad"];
+        } else {
+            return "No especificado";
+        }
     }
     
     public function ver_abreviatura ($id_facultad){

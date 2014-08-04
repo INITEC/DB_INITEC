@@ -11,7 +11,7 @@ function valida_correo(correo) {
 		  }
 		 }
 //*************************************************************************************************************************************
-//valida números
+//valida nÃºmeros
 function valida_numero(numero)
 {
 if (!/^([0-9])*$/.test(numero)){
@@ -21,7 +21,7 @@ if (!/^([0-9])*$/.test(numero)){
 	}
 }
 //*******************************************************************************************************
-//función para validar cadenas de solo letras
+//funciÃ³n para validar cadenas de solo letras
 function valida_cadena(texto)
 	{
 		var RegExPattern = "[1-9]";

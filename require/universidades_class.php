@@ -43,8 +43,12 @@ class universidades {
     }
     
     public function ver_nom_universidad ($id_universidad){
-        $universidad = $this->ver_universidad($id_universidad);
-        return $universidad["nom_universidad"];
+        if (!empty($id_facultad)){
+            $universidad = $this->ver_universidad($id_universidad);
+            return $universidad["nom_universidad"];
+        } else {
+            return "No especificado";
+        }
     }
     
     public function ver_abreviatura ($id_universidad){

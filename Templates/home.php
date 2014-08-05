@@ -26,11 +26,10 @@ if($id_persona) {
 <script type="text/javascript" languaje="javascript" src="../JavaScript/from_2_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-window.onload = function(){
 	callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona');
-}
 </script>
 
 </head>

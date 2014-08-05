@@ -2,7 +2,7 @@ function  callDivs_dato (divid, url, dato, nom_dato) {
 	//var divid,url,dato,fetch_unix_timestamp,nom_dato;
 	/*Revisando que las variables no esteen vacias*/
 	if (divid == "") {alert('Error: Escribe el id del div que quieres refrescar'); return ;}
-	else if (!document.getElementById(divid)) {alert('Error: El div del ID seleccionado no esta definido:' + divid); return;}
+	//else if (!document.getElementById(divid)) {alert('Error: El div del ID seleccionado no esta definido:' + divid); return;}
 	else if (url == "") {alert('Error: La URL del documento que quieres cargar en el div no puede estar vacia'); return ;}
 	/* The xmlHttpRequest object*/
 				
@@ -30,7 +30,7 @@ function  callDivs_dato (divid, url, dato, nom_dato) {
 	}
 
 	var timestamp = fetch_unix_timestamp();
-	var nocacheurl = url+"?dato="+dato+"&nom_dato="+nom_dato+"&t="+timestamp;
+	var nocacheurl = url+"?"+nom_dato+"="+dato+"&t="+timestamp;
 
 	/* the ajax call */
 	xmlHttp.onreadystatechange=function(){

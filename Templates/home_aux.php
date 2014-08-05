@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $id_persona = $_SESSION["id_persona"];
+$id_temporada = $_SESSION["id_temporada"];
 if($id_persona) {
 	require_once ("../require/obligaciones_int_class.php");
 	require_once ("../require/integrantes_class.php");
@@ -29,10 +30,8 @@ if($id_persona) {
 			$acceso = 1;
 			if (isset($_GET['estado'])) {
 				include_once ("AD_grupos/cambiar_estado_grupo.php");
-			}elseif (isset($_GET['nom_dato'])) {
-				if($_GET['nom_dato'] == 'id_persona') {
-					include_once ("home/tabla_datos_integrante.php");
-				}
+			}elseif (isset($_GET['id_persona'])) {
+				include_once ("home/tabla_datos_integrante.php");
 			}elseif (isset($_GET['select_grupo'])) {
 					include_once ("AD_grupos/tabla_integrantes_grupo.php");
 			}elseif (isset($_GET['Agregar_integrante'])) {

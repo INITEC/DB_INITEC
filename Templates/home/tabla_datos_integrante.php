@@ -3,13 +3,23 @@ if($acceso == 1) {
 ?>
 	<head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
+		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
 	</head>
 
 	<?php
-	if( !empty($_GET)) {	
-        $id_persona = $_GET["dato"];
+	if( !empty($_GET)) {
+        require_once ("../require/amonestaciones_class.php");
+        require_once ("../require/temporadas_class.php");
+        
+        include_once("../Include/cuadro_amonestaciones_int_func.php");
+        
+        
+        $id_persona_tabla = $_GET["id_persona"];
         $tabla_integrante = new integrantes();
-        $tabla_integrante->establecer_integrante($id_persona);
+        $amonestaciones = new amonestaciones();
+        $temporadas = new temporadas();
+        
+        $tabla_integrante->establecer_integrante($id_persona_tabla);
         ?>
      <table width="700px" align="center">
             <tr id="tabla2_encabezado" >
@@ -23,13 +33,13 @@ if($acceso == 1) {
                 <img src="<?php echo $tabla_integrante->foto(); ?>" width="200px" height="150">
                 </td>
             </tr>
-            <tr>
-                <td width="350" class="datos_extra" >
+            <tr id="tabla2_informacion" >
+                <td >
                 <?php 
                     echo $tabla_integrante->ver_nombre_int();
                 ?>
                 </td>
-                <td width="50" class="datos_extra" >
+                <td >
                 <?php
                     echo $tabla_integrante->ver_apellido_int();
                 ?>
@@ -112,13 +122,9 @@ if($acceso == 1) {
             </tr>
             <tr>
                 <td width="550" class="datos_extra" colspan="3" align="center">
-                <?php 
+                <?php
+                    cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,70,50);
                 ?>
-                <br>
-                <img src="../Imagenes/barra_<?php ?>.png" width="500" >
-                <br>
-                <br>
-                Usted tiene <?php ?> falta(s) leve(s) y <?php?> falta(s) grave(s)	
                 </td>
             </tr>
             <tr>
@@ -126,7 +132,7 @@ if($acceso == 1) {
                 <?php 
                 ?>
                 <br>
-                <img src="../Imagenes/barra_<?php ?>.png" width="500" >
+                
                 <br>
                 <br>
                 Usted tiene <?php ?> inasistencia(s)	

@@ -18,7 +18,7 @@ class reglamentos {
         $reglamento = $this->ver_reglamento($id_reglamento);
         return $reglamento["nom_reglamento"];
     }
-        public function retornar_SELECT(){
+    public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}
    

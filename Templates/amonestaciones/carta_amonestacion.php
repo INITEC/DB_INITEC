@@ -2,7 +2,6 @@
 if($acceso == 1) {
 ?>
 	<head>
-		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
 	</head>
 
@@ -10,24 +9,41 @@ if($acceso == 1) {
 	if( !empty($_GET)) {
         require_once ("../require/amonestaciones_class.php");
         require_once ("../require/temporadas_class.php");
+        require_once ("../require/fecha_text_func.php");
         
-        $id_amonestacion = $_GET["dato"];
+        $id_amonestacion = $_GET["id_amonestacion"];
+        $id_temporada = $_SESSION["id_temporada"];
+        $temporadas = new temporadas();
         $amonestaciones = new amonestaciones();
+        $amonestacion = $amonestaciones->ver_amonestacion($id_amonestacion);
+        $integrante_amo = new integrantes();
+        $max_amonestaciones = $temporadas->ver_max_amonestaciones($id_temporada);
         ?>
-        <div width="600px" style="background-color:#FF0000">
+        <div class="carta_amonestacion" >
+            <div class="carta_amonestacion_interior" >
+            <br>
 			&nbsp;Instituto de Innovaci&oacuten Tecnol&oacutegica<br>
 			&nbsp;Direci&oacuten de Talento Humano
 			
 			&nbsp;<p align="left" ><b>Carta de Amonestaci&oacuten <?php echo $id_amonestacion; ?></b></p>
-			<p align="right" >UNI - <?php echo fecha_text($reg["fecha_emision"]); ?></p>
-			&nbsp; <b><?php echo $reg["integrante"];?></b> integrante del INITEC<br>
-			El Directorio de Talento Humano, en ejercicio de sus facultades de direcci&oacuten, a decidido amonestarle por escrito en virtud de los siguientes hechos:<br>
-			<b><?php echo chao_tilde($reg["motivo"]);?></b><br>
-			Estos hechos constituyen para el INITEC una falta <?php echo $reg["tipo"];?> de conformidad con lo dispuesto en el articulo "<?php echo $reg["articulo"];?>" del cap&iacutetulo <?php echo $reg["capitulo"];?> del vigente estatuto y en su virtud de Director decide:<br>
-			Amonestarle por este comportamiento, y en el caso de acumular seis amonestaciones leves o dos graves, se proceder&aacute a separarlo de la organizaci&oacuten conforme lo estipula el Estatuto.<br>
-			Sin otro particular que manifestarle, se despide atentamente.<br><br>
-			Directorio de Talento Humano
+			<p align="right" >UNI - <?php echo fecha_text($amonestacion["fecha_emision"]);?></p>
+			&nbsp; <b><?php  echo $integrante_amo->ver_nombre_completo($amonestacion["id_receptor"]); ?></b> integrante del INITEC<br>
+
+			<p align="justify" >El Directorio de Talento Humano, en ejercicio de sus facultades de direcci&oacuten, a decidido amonestarle por escrito en virtud de los siguientes hechos sucedidos el <?php echo fecha_text($amonestacion["fecha_falta"]);?>:</p>
+
+			<p align="justify" ><b><?php echo $amonestacion["motivo"];?></b><br></p>
 			
+			<p align="justify" >Estos hechos constituyen para el INITEC una falta <?php echo $amonestaciones->ver_nom_tipo_amonestacion($amonestacion["id_tipo_amonestacion"]); ?> de conformidad con lo dispuesto en el articulo "<?php echo $amonestacion["articulo"];?>" del cap&iacutetulo <?php echo $amonestacion["capitulo"]; ?> del vigente <?php echo $amonestaciones->ver_nom_reglamento($amonestacion["id_reglamento"]);  ?>, por tanto, se decide:
+			<br>
+			Amonestarle por este comportamiento, y en el caso de acumular un equivalente a <?php echo $max_amonestaciones; ?> amonestaciones, se proceder&aacute a separarlo de la organizaci&oacuten conforme lo estipula el Estatuto.<br></p>
+			
+			Sin otro particular que manifestarle, se despide atentamente.<br><br>
+			<?php  echo $integrante_amo->ver_nombre_completo($amonestacion["id_remitente"]); ?>
+			<br>
+			Directorio de Talento Humano
+			<br>
+            <br>
+			</div>
         </div>
 <?php
 	}

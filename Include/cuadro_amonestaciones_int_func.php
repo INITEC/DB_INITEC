@@ -2,8 +2,11 @@
 /*  //require 
     $amonestaciones = new amonestaciones();
     $temporadas = new temporadas();
+    $url = // es la direccion que abrira la funcino de AJAX
+    $width // es el ancho de un cuadrado
+    $height // es el alto del cuadro
 */
-    function cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,$width,$height){
+    function cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,$width,$height,$url){
                     $num_amonestaciones = $amonestaciones->num_amonestaciones_int($id_persona, $id_temporada);
                     $amonestaciones->ver_id_amonestaciones_int($id_persona, $id_temporada);
                     $max_amonestaciones = $temporadas->ver_max_amonestaciones($id_temporada);
@@ -19,7 +22,7 @@
                             $peso = $amonestaciones->ver_peso_amonestacion($id_tipo_amonestacion);
                             $total_amonestaciones = $total_amonestaciones + $peso;
                         ?>
-                        <td class="amonestacion" width="<?php echo $width*$peso; ?>" height="<?php echo $height; ?>" onmouseover="callDivs_dato ('amonestacion_<?php echo $id_persona?>', 'prueba2.php', '<?php echo $id_amonestacion?>', 'id_amonestacion')" onmouseout="limpiar_elemento('amonestacion_<?php echo $id_persona?>');" >
+                        <td class="amonestacion" width="<?php echo $width*$peso; ?>" height="<?php echo $height; ?>" onmouseover="callDivs_dato ('amonestacion_<?php echo $id_persona?>', '<?php echo $url; ?>', '<?php echo $id_amonestacion?>', 'id_amonestacion')" onClick ="limpiar_elemento('amonestacion_<?php echo $id_persona?>');" >
                             <?php
                             echo $peso;
                             ?>
@@ -48,8 +51,8 @@
                     }
                     ?>
                     <tr>
-                        <td colspan="<?php echo $colspan; ?>">
-                            <div id="amonestacion_<?php echo $id_persona?>" >
+                        <td colspan="<?php echo $colspan; ?>" >
+                            <div id="amonestacion_<?php echo $id_persona?>">
                                 
                             </div>
                         </td>

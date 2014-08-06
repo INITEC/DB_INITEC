@@ -13,7 +13,6 @@ if($acceso == 1) {
         
         include_once("../Include/cuadro_amonestaciones_int_func.php");
         
-        
         $id_persona_tabla = $_GET["id_persona"];
         $tabla_integrante = new integrantes();
         $amonestaciones = new amonestaciones();
@@ -123,7 +122,7 @@ if($acceso == 1) {
             <tr>
                 <td width="550" class="datos_extra" colspan="3" align="center">
                 <?php
-                    cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,70,50);
+                    cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,70,50,'home_aux.php');
                 ?>
                 </td>
             </tr>

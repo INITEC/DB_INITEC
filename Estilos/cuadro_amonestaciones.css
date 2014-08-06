@@ -1,2 +1,5 @@
 .amonestacion {background-color:#610B0B; text-align:center; color:#FFFFFF; valign:top; align:center;}
 .amonestacion_libre {background-color:#298A08; text-align:center; color:#FFFFFF; valign:top; align:center;}
+
+.carta_amonestacion {background-color:#CE1717; color:#000000; font-size: 12px; font-family: Arial; margin: 0 0 0 0;}
+.carta_amonestacion_interior {margin: 0 10 0 10;}

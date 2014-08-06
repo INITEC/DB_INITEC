@@ -48,6 +48,13 @@ class integrantes {
         return $this->_persona["nombres"];
     }
     
+    public function ver_nombre_completo ($id_persona){
+        $sql = "SELECT * FROM personas WHERE id_persona='".$id_persona."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        $persona = $this->retornar_SELECT();
+        return $persona["apellidos"]." ".$persona["nombres"];
+    }
+    
     public function ver_apellido_int (){
         return $this->_persona["apellidos"];
     }

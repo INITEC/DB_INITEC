@@ -54,12 +54,12 @@ class telefonos_personas {
     }
     
     public function cant_telefonos ($id_persona) {
-        $this->_ver_telefonos($id_persona);
+        $this->ver_telefonos($id_persona);
         return $this->_conexion->tam_respuesta();
     }
     
     public function ver_telefonos ($id_persona){
-        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ";
+        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ORDER BY id_telefono_per DESC ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     

@@ -60,7 +60,12 @@ class universidades {
         $sql = "SELECT * FROM `universidades` ";
         $this->_conexion->ejecutar_sentencia($sql);
     }
-
+    
+    public function cant_universidades (){
+        $this->ver_universidades();
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

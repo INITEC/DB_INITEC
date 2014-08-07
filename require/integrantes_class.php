@@ -11,15 +11,15 @@ require_once ("../require/usuarios_class.php");
 class integrantes {
 	private $_conexion;
     private $_personas;
-	private $_persona;
-	private $_datos_integrante;
-    private $_telefonos_personas;
+	private $_telefonos_personas;
     private $_correos_personas;
     private $_universidades;
     private $_facultades;
     private $_especialidades;
     private $_usuarios;
-	
+	public $_persona;
+	public $_datos_integrante;
+    
 	public function __construct () {
 		$this->_conexion = new conexion();
         $this->_personas = new personas();
@@ -92,6 +92,10 @@ class integrantes {
     
     public function ver_especialidad_int (){
         return $this->_especialidades->ver_nom_especialidad($this->_datos_integrante["id_especialidad"]);
+    }
+    
+    public function ver_cod_universitario_int (){
+        return $this->_datos_integrante["cod_universitario"];
     }
     
     public function ver_usuario_int (){

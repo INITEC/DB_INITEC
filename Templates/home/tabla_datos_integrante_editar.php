@@ -36,6 +36,7 @@ if($acceso == 1) {
         
         $tabla_integrante->establecer_integrante($id_persona_tabla);
         ?>
+    <body>    
      <table width="700px" align="center">
             <tr id="tabla2_encabezado" >
                 <td width="350">
@@ -67,7 +68,7 @@ if($acceso == 1) {
             </tr>
             <tr id="tabla2_informacion" >
                 <td width="100" >
-                    <select name="id_telefono" id="id_telefono" >
+                    <select name="id_telefono" id="id_telefono" onchange="eval_select('id_telefono','agregar_telefono');" >
 				        <?php 
 						if($telefonos->cant_telefonos($id_persona_tabla) == 0) {
 						?>
@@ -77,18 +78,34 @@ if($acceso == 1) {
                             $telefonos->ver_telefonos($id_persona_tabla);
                             while($op_telefonos = $telefonos->retornar_SELECT()) {
 						?>
-				        <option value="<?php echo $op_telefonos['id_telefono_per']; ?>"><?php echo $op_telefonos['telefono']?></option>
+				        <option value="<?php echo $op_telefonos['id_telefono_per']; ?>" <?php if ($op_telefonos['predeterminado'] == 1 ){ echo "selected"; }?> ><?php echo $op_telefonos['telefono']?></option>
 						<?php 
                             }
                         }
                         ?>
-				        <option value="otro">Otro</option>
+				        <option value="otro">Agregar</option>
 				    </select>
+                    <input type="hidden" name="agregar_telefono" id="agregar_telefono">
                 </td>
                 <td width="300" >
-                <?php 
-                    echo $tabla_integrante->ver_correo_predeterminado_int();
-                ?>
+                    <select name="id_correo" id="id_correo" onchange="eval_select('id_correo','agregar_correo');" >
+				        <?php 
+						if($correos->cant_correos($id_persona_tabla) == 0) {
+						?>
+						<option value="">Sin correo</option>
+						<?php
+						} else { 												
+                            $correos->ver_correos($id_persona_tabla);
+                            while($op_correos = $correos->retornar_SELECT()) {
+						?>
+				        <option value="<?php echo $op_correos['id_correo_per']; ?>" <?php if ($op_correos['predeterminado'] == 1 ){ echo "selected"; }?> ><?php echo $op_correos['correo']?></option>
+						<?php 
+                            }
+                        }
+                        ?>
+				        <option value="otro">Agregar</option>
+				    </select>
+                    <input type="hidden" name="agregar_correo" id="agregar_correo">
                 </td>
             </tr>
             <tr id="tabla2_encabezado" >
@@ -120,35 +137,68 @@ if($acceso == 1) {
             </tr>
             <tr id="tabla2_informacion" >
                 <td width="300" >
-                <?php 
-                    echo $tabla_integrante->ver_universidad_int();
-                ?>
+                    <select name="id_universidad" id="id_universidad" onchange="eval_select('id_universidad','otro_universidad')">
+							<?php 
+							$universidades->ver_universidades();
+							while($op_universidades = $universidades->retornar_SELECT() ) { ?>
+							<option value="<?php echo $op_universidades['id_universidad'];?>" 
+								<?php if ($op_universidades['id_universidad'] == $tabla_integrante->_datos_integrante["id_universidad"]){echo "selected";}?> 
+							><?php echo $op_universidades['nom_universidad'];?></option>
+							<?php }?>
+							<option value="otro">Otro</option>
+							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_universidad"]==""){echo "selected";}?> >No especificado</option>
+				    </select>
+					<input type="hidden" name="otro_universidad" id="otro_universidad">
                 </td>
                 <td width="100" >
-                <?php 
-                    echo $tabla_integrante->ver_facultad_int();
-                ?>
+                    <select name="id_especialidad" id="id_especialidad" onchange="eval_select('id_especialidad','otro_especialidad')">
+							<?php 
+							$especialidades->ver_especialidades();
+							while($op_especiallidades = $especialidades->retornar_SELECT() ) { ?>
+							<option value="<?php echo $op_especiallidades['id_especialidad'];?>" 
+								<?php if ($op_especiallidades['id_especialidad'] == $tabla_integrante->_datos_integrante["id_especialidad"]){echo "selected";}?> 
+							><?php echo $op_especiallidades['nom_especialidad'];?></option>
+							<?php }?>
+							<option value="otro">Otro</option>
+							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_especialidad"]==""){echo "selected";}?> >No especificado</option>
+				    </select>
+					<input type="hidden" name="otro_especialidad" id="otro_especialidad">
                 </td>
                 <td width="150" >
-                <?php 
-                    echo $tabla_integrante->ver_especialidad_int();
-                ?>
+                    <select name="id_facultad" id="id_facultad" onchange="eval_select('id_facultad','otro_facultad')">
+							<?php 
+							$facultades->ver_facultades();
+							while($op_facultades = $facultades->retornar_SELECT() ) { ?>
+							<option value="<?php echo $op_facultades['id_facultad'];?>" 
+								<?php if ($op_facultades['id_facultad'] == $tabla_integrante->_datos_integrante["id_facultad"]){echo "selected";}?> 
+							><?php echo $op_facultades['nom_facultad'];?></option>
+							<?php }?>
+							<option value="otro">Otro</option>
+							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_facultad"]==""){echo "selected";}?> >No especificado</option>
+				    </select>
+					<input type="hidden" name="otro_facultad" id="otro_facultad">
                 </td>
             </tr>
             <tr id="tabla2_encabezado" >
-                <td width="400" colspan="2">
+                <td width="400">
                 Direccion
+                </td>
+                <td width="400">
+                Codigo Universitario
                 </td>
                 <td width="150" >
                 Usuario
                 </td>
             </tr>
             <tr id="tabla2_informacion" >
-                <td width="400" colspan="2">
-                    <input type="text" name="linkedin" class="input_500" value="<?php echo $tabla_integrante->ver_direccion_int();?>" />
+                <td width="400" >
+                    <input type="text" name="direccion" class="input_200" value="<?php echo $tabla_integrante->ver_direccion_int();?>" />
+                </td>
+                <td width="400">
+                    <input type="text" name="cod_universitario" class="input_200" value="<?php echo $tabla_integrante->ver_cod_universitario_int();?>" />
                 </td>
                 <td width="150" >
-                    <input type="text" name="linkedin" class="input_200" value="<?php echo $tabla_integrante->ver_usuario_int();?>" />
+                    <input type="text" name="usuario" class="input_200" value="<?php echo $tabla_integrante->ver_usuario_int();?>" />
                 </td>
             </tr>
         </table>

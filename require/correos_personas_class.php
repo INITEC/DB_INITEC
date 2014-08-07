@@ -44,9 +44,13 @@ class correos_personas {
     }
     
     public function cant_correos ($id_persona) {
-        $sql = "SELECT id_persona FROM `correos_personas` WHERE id_persona='".$id_persona."' ";
-        $this->_conexion->ejecutar_sentencia($sql);
+        $this->ver_correos($id_persona);
         return $this->_conexion->tam_respuesta();
+    }
+    
+    public function ver_correos ($id_persona){
+        $sql = "SELECT * FROM `correos_personas` WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function ver_correo ($id_persona){

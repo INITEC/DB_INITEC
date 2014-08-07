@@ -60,7 +60,12 @@ class facultades {
         $sql = "SELECT * FROM `facultades` ";
         $this->_conexion->ejecutar_sentencia($sql);
     }
-
+    
+    public function cant_facultades (){
+        $this->ver_facultades();
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

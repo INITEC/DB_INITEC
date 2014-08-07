@@ -5,7 +5,6 @@ window.onload = function(){
 	enviar_grupo.loadform('tabla_integrantes_grupo', 'form_grupo', 'AD_grupos_aux.php');
 }
 
-
 function eval_select (id_select, id_input, id_button) {
 	evaluar = document.getElementById(id_select);
 	cambio  = document.getElementById(id_input);

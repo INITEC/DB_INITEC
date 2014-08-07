@@ -50,6 +50,12 @@ class especialidades {
         $sql = "SELECT * FROM `especialidades` ";
         $this->_conexion->ejecutar_sentencia($sql);
     }
+    
+    public function cant_especialidades (){
+        $this->ver_especialidades();
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

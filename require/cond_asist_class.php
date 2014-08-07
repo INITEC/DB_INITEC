@@ -52,7 +52,7 @@ class cond_asist {
 	}
     
     public function ver_condicion ($id_cond_asist){
-		$sql = "SELECT * FROM `cond_asist` WHERE id_cond_asist = '".$id_cond_asist."' LIMIT 1 ";
+		$sql = "SELECT * FROM `cond_asist` WHERE id_cond_asist = '".$id_cond_asist."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
         return $this->retornar_SELECT();
 	}

@@ -30,7 +30,8 @@ body { background-color: #88A6DC;}
 .dato_correcto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#00FF00;  }
 .dato_incorrecto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#FF0000;  }
 
-
+.dato_correcto_small {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 13px ; background-color:#00FF00;  }
+.dato_incorrecto_small {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 13px ; background-color:#FF0000;  }
 
 /* corregir estos estilos, cambiar a Tablas*/
 	/*Estilos para presentacion de tablas*/

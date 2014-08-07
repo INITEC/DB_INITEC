@@ -52,7 +52,8 @@ class usuarios {
 	}
 	public function ver_usuario ($id_persona){
 		$sql = "SELECT * FROM usuarios WHERE id_persona = '".$id_persona."'";
-		return $this->_conexion->ejecutar_sentencia($sql);
+		$this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
 	}
     public function ingresar_nuevo ($id_persona, $usuario, $clave){
         $id_usuario = $this->crear_usuario($id_persona);
@@ -98,6 +99,21 @@ class usuarios {
             return 0;
         }
     }
+    
+    public function cambiar_clave_persona ($id_persona, $clave_antigua, $clave_nueva){
+        $usuario = $this->ver_usuario($id_persona);
+        $id_usuario = $usuario["id_usuario"];
+        if ($usuario["clave"] == $clave_antigua ){
+            $sql="UPDATE `usuarios` SET clave='".$clave_nueva."' WHERE id_usuario='".$id_usuario."' ";
+            return $this->_conexion->ejecutar_sentencia($sql);
+        } else {
+            echo "<script type='text/javascript'>
+			alert('La contraseña antigua no conincide en la base de datos');
+			window.location='home.php';
+			</script>";
+            return 0;
+        }
+    } 
     
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();

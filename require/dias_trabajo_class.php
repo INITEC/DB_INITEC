@@ -15,7 +15,7 @@ class dias_trabajo {
     }
     
     public function ver_fecha ($id_dia_trabajo) {
-		$dia_trab = $this->ver_dia();
+		$dia_trab = $this->ver_dia($id_dia_trabajo);
 		return $dia_trab["fecha_dia"];
 	}
     

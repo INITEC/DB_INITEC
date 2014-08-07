@@ -39,11 +39,17 @@ class asistencias {
 		return $this->_conexion->ejecutar_sentencia($sql);		
 	}
     
-    public function ven_nom_condicion ($id_cond_asist){
+    public function ver_asistencia ($id_asistencia){
+        $sql = "SELECT * FROM asistencias WHERE id_asistencia='".$id_asistencia."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
+    }
+    
+    public function ver_nom_condicion ($id_cond_asist){
         return $this->_cond_asist->ver_nom_condicion($id_cond_asist);
     }
     
-    public function ver_asistencia ($id_cond_asist) {
+    public function ver_estado_asistencia ($id_cond_asist) {
         return $this->_cond_asist->ver_asistencia($id_cond_asist);
     }
     
@@ -51,6 +57,17 @@ class asistencias {
 		$sql = "SELECT * FROM asistencias WHERE id_persona = '".$id_persona."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
+    
+    public function ver_inasistencias_int ($id_persona, $id_temporada){
+        //asistencias.inasistencia ->1=inasistencia considerada -> 2=asistencia considerada -> 3=inasistencia no considerada ->4= asistencia no considerada
+        $sql = "SELECT asistencias.*,reuniones.id_reunion,reuniones.id_temporada FROM asistencias,reuniones WHERE asistencias.id_persona='".$id_persona."' AND reuniones.id_temporada='".$id_temporada."' AND asistencias.id_reunion=reuniones.id_reunion AND asistencias.inasistencia=1 ORDER BY asistencias.id_asistencia ASC ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function num_inasistencias_int ($id_persona, $id_temporada){
+        $this->ver_inasistencias_int($id_persona, $id_temporada);
+        return $this->_conexion->tam_respuesta();
+    }
     
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();

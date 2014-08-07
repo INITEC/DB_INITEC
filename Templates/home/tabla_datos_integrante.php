@@ -4,18 +4,22 @@ if($acceso == 1) {
 	<head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
+		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >	
 	</head>
 
 	<?php
 	if( !empty($_GET)) {
         require_once ("../require/amonestaciones_class.php");
+        require_once ("../require/asistencias_class.php");
         require_once ("../require/temporadas_class.php");
         
         include_once("../Include/cuadro_amonestaciones_int_func.php");
+        include_once("../Include/cuadro_inasistencias_int_func.php");
         
         $id_persona_tabla = $_GET["id_persona"];
         $tabla_integrante = new integrantes();
         $amonestaciones = new amonestaciones();
+        $asistencias = new asistencias();
         $temporadas = new temporadas();
         
         $tabla_integrante->establecer_integrante($id_persona_tabla);
@@ -44,97 +48,98 @@ if($acceso == 1) {
                 ?>
                 </td>
             </tr>
-            <tr>
-                <td width="100" class="informacion_extra" >
+            <tr id="tabla2_encabezado" >
+                <td width="100" >
                 Telefono
                 </td>
-                <td width="300" class="informacion_extra" >
+                <td width="300" >
                 Correo
                 </td>
             </tr>
-            <tr>
-                <td width="100" class="datos_extra" >
+            <tr id="tabla2_informacion" >
+                <td width="100" >
                 <?php 
                     echo $tabla_integrante->ver_telefono_predeterminado_int();
                 ?>
                 </td>
-                <td width="300" class="datos_extra" >
+                <td width="300" >
                 <?php 
                     echo $tabla_integrante->ver_correo_predeterminado_int();
                 ?>
                 </td>
             </tr>
-            <tr>
-                <td width="400" class="informacion_extra" colspan="2">
+            <tr id="tabla2_encabezado" >
+                <td width="400" colspan="2">
                 Linkedin
                 </td>
-                <td width="150" class="informacion_extra" >
+                <td width="150" >
                 DNI
                 </td>
             </tr>
-            <tr>
-                <td width="400" class="datos_extra" colspan="2">
+            <tr id="tabla2_informacion" >
+                <td width="400" colspan="2">
                 <a class="enlaces" target="_blank" href="https://<?php echo $tabla_integrante->ver_linkedin_int(); ?>">
                 <?php
                     echo $tabla_integrante->ver_linkedin_int();
-                ?>
+                ?>  
                 </a>
                 </td>
-                <td width="150" class="datos_extra" >
+                <td width="150" >
                 <?php
                     echo $tabla_integrante->ver_DNI_int();
                 ?>
                 </td>
             </tr>
-            <tr>
-                <td width="300" class="informacion_extra" >
+            <tr id="tabla2_encabezado" >
+                <td width="300" >
                 Universidad
                 </td>
-                <td width="100" class="informacion_extra" >
+                <td width="100" >
                 Especialidad
                 </td>
-                <td width="150" class="informacion_extra" >
+                <td width="150" >
                 Facultad
                 </td>
             </tr>
-            <tr>
-                <td width="300" class="datos_extra">
+            <tr id="tabla2_informacion" >
+                <td width="300" >
                 <?php 
                     echo $tabla_integrante->ver_universidad_int();
                 ?>
                 </td>
-                <td width="100" class="datos_extra" >
+                <td width="100" >
                 <?php 
                     echo $tabla_integrante->ver_facultad_int();
                 ?>
                 </td>
-                <td width="150" class="datos_extra" >
+                <td width="150" >
                 <?php 
                     echo $tabla_integrante->ver_especialidad_int();
                 ?>
                 </td>
             </tr>
-            <tr>
-                <td width="550" class="informacion_extra" colspan="3">
+            <tr id="tabla2_encabezado" >
+                <td width="550" colspan="3">
                     Estado de Amonestaciones				
                 </td>
             </tr>
-            <tr>
-                <td width="550" class="datos_extra" colspan="3" align="center">
+            <tr id="tabla2_informacion" >
+                <td width="550" colspan="3" align="center">
                 <?php
                     cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,70,50,'home_aux.php');
                 ?>
                 </td>
             </tr>
-            <tr>
-                <td width="550" class="datos_extra" colspan="3" align="center">
-                <?php 
-                ?>
-                <br>
-                
-                <br>
-                <br>
-                Usted tiene <?php ?> inasistencia(s)	
+            <tr id="tabla2_encabezado" >
+                <td width="550" colspan="3">
+                    Estado Inasistencias				
+                </td>
+            </tr>
+            <tr id="tabla2_informacion" >
+                <td width="550" colspan="3" align="center">
+                <?php
+                    cuadro_inasistencias_int($asistencias, $id_persona, $temporadas, $id_temporada,70,50,'home_aux.php')
+                ?>	
                 </td>
             </tr>
         </table>

@@ -33,7 +33,12 @@ class reuniones {
 		$this->_conexion->ejecutar_sentencia($sql);
         return $this->retornar_SELECT();
     }
-
+    
+    public function ver_fecha_reunion ($id_reunion){
+        $reunion = $this->ver_reunion($id_reunion);
+        return $this->_dias_trabajo->ver_fecha($reunion["id_dia_trabajo"]);
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

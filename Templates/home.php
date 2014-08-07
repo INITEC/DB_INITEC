@@ -50,22 +50,23 @@ if($id_persona) {
 			<div >
 <!-- *************************************************************************************************** -->
 				<div>
-					<table width="700px" align="center">
-						<tr>
-							<td width="350px" align="left" >
-								<input type="button" title="Cambiar Clave de usuario" value="..::Cambiar Clave::.." onClick="window.location='home_contrasena.php'">
-							</td>
-							<td width="350px" align="right" >
-								<input type="button" title="Editar Datos" value="..::Editar Datos::.." onClick="window.location='home_editar.php'">
-							</td>
-						</tr>
-					</table> 
-				</div>
-				<!-- Este div usa AJAX para mostrar informacion -->
-				<div id="cuadro">
+				    <form action="home_aux.php" method="POST" name="opciones_home">
+                        <table width="700px" align="center">
+                            <tr>
+                                <td width="350px" align="left" >
+                                    <input type="submit" name="cambiar_clave" title="Cambiar Clave de usuario" value="..::Cambiar Clave::.." >
+                                </td>
+                                <td width="350px" align="right" >
+                                    <input type="submit" name="editar_datos" title="Editar Datos" value="..::Editar Datos::..">
+                                </td>
+                            </tr>
+                        </table>
+					</form> 
 				</div>
 
-				
+				<div id="cuadro">
+                    <!-- Este div usa AJAX para mostrar informacion -->
+				</div>
 <!-- *************************************************************************************************** -->
 			</div>
 		</div>	

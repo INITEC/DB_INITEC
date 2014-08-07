@@ -18,14 +18,13 @@ if($id_persona) {
 
 		if( !empty($_POST)) {
 			$acceso = 1;
-			if (isset($_POST['administrar_estados'])){	
-				include_once ("AD_grupos/AD_grupos_administrar_estados.php");
-			}
-			elseif(isset($_POST['Crear_Grupo'])) {
-				$nom_grupo = $_POST["otro_grupo"];
-				$grupo->nuevo_grupo($nom_grupo);
-				header("Location: AD_grupos.php");
-			}
+			if (isset($_POST['cambiar_clave'])){	
+				include_once ("home/home_cambiar_clave.php");
+			}elseif(isset($_POST['editar_datos'])) {
+				include_once ("home/home_editar.php");
+			}elseif(isset($_POST['cambiar_clave_cambiar'])){
+                include_once ("home/home_cambiar_clave_cambiar.php");
+            }
 		}elseif(!empty($_GET)) {
 			$acceso = 1;
 			if (isset($_GET['estado'])) {
@@ -34,8 +33,8 @@ if($id_persona) {
 				include_once ("home/tabla_datos_integrante.php");
 			}elseif (isset($_GET['id_amonestacion'])) {
 					include_once ("../Templates/amonestaciones/carta_amonestacion.php");
-			}elseif (isset($_GET['Agregar_integrante'])) {
-					include_once ("AD_grupos/cambiar_estado_integrante.php");
+			}elseif (isset($_GET['id_asistencia'])) {
+					include_once ("asistencias/carta_inasistencia.php");
 			}elseif (isset($_GET['Quitar_integrante'])) {
 					include_once ("AD_grupos/cambiar_estado_integrante.php");
 			}

@@ -54,9 +54,13 @@ class telefonos_personas {
     }
     
     public function cant_telefonos ($id_persona) {
-        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ";
-        $this->_conexion->ejecutar_sentencia($sql);
+        $this->_ver_telefonos($id_persona);
         return $this->_conexion->tam_respuesta();
+    }
+    
+    public function ver_telefonos ($id_persona){
+        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function ver_telefono ($id_persona){

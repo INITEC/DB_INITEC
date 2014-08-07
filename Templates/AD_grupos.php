@@ -70,12 +70,15 @@ if($id_integrante) {
 									?>
 									<option value="">Vacio</option>
 									<?php
-									}  												
-									$grupo->ver_grupos();
-											while($op_grupo = $grupo->retornar_SELECT()) {
+									} else { 												
+                                        $grupo->ver_grupos();
+                                        while($op_grupo = $grupo->retornar_SELECT()) {
 									?>
 									<option value="<?php echo $op_grupo['id_grupo'];?>"><?php echo $op_grupo['nom_grupo']?></option>
-									<?php }?>
+									<?php 
+                                            }
+                                    }
+                                    ?>
 									<option value="otro">Otro</option>
 								</select>
 							</td>

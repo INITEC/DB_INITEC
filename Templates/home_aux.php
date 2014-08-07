@@ -31,7 +31,9 @@ if($id_persona) {
 				include_once ("AD_grupos/cambiar_estado_grupo.php");
 			}elseif (isset($_GET['id_persona'])) {
 				include_once ("home/tabla_datos_integrante.php");
-			}elseif (isset($_GET['id_amonestacion'])) {
+			}elseif(isset($_GET['id_persona_editar'])) {
+                include_once ("home/tabla_datos_integrante_editar.php");
+            }elseif (isset($_GET['id_amonestacion'])) {
 					include_once ("../Templates/amonestaciones/carta_amonestacion.php");
 			}elseif (isset($_GET['id_asistencia'])) {
 					include_once ("asistencias/carta_inasistencia.php");

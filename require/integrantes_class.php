@@ -6,6 +6,7 @@ require_once ("../require/correos_personas_class.php");
 require_once ("../require/universidades_class.php");
 require_once ("../require/facultades_class.php");
 require_once ("../require/especialidades_class.php");
+require_once ("../require/usuarios_class.php");
 
 class integrantes {
 	private $_conexion;
@@ -17,6 +18,7 @@ class integrantes {
     private $_universidades;
     private $_facultades;
     private $_especialidades;
+    private $_usuarios;
 	
 	public function __construct () {
 		$this->_conexion = new conexion();
@@ -26,6 +28,7 @@ class integrantes {
         $this->_universidades = new universidades();
         $this->_facultades = new facultades();
         $this->_especialidades = new especialidades();
+        $this->_usuarios = new usuarios();
 	}
 
 	public function establecer_integrante ($id_persona){		
@@ -46,6 +49,10 @@ class integrantes {
     
     public function ver_nombre_int (){
         return $this->_persona["nombres"];
+    }
+    
+    public function ver_direccion_int (){
+        return $this->_datos_integrante["direccion"];
     }
     
     public function ver_nombre_completo ($id_persona){
@@ -85,6 +92,10 @@ class integrantes {
     
     public function ver_especialidad_int (){
         return $this->_especialidades->ver_nom_especialidad($this->_datos_integrante["id_especialidad"]);
+    }
+    
+    public function ver_usuario_int (){
+        return $this->_usuarios->ver_nom_usuario($this->_persona["id_persona"]);
     }
     
 	public function ver_integrantes (){

@@ -25,7 +25,9 @@ if($id_integrante) {
 				$nom_grupo = $_POST["otro_grupo"];
 				$grupo->nuevo_grupo($nom_grupo);
 				header("Location: AD_grupos.php");
-			}
+			}else {
+                header("Location: AD_grupos.php");
+		    }
 		}elseif(!empty($_GET)) {
 			$acceso = 1;
 			if (isset($_GET['estado'])) {
@@ -40,7 +42,9 @@ if($id_integrante) {
 					include_once ("AD_grupos/cambiar_estado_integrante.php");
 			}elseif (isset($_GET['Quitar_integrante'])) {
 					include_once ("AD_grupos/cambiar_estado_integrante.php");
-			}
+			}else {
+                header("Location: AD_grupos.php");
+		    }
 		}
 		else {
 			include_once ("../Include/no_dato_POST.php");

@@ -55,6 +55,12 @@ class usuarios {
 		$this->_conexion->ejecutar_sentencia($sql);
         return $this->retornar_SELECT();
 	}
+    
+    public function ver_nom_usuario ($id_persona){
+        $usuario = $this->ver_usuario($id_persona);
+        return $usuario["usuario"];
+    }
+    
     public function ingresar_nuevo ($id_persona, $usuario, $clave){
         $id_usuario = $this->crear_usuario($id_persona);
         if($id_usuario != 0){

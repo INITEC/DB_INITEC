@@ -12,9 +12,16 @@ if($acceso == 1) {
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/enviar_form_ajax.js"></script>
+<script type="text/javascript" languaje="javascript" src="home/home_editar.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-	callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona_editar');
+    var integrante = new enviar_form('mensaje_registro_integrante', 'datos_integrante', 'prueba2.php');
+    
+    callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona_editar');
+    window.onload = function(){
+	   integrante.loadform();
+    }
 </script>
 
 </head>
@@ -34,9 +41,12 @@ if($acceso == 1) {
 			</div>
 			<div >
 <!-- *************************************************************************************************** -->
-				<div id="cuadro">
-                    <!-- Este div usa AJAX para mostrar informacion -->
-				</div>
+				<form id="datos_integrante" action="javascript:void(0);" method="POST" >
+                    <div id="cuadro">
+                        <!-- Este div usa AJAX para mostrar informacion -->
+                    </div>
+                    <!-- <input type="hidden" name="id_persona_editar" value="<?php echo $id_persona_tabla; ?>" /> -->
+				</form>
 <!-- *************************************************************************************************** -->
 			</div>
 		</div>	

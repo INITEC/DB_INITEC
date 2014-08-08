@@ -4,7 +4,7 @@ if($acceso == 1) {
 	<head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
-		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >	
+		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >
 	</head>
 
 	<?php
@@ -202,6 +202,13 @@ if($acceso == 1) {
                 </td>
             </tr>
         </table>
+        <br>
+        <div id="mensaje_registro_integrante" >
+            <!-- Aqui aparecera la respuesta del AJAX del formulario -->
+        </div>
+        <div id="subtitulo1">
+			<input type="submit" value="GUARDAR CAMBIOS" name="guardar_datos_integrante" />
+        </div>
         <br>
 <?php
 	}

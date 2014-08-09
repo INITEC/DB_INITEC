@@ -121,7 +121,7 @@ if($acceso == 1) {
                     <input type="text" name="linkedin" class="input_500" value="<?php echo $tabla_integrante->ver_linkedin_int();?>" />
                 </td>
                 <td width="150" >
-                    <input type="text" name="linkedin" class="input_200" value="<?php echo $tabla_integrante->ver_DNI_int(); ?>" />
+                    <input type="text" name="DNI" class="input_200" value="<?php echo $tabla_integrante->ver_DNI_int(); ?>" />
                 </td>
             </tr>
             <tr id="tabla2_encabezado" >

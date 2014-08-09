@@ -45,7 +45,7 @@ if($acceso == 1) {
                     <div id="cuadro">
                         <!-- Este div usa AJAX para mostrar informacion -->
                     </div>
-                    <!-- <input type="hidden" name="id_persona_editar" value="<?php echo $id_persona_tabla; ?>" /> -->
+                    <!-- <input type="hidden" name="id_persona" value="" /> -->
 				</form>
 <!-- *************************************************************************************************** -->
 			</div>

@@ -172,7 +172,13 @@ class integrantes {
     
     public function guardar_datos_secundarios_int ($linkedin, $DNI, $direccion ){
         $id_persona = $this->_datos_integrante["id_persona"];
-        $sql = "UPDATE `datos_integrantes` SET linkedin='".$linkedin."' AND DNI='".$DNI."' AND direccion='".$direccion."' WHERE id_persona='".$id_persona."' ";
+        $sql = "UPDATE `datos_integrantes` SET linkedin='".$linkedin."', DNI='".$DNI."', direccion='".$direccion."' WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function guardar_datos_universitarios_int ($id_universidad, $id_facultad, $id_especialidad, $cod_universitario){
+        $id_persona = $this->_datos_integrante["id_persona"];
+        $sql = "UPDATE `datos_integrantes` SET id_universidad='".$id_universidad."', id_facultad='".$id_facultad."', id_especialidad='".$id_especialidad."', cod_universitario='".$cod_universitario."' WHERE id_persona='".$id_persona."'  ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     

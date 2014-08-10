@@ -13,8 +13,8 @@ class telefonos_personas {
     
     // $movil -> 1 = movil -> 2 = fijo
     // prederterminado -> 1 = si -> 2 = no
-    public function nuevo ($telefono, $movil, $id_operador, $id_persona, $predeterminado){
-        if ($this->verificar_telefono($telefono) == 0 and $this->_operadores_telefono->verificar_operador($id_operador) == 0) {
+    public function nuevo ($telefono, $id_persona, $predeterminado=1, $id_operador=4, $movil=1 ){
+        if ($this->verificar_telefono($telefono) == 0 and $this->_operadores_telefono->verificar_operador($id_operador) != 0) {
             if ($predeterminado == 1 ){
                 $this->quitar_predeterminados($id_persona);
             }else {$predeterminado = 2;}
@@ -87,6 +87,11 @@ class telefonos_personas {
         } else {
             return "sin telefono";
         }
+    }
+    
+    public function hacer_predeterminado ($id_telefono, $id_persona){
+        $sql = "UPDATE `telefonos_personas` SET `prederterminado`='1' WHERE `id_persona`= '".$id_persona."' AND id_telefono_per='".$id_telefono."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function retornar_SELECT(){

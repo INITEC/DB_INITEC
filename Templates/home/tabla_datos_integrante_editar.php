@@ -68,7 +68,7 @@ if($acceso == 1) {
             </tr>
             <tr id="tabla2_informacion" >
                 <td width="100" >
-                    <select name="id_telefono" id="id_telefono" onchange="eval_select('id_telefono','agregar_telefono');" >
+                    <select name="id_telefono" id="id_telefono" onchange="eval_select('id_telefono','otro_telefono');" >
 				        <?php 
 						if($telefonos->cant_telefonos($id_persona_tabla) == 0) {
 						?>
@@ -85,7 +85,7 @@ if($acceso == 1) {
                         ?>
 				        <option value="otro">Agregar</option>
 				    </select>
-                    <input type="hidden" name="agregar_telefono" id="agregar_telefono">
+                    <input type="hidden" name="otro_telefono" id="otro_telefono">
                 </td>
                 <td width="300" >
                     <select name="id_correo" id="id_correo" onchange="eval_select('id_correo','agregar_correo');" >

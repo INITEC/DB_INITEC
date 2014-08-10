@@ -5,7 +5,22 @@ if($acceso == 1) {
     $id_persona = $_SESSION["id_persona"];
     if( !empty($_POST)){
         require_once ("../require/integrantes_class.php");
+        
+        if(isset($_POST['id_persona'])){
+			$id_persona_env = $_POST["id_persona"];
+		} else {
+			$id_persona_env = $id_persona;
+        }
+        
+        $integrantes_editar = new integrantes();
+        $telefonos = new telefonos_personas();
+        $correos = new correos_personas();
+        $universidades = new universidades();
+        $facultades = new facultades();
+        $especialidades = new especialidades();
 
+        
+        
 ?>
 		<html>
 			<head>
@@ -13,11 +28,7 @@ if($acceso == 1) {
 			</head>
 			<body>
 				<?php
-                if(isset($_POST['id_persona'])){
-					$id_persona_env = $_POST["id_persona"];
-				} else {
-					$id_persona_env = $id_persona;
-				}
+                
                 
                 $nombres = $_POST["nombres"];
                 $apellidos = $_POST["apellidos"];
@@ -27,6 +38,22 @@ if($acceso == 1) {
                 $cod_universitario = $_POST["cod_universitario"];
                 $usuario = $_POST["usuario"];
                 
+                
+                /* para verificar si se ha ingresado algun otro valor */
+                if(strcmp ( $_POST["id_telefono"] , 'otro' ) == 0) {
+					$telefonos->nuevo($_POST["otro_telefono"], $id_persona_env);
+				} else {
+                    $id_telefono = $_POST["id_telefono"];
+					$telefonos->hacer_predeterminado($id_telefono, $id_persona_env);
+				}
+                
+                if(strcmp ( $_POST["id_correo"] , 'otro' ) == 0) {
+					$id_correo = $correos->nuevo($_POST["otro_telefono"],$id_persona_env);
+				} else {
+					$id_telefono = $_POST["id_correo"];
+				}
+                
+        
                 
                 
 				

@@ -121,6 +121,11 @@ class usuarios {
         }
     } 
     
+    public function cambiar_nom_usuario ($id_persona, $nom_usuario){
+        $sql = "UPDATE `usuarios` SET usuario='".$nom_usuario."' WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

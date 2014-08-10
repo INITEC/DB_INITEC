@@ -140,6 +140,47 @@ class integrantes {
        }	
 	}
     
+    public function obtener_nom_foto_int (){
+        if (empty($this->_datos_integrante["foto"])){
+            return idate().".jpg";
+        } else {
+            return $this->_datos_integrante["foto"];
+        }
+    }
+    
+    
+    public function guardar_foto_int($foto_tipo, $foto_temp){
+        if($tipo=="image/jpeg"){
+            $nom_foto_int = $this->obtener_nom_foto_int();
+            copy($foto_temp,"foto_integrantes/".$nom_foto_int);
+            echo "<script type='Javascript'>
+				alert('La foto fue guardada exitosamente');
+			     </script>";
+        } else {
+            echo "<script type='Javascript'>
+				alert('La foto no ha podido ser guardada debido a que no es del tipo JPG');
+			     </script>";
+        }
+        
+    }
+    
+    public function guardar_datos_primarios_int ($nombres, $apellidos){
+        $id_persona = $this->_datos_integrante["id_persona"];
+        $this->_personas->cambiar_nombre($id_persona, $nombres);
+        return $this->_personas->cambiar_apellido($id_persona, $apellidos);
+    }
+    
+    public function guardar_datos_secundarios_int ($linkedin, $DNI, $direccion ){
+        $id_persona = $this->_datos_integrante["id_persona"];
+        $sql = "UPDATE `datos_integrantes` SET linkedin='".$linkedin."' AND DNI='".$DNI."' AND direccion='".$direccion."' WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function guardar_nom_usuario_int ($nom_usuario){
+        $id_persona = $this->_datos_integrante["id_persona"];
+        return $this->_usuarios->cambiar_nom_usuario($id_persona, $nom_usuario);
+    }
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

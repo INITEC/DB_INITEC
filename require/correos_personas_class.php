@@ -10,7 +10,7 @@ class correos_personas {
     }
     
     // prederterminado -> 1 = si -> 2 = no
-    public function nuevo ($id_persona, $correo, $predeterminado){
+    public function nuevo ($correo, $id_persona, $predeterminado=1){
         if ($this->verificar_correo($correo) == 0) {
             if ($predeterminado == 1 ){
                 $this->quitar_predeterminados($id_persona);
@@ -77,6 +77,11 @@ class correos_personas {
         } else {
             return "sin correo";
         }
+    }
+    
+    public function hacer_predeterminado ($id_correo, $id_persona){
+        $sql = "UPDATE `correos_personas` SET `prederterminado`='1' WHERE `id_persona`= '".$id_persona."' AND id_correo_per='".$id_correo."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function retornar_SELECT(){

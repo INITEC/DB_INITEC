@@ -8,16 +8,25 @@ class facultades {
 		$this->_conexion = new conexion();
 	}
     
-    public function nuevo ($nom_facultad, $abreviatura){
+    public function nuevo ($nom_facultad){
         if ($this->verificar_nombre($nom_facultad) == 0 ) {
-            $sql = "INSERT INTO `facultades` (`id_facultad`, `nom_facultad`, `abreviatura`) VALUES (null, '".$nom_facultad."', '".$abreviatura."' )";
-            return $this->_conexion->ejecutar_sentencia();
+            $sql = "INSERT INTO `facultades` (`id_facultad`, `nom_facultad`) VALUES (null, '".$nom_facultad."' )";
+            $this->_conexion->ejecutar_sentencia();
+            $facultad = $this->ver_ultima_facultad($nom_facultad);
+            return $facultad["id_facultad"];
         } else {
             echo "<script type='text/javascript' language='javascript' >
             alert ('El nombre de la facultad ya existe');
 			</script>";
-            return 0;
+            $facultad = $this->ver_ultima_facultad($nom_facultad);
+            return $facultad["id_facultad"];
         }
+    }
+    
+    public function ver_ultima_facultad ($nom_facultad){
+        $sql = "SELECT * FROM facultades WHERE nom_facultad='".$nom_facultad."' ORDER BY id_facultad DESC LIMIT 1";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
     }
     
     public function cambiar_nom_facultad ($id_facultad, $nom_facultad){

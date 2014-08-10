@@ -11,13 +11,22 @@ class especialidades {
     public function nuevo ($nom_especialidad){
         if ($this->verificar_nombre($nom_especialidad) == 0 ) {
             $sql = "INSERT INTO `especialidades` (`id_especialidad`, `nom_especialidad`) VALUES (null, '".$nom_especialidad."')";
-            return $this->_conexion->ejecutar_sentencia();
+            $this->_conexion->ejecutar_sentencia();
+            $especialidad = $this->ver_ultima_especialidad($nom_especialidad);
+            return $especialidad["id_especialidad"];
         } else {
             echo "<script type='text/javascript' language='javascript' >
             alert ('El nombre de la especialidad ya existe');
 			</script>";
-            return 0;
+            $especialidad = $this->ver_ultima_especialidad($nom_especialidad);
+            return $especialidad["id_especialidad"];
         }
+    }
+    
+    public function ver_ultima_especialidad ($nom_especialidad){
+        $sql = "SELECT * FROM especialidades WHERE nom_especialidad='".$nom_especialidad."' ORDER BY id_especialidad DESC LIMIT 1";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
     }
     
     public function cambiar_nom_especialidad ($id_especialidad, $nom_especialidad){

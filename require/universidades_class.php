@@ -8,16 +8,25 @@ class universidades {
 		$this->_conexion = new conexion();
 	}
     
-    public function nuevo ($nom_universidad, $abreviatura){
+    public function nuevo ($nom_universidad ){
         if ($this->verificar_nombre($nom_universidad) == 0 ) {
-            $sql = "INSERT INTO `universidades` (`id_universidad`, `nom_universidad`, `abreviatura`) VALUES (null, '".$nom_universidad."', '".$abreviatura."' )";
-            return $this->_conexion->ejecutar_sentencia();
+            $sql = "INSERT INTO `universidades` (`id_universidad`, `nom_universidad`) VALUES (null, '".$nom_universidad."')";
+            $this->_conexion->ejecutar_sentencia();
+            $universidad = $this->ver_ultima_universidad($nom_universidad);
+            return $universidad["id_universidad"];
         } else {
             echo "<script type='text/javascript' language='javascript' >
             alert ('El nombre de la universidad ya existe');
 			</script>";
-            return 0;
+            $universidad = $this->ver_ultima_universidad($nom_universidad);
+            return $universidad["id_universidad"];
         }
+    }
+    
+    public function ver_ultima_universidad ($nom_universidad){
+        $sql = "SELECT * FROM universidades WHERE nom_universidad='".$nom_universidad."' ORDER BY id_universidad DESC LIMIT 1";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
     }
     
     public function cambiar_nom_universidad ($id_universidad, $nom_universidad){

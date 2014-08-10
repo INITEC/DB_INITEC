@@ -18,8 +18,7 @@ if($acceso == 1) {
         $universidades = new universidades();
         $facultades = new facultades();
         $especialidades = new especialidades();
-
-        
+        $integrantes_editar->establecer_integrante($id_persona_env);
         
 ?>
 		<html>
@@ -29,15 +28,13 @@ if($acceso == 1) {
 			<body>
 				<?php
                 
-                
                 $nombres = $_POST["nombres"];
                 $apellidos = $_POST["apellidos"];
-                $direccion = $_POST["direccion"];
-                $DNI = $_POST["DNI"];
                 $linkedin = $_POST["likedin"];
+                $DNI = $_POST["DNI"];
+                $direccion = $_POST["direccion"];
                 $cod_universitario = $_POST["cod_universitario"];
                 $usuario = $_POST["usuario"];
-                
                 
                 /* para verificar si se ha ingresado algun otro valor */
                 if(strcmp ( $_POST["id_telefono"] , 'otro' ) == 0) {
@@ -48,12 +45,37 @@ if($acceso == 1) {
 				}
                 
                 if(strcmp ( $_POST["id_correo"] , 'otro' ) == 0) {
-					$id_correo = $correos->nuevo($_POST["otro_telefono"],$id_persona_env);
+					$correos->nuevo($_POST["otro_correo"],$id_persona_env);
 				} else {
-					$id_telefono = $_POST["id_correo"];
+					$correos->hacer_predeterminado( $_POST["id_correo"]);
 				}
                 
-        
+                /* ---------------------------------------------------- */
+                
+                if(strcmp ( $_POST["id_universidad"] , 'otro' ) == 0) {
+					$id_universidad = $universidades->nuevo($_POST["otro_universidad"]);
+				} else {
+					$id_universidad = $_POST["id_universidad"];
+				}
+                
+                if(strcmp ( $_POST["id_especialidad"] , 'otro' ) == 0) {
+					$id_especialidad = $especialidades->nuevo($_POST["otro_especialidad"]);
+				} else {
+					$id_especialidad = $_POST["id_especialidad"];
+				}
+                
+                if(strcmp ( $_POST["id_facultad"] , 'otro' ) == 0) {
+					$id_facultad = $facultades->nuevo($_POST["otro_facultad"]);
+				} else {
+					$id_facultad = $_POST["id_facultad"];
+				}
+                
+                $foto_tipo=$_FILES["foto"]["type"];
+                
+                if($foto_tipo != ""){
+                    $foto_temp=$_FILES["foto"]["tmp_name"];
+                    $integrantes_editar->guardar_foto_int($foto_tipo, $foto_temp);
+                }
                 
                 
 				
@@ -67,13 +89,13 @@ if($acceso == 1) {
 				){
 				?>
 				<div id="dato_correcto">
-								LOS DATOS HAN GUARDADOS CORRECTAMENTE
+								SE GUARDARON LOS DATOS CORRECTAMENTE
 				</div>
 				<?php 
 				} else {
 				?>
 				<div id="dato_incorrecto">
-								NO SE HA PODIDO GUARDAR LOS DATOS
+								NO SE HA PODIDO GUARDAR LOS DATOS, INTENTE DE NUEVO
 				</div>
 				<?php 
 				}

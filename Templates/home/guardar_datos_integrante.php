@@ -24,7 +24,6 @@ if($acceso == 1) {
 			</head>
 			<body>
 				<?php
-                echo "hola";
                 $nombres = $_POST["nombres"];
                 $apellidos = $_POST["apellidos"];
                 $linkedin = $_POST["linkedin"];
@@ -68,7 +67,6 @@ if($acceso == 1) {
 				}
                 
                 $foto_tipo=$_FILES["foto"]["type"];
-                echo "el tipo es".$foto_tipo."/";
                 
                 if($foto_tipo != ""){
                     $foto_temp=$_FILES["foto"]["tmp_name"];

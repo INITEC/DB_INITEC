@@ -150,16 +150,13 @@ class integrantes {
     
     
     public function guardar_foto_int($foto_tipo, $foto_temp){
-        if($tipo=="image/jpeg"){
+        if($foto_tipo=="image/jpg"){
             $nom_foto_int = $this->obtener_nom_foto_int();
-            copy($foto_temp,"foto_integrantes/".$nom_foto_int);
-            echo "<script type='Javascript'>
-				alert('La foto fue guardada exitosamente');
-			     </script>";
+            $ruta_foto = "foto_integrantes/".$nom_foto_int;
+            move_uploaded_file ($foto_temp,$ruta_foto);
+            echo "La foto fue guardada exitosamente";
         } else {
-            echo "<script type='Javascript'>
-				alert('La foto no ha podido ser guardada debido a que no es del tipo JPG');
-			     </script>";
+            echo "La foto no ha podido ser guardada debido a que no es del tipo JPG";
         }
         
     }

@@ -109,12 +109,12 @@ if($acceso == 1) {
                 </td>
                 <td width="100" >
                 <?php 
-                    echo $tabla_integrante->ver_facultad_int();
+                    echo $tabla_integrante->ver_especialidad_int();
                 ?>
                 </td>
                 <td width="150" >
                 <?php 
-                    echo $tabla_integrante->ver_especialidad_int();
+                    echo $tabla_integrante->ver_facultad_int();
                 ?>
                 </td>
             </tr>

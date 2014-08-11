@@ -12,7 +12,7 @@ class telefonos_personas {
 	}
     
     // $movil -> 1 = movil -> 2 = fijo
-    // prederterminado -> 1 = si -> 2 = no
+    // predeterminado -> 1 = si -> 2 = no
     public function nuevo ($telefono, $id_persona, $predeterminado=1, $id_operador=4, $movil=1 ){
         if ($this->verificar_telefono($telefono) == 0 and $this->_operadores_telefono->verificar_operador($id_operador) != 0) {
             if ($predeterminado == 1 ){
@@ -22,8 +22,8 @@ class telefonos_personas {
                 $movil = 2;
             }
             
-            $sql = "INSERT INTO `telefonos_personas` (`id_telefono_per`, `telefono`, `movil`, `id_operador`, `id_persona`, `prederterminado`) VALUES (null, '".$telefono."', '".$movil."', '".$id_operador."', '".$id_persona."', '".$predeterminado."')";
-            return $this->_conexion->ejecutar_sentencia();
+            $sql = "INSERT INTO `telefonos_personas` (`id_telefono_per`, `telefono`, `movil`, `id_operador`, `id_persona`, `predeterminado`) VALUES (null, '".$telefono."', '".$movil."', '".$id_operador."', '".$id_persona."', '".$predeterminado."')";
+            return $this->_conexion->ejecutar_sentencia($sql);
         } else {
             echo "<script type='text/javascript' language='javascript' >
             alert ('Datos no validos, es posible que el telefono se repita o no exista el operador elegido');
@@ -33,7 +33,7 @@ class telefonos_personas {
     }
     
     public function quitar_predeterminados ($id_persona){
-        $sql = "UPDATE `telefonos_personas` SET `prederterminado`='2' WHERE `id_persona`= '".$id_persona."' AND prederterminado='1' ";
+        $sql = "UPDATE `telefonos_personas` SET `predeterminado`='2' WHERE `id_persona`= '".$id_persona."' AND predeterminado='1' ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
@@ -48,7 +48,7 @@ class telefonos_personas {
     }
     
     public function verificar_predeterminado ($id_persona) {
-        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' AND prederterminado='1' ";
+        $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' AND predeterminado='1' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->_conexion->tam_respuesta();
     }
@@ -64,9 +64,9 @@ class telefonos_personas {
     }
     
     public function ver_telefono ($id_persona){
-        // prederterminado -> 1 = si -> 2 = no
+        // predeterminado -> 1 = si -> 2 = no
         if($this->verificar_predeterminado($id_persona) != 0){
-            $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' AND prederterminado='1' LIMIT 1 ";
+            $sql = "SELECT * FROM `telefonos_personas` WHERE id_persona='".$id_persona."' AND predeterminado='1' LIMIT 1 ";
             $this->_conexion->ejecutar_sentencia($sql);
             return $this->retornar_SELECT();
         } else {
@@ -90,7 +90,8 @@ class telefonos_personas {
     }
     
     public function hacer_predeterminado ($id_telefono, $id_persona){
-        $sql = "UPDATE `telefonos_personas` SET `prederterminado`='1' WHERE `id_persona`= '".$id_persona."' AND id_telefono_per='".$id_telefono."' ";
+        $this->quitar_predeterminados($id_persona);
+        $sql = "UPDATE `telefonos_personas` SET `predeterminado`='1' WHERE `id_persona`= '".$id_persona."' AND id_telefono_per='".$id_telefono."' ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     

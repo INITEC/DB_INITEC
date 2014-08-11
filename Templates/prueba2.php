@@ -1,1 +1,1 @@
-<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";?>
+<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".$_POST["guardar_datos_integrante"];?>

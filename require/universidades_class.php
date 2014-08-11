@@ -11,7 +11,7 @@ class universidades {
     public function nuevo ($nom_universidad ){
         if ($this->verificar_nombre($nom_universidad) == 0 ) {
             $sql = "INSERT INTO `universidades` (`id_universidad`, `nom_universidad`) VALUES (null, '".$nom_universidad."')";
-            $this->_conexion->ejecutar_sentencia();
+            $this->_conexion->ejecutar_sentencia($sql);
             $universidad = $this->ver_ultima_universidad($nom_universidad);
             return $universidad["id_universidad"];
         } else {
@@ -52,7 +52,7 @@ class universidades {
     }
     
     public function ver_nom_universidad ($id_universidad){
-        if (!empty($id_facultad)){
+        if (!empty($id_universidad)){
             $universidad = $this->ver_universidad($id_universidad);
             return $universidad["nom_universidad"];
         } else {

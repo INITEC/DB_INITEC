@@ -9,15 +9,15 @@ class correos_personas {
 		$this->_conexion = new conexion();
     }
     
-    // prederterminado -> 1 = si -> 2 = no
+    // predeterminado -> 1 = si -> 2 = no
     public function nuevo ($correo, $id_persona, $predeterminado=1){
         if ($this->verificar_correo($correo) == 0) {
             if ($predeterminado == 1 ){
                 $this->quitar_predeterminados($id_persona);
             }else {$predeterminado = 2;}
 
-            $sql = "INSERT INTO `correos_personas` (`id_correo_per`, `correo`,`id_persona`, `prederterminado`) VALUES (null, '".$correo."', '".$id_persona."', '".$predeterminado."')";
-            return $this->_conexion->ejecutar_sentencia();
+            $sql = "INSERT INTO `correos_personas` (`id_correo_per`, `correo`,`id_persona`, `predeterminado`) VALUES (null, '".$correo."', '".$id_persona."', '".$predeterminado."')";
+            return $this->_conexion->ejecutar_sentencia($sql);
         } else {
             echo "<script type='text/javascript' language='javascript' >
             alert ('El correo ya ha sido registrado antes');
@@ -27,7 +27,7 @@ class correos_personas {
     }
     
     public function quitar_predeterminados ($id_persona){
-        $sql = "UPDATE `correos_personas` SET `prederterminado`='2' WHERE `id_persona`= '".$id_persona."' AND prederterminado='1' ";
+        $sql = "UPDATE `correos_personas` SET `predeterminado`='2' WHERE `id_persona`= '".$id_persona."' AND predeterminado='1' ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
@@ -38,7 +38,7 @@ class correos_personas {
     }
     
     public function verificar_predeterminado ($id_persona) {
-        $sql = "SELECT * FROM `correos_personas` WHERE id_persona='".$id_persona."' AND prederterminado='1' ";
+        $sql = "SELECT * FROM `correos_personas` WHERE id_persona='".$id_persona."' AND predeterminado='1' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->_conexion->tam_respuesta();
     }
@@ -54,9 +54,9 @@ class correos_personas {
     }
     
     public function ver_correo ($id_persona){
-        // prederterminado -> 1 = si -> 2 = no
+        // predeterminado -> 1 = si -> 2 = no
         if($this->verificar_predeterminado($id_persona) != 0){
-            $sql = "SELECT * FROM `correos_personas` WHERE id_persona='".$id_persona."' AND prederterminado='1' LIMIT 1 ";
+            $sql = "SELECT * FROM `correos_personas` WHERE id_persona='".$id_persona."' AND predeterminado='1' LIMIT 1 ";
             $this->_conexion->ejecutar_sentencia($sql);
             return $this->retornar_SELECT();
         } else {
@@ -80,7 +80,8 @@ class correos_personas {
     }
     
     public function hacer_predeterminado ($id_correo, $id_persona){
-        $sql = "UPDATE `correos_personas` SET `prederterminado`='1' WHERE `id_persona`= '".$id_persona."' AND id_correo_per='".$id_correo."' ";
+        $this->quitar_predeterminados($id_persona);
+        $sql = "UPDATE `correos_personas` SET `predeterminado`='1' WHERE `id_persona`='".$id_persona."' AND id_correo_per='".$id_correo."' ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     

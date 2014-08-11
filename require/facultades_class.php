@@ -11,7 +11,7 @@ class facultades {
     public function nuevo ($nom_facultad){
         if ($this->verificar_nombre($nom_facultad) == 0 ) {
             $sql = "INSERT INTO `facultades` (`id_facultad`, `nom_facultad`) VALUES (null, '".$nom_facultad."' )";
-            $this->_conexion->ejecutar_sentencia();
+            $this->_conexion->ejecutar_sentencia($sql);
             $facultad = $this->ver_ultima_facultad($nom_facultad);
             return $facultad["id_facultad"];
         } else {

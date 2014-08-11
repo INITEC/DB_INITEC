@@ -24,6 +24,8 @@ if($id_persona) {
 				include_once ("home/home_editar.php");
 			}elseif(isset($_POST['cambiar_clave_cambiar'])){
                 include_once ("home/home_cambiar_clave_cambiar.php");
+            }elseif(isset($_POST["guardar_datos_integrante"])){
+                include_once ("home/guardar_datos_integrante.php");
             }
 		}elseif(!empty($_GET)) {
 			$acceso = 1;

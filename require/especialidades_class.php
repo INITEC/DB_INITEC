@@ -11,7 +11,7 @@ class especialidades {
     public function nuevo ($nom_especialidad){
         if ($this->verificar_nombre($nom_especialidad) == 0 ) {
             $sql = "INSERT INTO `especialidades` (`id_especialidad`, `nom_especialidad`) VALUES (null, '".$nom_especialidad."')";
-            $this->_conexion->ejecutar_sentencia();
+            $this->_conexion->ejecutar_sentencia($sql);
             $especialidad = $this->ver_ultima_especialidad($nom_especialidad);
             return $especialidad["id_especialidad"];
         } else {

@@ -16,7 +16,7 @@ if($acceso == 1) {
 <script type="text/javascript" languaje="javascript" src="home/home_editar.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-    var integrante = new enviar_form('mensaje_registro_integrante', 'datos_integrante', 'prueba2.php');
+    var integrante = new enviar_form('mensaje_registro_integrante', 'datos_integrante', 'home_aux.php');
     
     callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona_editar');
     window.onload = function(){
@@ -41,11 +41,11 @@ if($acceso == 1) {
 			</div>
 			<div >
 <!-- *************************************************************************************************** -->
-				<form id="datos_integrante" action="javascript:void(0);" method="POST" >
+				<form id="datos_integrante" action="javascript:void(0);" method="POST" enctype="multipart/form-data" >
                     <div id="cuadro">
                         <!-- Este div usa AJAX para mostrar informacion -->
                     </div>
-                    <!-- <input type="hidden" name="id_persona" value="" /> -->
+                    <!-- <input type="hidden" name="id_persona_editar" value="" /> -->
 				</form>
 <!-- *************************************************************************************************** -->
 			</div>

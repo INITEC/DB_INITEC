@@ -1,13 +1,10 @@
 <?php 
-session_start();
 if($acceso == 1) {
 
-    $id_persona = $_SESSION["id_persona"];
     if( !empty($_POST)){
-        require_once ("../require/integrantes_class.php");
         
-        if(isset($_POST['id_persona'])){
-			$id_persona_env = $_POST["id_persona"];
+        if(isset($_POST['id_persona_editar'])){
+			$id_persona_env = $_POST["id_persona_editar"];
 		} else {
 			$id_persona_env = $id_persona;
         }
@@ -27,14 +24,14 @@ if($acceso == 1) {
 			</head>
 			<body>
 				<?php
-                
+                echo "hola";
                 $nombres = $_POST["nombres"];
                 $apellidos = $_POST["apellidos"];
-                $linkedin = $_POST["likedin"];
+                $linkedin = $_POST["linkedin"];
                 $DNI = $_POST["DNI"];
                 $direccion = $_POST["direccion"];
                 $cod_universitario = $_POST["cod_universitario"];
-                $usuario = $_POST["usuario"];
+                $nom_usuario = $_POST["usuario"];
                 
                 /* para verificar si se ha ingresado algun otro valor */
                 if(strcmp ( $_POST["id_telefono"] , 'otro' ) == 0) {
@@ -47,7 +44,7 @@ if($acceso == 1) {
                 if(strcmp ( $_POST["id_correo"] , 'otro' ) == 0) {
 					$correos->nuevo($_POST["otro_correo"],$id_persona_env);
 				} else {
-					$correos->hacer_predeterminado( $_POST["id_correo"]);
+					$correos->hacer_predeterminado( $_POST["id_correo"], $id_persona_env);
 				}
                 
                 /* ---------------------------------------------------- */
@@ -71,6 +68,7 @@ if($acceso == 1) {
 				}
                 
                 $foto_tipo=$_FILES["foto"]["type"];
+                echo "el tipo es".$foto_tipo."/";
                 
                 if($foto_tipo != ""){
                     $foto_temp=$_FILES["foto"]["tmp_name"];
@@ -80,16 +78,14 @@ if($acceso == 1) {
                 
 				
 				if(
-				$personal->ingresar_datos_primarios($id_persona_env ,$primer_nombre, $segundo_nombre, $ap_paterno, $ap_materno, $fecha_nac, $edad, $DNI, $sexo) and
-				$personal->ingresar_datos_secundarios($id_persona_env, $num_hijos, $num_escolares, $id_est_civil, $id_grupo_sanguineo, $telefono, $celular, $e_mail) and
-				$personal->ingresar_datos_vivienda($id_persona_env, $id_distrito, $id_provincia, $id_region, $direccion) and
-				$personal->ingresar_datos_terciarios($id_persona_env, $id_adm_pension, $id_nivel_educ, $id_banco_sueldo, $cuenta_sueldo, $num_CUSPP, $id_categoria ) and
-				$personal->ingresar_datos_ropa($id_persona_env, $talla_botas, $talla_pantalon, $talla_camisa) and
-				$personal->ingresar_datos_emergencia($id_persona_env, $nom_emergencia, $telf_emergencia)
+				$integrantes_editar->guardar_datos_primarios_int ($nombres ,$apellidos) and
+				$integrantes_editar->guardar_datos_secundarios_int($linkedin, $DNI, $direccion ) and
+				$integrantes_editar->guardar_datos_universitarios_int($id_universidad, $id_facultad, $id_especialidad, $cod_universitario) and
+				$integrantes_editar->guardar_nom_usuario_int($nom_usuario)
 				){
 				?>
 				<div id="dato_correcto">
-								SE GUARDARON LOS DATOS CORRECTAMENTE
+								SE GUARDARON LOS DATOS CORRECTAMENTE 
 				</div>
 				<?php 
 				} else {

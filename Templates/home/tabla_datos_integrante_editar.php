@@ -3,30 +3,13 @@ if($acceso == 1) {
 ?>
 	<head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
-		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
-		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >
 	</head>
 
 	<?php
 	if( !empty($_GET)) {
-        require_once ("../require/amonestaciones_class.php");
-        require_once ("../require/asistencias_class.php");
-        require_once ("../require/temporadas_class.php");
-        require_once ("../require/telefonos_personas_class.php");
-        require_once ("../require/correos_personas_class.php");
-        require_once ("../require/universidades_class.php");
-        require_once ("../require/facultades_class.php");
-        require_once ("../require/especialidades_class.php");
-        
-        
-        include_once("../Include/cuadro_amonestaciones_int_func.php");
-        include_once("../Include/cuadro_inasistencias_int_func.php");
-        
+
         $id_persona_tabla = $_GET["id_persona_editar"];
         $tabla_integrante = new integrantes();
-        $amonestaciones = new amonestaciones();
-        $asistencias = new asistencias();
-        $temporadas = new temporadas();
         $telefonos = new telefonos_personas();
         $correos = new correos_personas();
         $universidades = new universidades();
@@ -88,7 +71,7 @@ if($acceso == 1) {
                     <input type="hidden" name="otro_telefono" id="otro_telefono">
                 </td>
                 <td width="300" >
-                    <select name="id_correo" id="id_correo" onchange="eval_select('id_correo','agregar_correo');" >
+                    <select name="id_correo" id="id_correo" onchange="eval_select('id_correo','otro_correo');" >
 				        <?php 
 						if($correos->cant_correos($id_persona_tabla) == 0) {
 						?>
@@ -105,7 +88,7 @@ if($acceso == 1) {
                         ?>
 				        <option value="otro">Agregar</option>
 				    </select>
-                    <input type="hidden" name="agregar_correo" id="agregar_correo">
+                    <input type="hidden" name="otro_correo" id="otro_correo">
                 </td>
             </tr>
             <tr id="tabla2_encabezado" >
@@ -146,7 +129,7 @@ if($acceso == 1) {
 							><?php echo $op_universidades['nom_universidad'];?></option>
 							<?php }?>
 							<option value="otro">Otro</option>
-							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_universidad"]==""){echo "selected";}?> >No especificado</option>
+							<option value="" <?php if (empty($tabla_integrante->_datos_integrante["id_universidad"])){echo "selected";}?> >No especificado</option>
 				    </select>
 					<input type="hidden" name="otro_universidad" id="otro_universidad">
                 </td>
@@ -160,7 +143,7 @@ if($acceso == 1) {
 							><?php echo $op_especiallidades['nom_especialidad'];?></option>
 							<?php }?>
 							<option value="otro">Otro</option>
-							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_especialidad"]==""){echo "selected";}?> >No especificado</option>
+							<option value="" <?php if (empty($tabla_integrante->_datos_integrante["id_especialidad"])){echo "selected";}?> >No especificado</option>
 				    </select>
 					<input type="hidden" name="otro_especialidad" id="otro_especialidad">
                 </td>
@@ -174,7 +157,7 @@ if($acceso == 1) {
 							><?php echo $op_facultades['nom_facultad'];?></option>
 							<?php }?>
 							<option value="otro">Otro</option>
-							<option value="" <?php if ($tabla_integrante->_datos_integrante["id_facultad"]==""){echo "selected";}?> >No especificado</option>
+							<option value="" <?php if (empty($tabla_integrante->_datos_integrante["id_facultad"])){echo "selected";}?> >No especificado</option>
 				    </select>
 					<input type="hidden" name="otro_facultad" id="otro_facultad">
                 </td>

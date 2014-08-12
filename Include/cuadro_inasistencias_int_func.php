@@ -6,7 +6,7 @@
     $width // es el ancho de un cuadrado
     $height // es el alto del cuadro
 */
-    function cuadro_inasistencias_int($asistencias, $id_persona, $temporadas, $id_temporada,$width,$height,$url){
+    function cuadro_inasistencias_int($asistencias, $id_persona, $temporadas, $id_temporada,$width,$height,$url,$ajax=1){
                     $num_inasistencias = $asistencias->num_inasistencias_int($id_persona, $id_temporada);
                     $asistencias->ver_inasistencias_int($id_persona, $id_temporada);
                     $max_faltas = $temporadas->ver_max_faltas($id_temporada);
@@ -18,7 +18,7 @@
                         while ($list_inasistencias = $asistencias->retornar_SELECT()){
                             $id_asistencia = $list_inasistencias["id_asistencia"];
                        ?>
-                        <td class="inasistencia" width="<?php echo $width; ?>" height="<?php echo $height; ?>" onmouseover="callDivs_dato ('inasistencia_<?php echo $id_persona?>', '<?php echo $url; ?>', '<?php echo $id_asistencia?>', 'id_asistencia')" onClick ="limpiar_elemento('inasistencia_<?php echo $id_persona?>');" >
+                        <td class="inasistencia" width="<?php echo $width; ?>" height="<?php echo $height; ?>" <?php if($ajax == 1){?> onmouseover="callDivs_dato ('inasistencia_<?php echo $id_persona;?>', '<?php echo $url; ?>', '<?php echo $id_asistencia;?>', 'id_asistencia')" <?php } ?> onClick ="limpiar_elemento('inasistencia_<?php echo $id_persona;?>');" >
                             <?php
                             echo 1;
                             ?>

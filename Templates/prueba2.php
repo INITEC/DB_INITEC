@@ -1,1 +1,1 @@
-<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";?>
+<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".$_POST["div_ancho"];?>

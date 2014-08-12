@@ -1,8 +1,8 @@
 <?php 
 session_start();
 $id_persona = $_SESSION["id_persona"];
-//$id_temporada = $_SESSION["id_temporada"];
-$id_temporada = 7;
+$id_temporada = $_SESSION["id_temporada"];
+
 
 if($id_persona) {
 	require_once ("../require/obligaciones_int_class.php");
@@ -21,14 +21,14 @@ if($id_persona) {
 		if( !empty($_POST)) {
 			$acceso = 1;
 			if (isset($_POST['cambiar_clave'])){	
-				include_once ("home/home_cambiar_clave.php");
+				//include_once ("home/home_cambiar_clave.php");
 			}elseif(isset($_POST['editar_datos'])) {
-				include_once ("home/home_editar.php");
+				//include_once ("home/home_editar.php");
 			}
 		}elseif(!empty($_GET)) {
 			$acceso = 1;
 			if (isset($_GET['estado'])) {
-				include_once ("AD_grupos/cambiar_estado_grupo.php");
+				//include_once ("AD_grupos/cambiar_estado_grupo.php");
 			}elseif (isset($_GET['id_persona'])) {
 				include_once ("asistencias/tabla_asistencias_integrante.php");
 			}

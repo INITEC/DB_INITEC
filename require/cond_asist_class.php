@@ -65,11 +65,16 @@ class cond_asist {
     public function ver_asistencia ($id_cond_asist){
         // asistencia -> 1=asistio 2=no asistio
         $condicion = $this->ver_condicion($id_cond_asist);
-        if ($condicion["asisitencia"] = 1){
+        if ($condicion["asistencia"] == 1){
             return "ASISTIO";
         } else if ($condicion["asistencia"] == 2){
             return "NO ASISTIO";
         }
+    }
+    
+    public function ver_cod_color ($id_cond_asist){
+        $condicion = $this->ver_condicion($id_cond_asist);
+        return $condicion["cod_color"];
     }
     
     public function retornar_SELECT(){

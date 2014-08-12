@@ -24,9 +24,19 @@ class reuniones {
     }
     
     public function ver_reuniones ($id_temporada){
-		$sql = "SELECT * FROM `reuniones` WHERE id_temporada='".$id_temporada."'ORDER BY id_reunion DESC";
+		$sql = "SELECT * FROM `reuniones` WHERE id_temporada='".$id_temporada."' ORDER BY id_reunion DESC";
 		return $this->_conexion->ejecutar_sentencia($sql);		
 	}
+    
+    public function ver_reuniones_all (){
+        $sql = "SELECT * FROM `reuniones` ";
+		return $this->_conexion->ejecutar_sentencia($sql);		
+    }
+    
+    public function guardar_dia_trabajo ($id_reunion, $id_dia_trabajo){
+        $sql = "UPDATE `reuniones` SET id_dia_trabajo='".$id_dia_trabajo."' WHERE id_reunion='".$id_reunion."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
     
     public function ver_reunion ($id_reunion) {
         $sql = "SELECT * FROM `reuniones` WHERE id_reunion='".$id_reunion."' ";

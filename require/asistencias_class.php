@@ -53,8 +53,8 @@ class asistencias {
         return $this->_cond_asist->ver_asistencia($id_cond_asist);
     }
     
-	public function ver_asistencias_int ($id_persona){
-		$sql = "SELECT * FROM asistencias WHERE id_persona = '".$id_persona."' ";
+	public function ver_asistencias_int ($id_persona, $id_temporada){
+		$sql = "SELECT * FROM asistencias,reuniones WHERE id_persona = '".$id_persona."' AND asistencias.id_reunion=reuniones.id_reunion AND reuniones.id_temporada='".$id_temporada."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
     

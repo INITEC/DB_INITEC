@@ -29,7 +29,7 @@ if($acceso == 1) {
                 Apellidos
                 </td>
                 <td width="200" rowspan="4" >
-                <img src="<?php echo $tabla_integrante->foto(); ?>" width="200px" height="150">
+                <img src="<?php echo $tabla_integrante->foto_int(); ?>" width="200px" height="150">
                 <input type="file" name="foto" >
                 </td>
             </tr>

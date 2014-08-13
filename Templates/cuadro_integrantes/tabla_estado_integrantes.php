@@ -23,45 +23,52 @@ if($acceso == 1) {
         $asistencias = new asistencias();
         $temporadas = new temporadas();
         $amonestaciones = new amonestaciones();
+        $integrantes_env = new integrantes();
         
-        $num_col = round($div_ancho/330);
+        $num_integrantes = $tabla_integrante->num_datos_integrantes();
+        $num_col = (int)($div_ancho/330);
+        $num_row = (int)($num_integrantes/$num_col);
+        $rest_row = $num_integrantes%$num_col;
         
-        $nombre = "DAVID";
-        $apellido = "FERNANDEZ VILLANUEVA";
+        //echo " int:".$num_integrantes." col:".$num_col." row".$num_row." ancho:".$div_ancho;
         
-        $num_integrantes = 7;
-        
-        $num_row = round($num_integrantes/$num_col);
-        
+        $tabla_integrante->ver_datos_integrantes();
         
         ?>
         <table align="center" width="100%" >
             <?php
-            for ($i=0; $i<14; $i++){
+            for ($i=0; $i<$num_row; $i++){
             ?>
-            <tr id="tabla2_encabezado" >
+            <tr >
                 <?php
                 for ($j=0; $j<$num_col; $j++){
+                    $datos_integrantes = $tabla_integrante->retornar_SELECT();
+                    $id_persona_env = $datos_integrantes["id_persona"]; 
+                    if(($i+$j)%2 == 0){ $class="item1";}
+                    else {$class="item2";}
+                    
                 ?>
-                <td>
-                    <img src="../foto_integrantes/JB.jpg" height="75px" height="60px" >
+                <td class="<?php echo $class;?>" >
+                    <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
                 </td>
-                <td width="100" >
+                <td width="100" class="<?php echo $class;?>" >
                     <?php
-                    echo ajuste_primera_palabra($nombre);
+                    $nombre = $integrantes_env->ver_nombre($id_persona_env);
+                    $apellido = $integrantes_env->ver_apellido($id_persona_env);
+                    echo ajuste_primera_palabra($nombre,7,'.');
                     echo "<br>";
-                    echo ajuste_primera_palabra($apellido);
+                    echo ajuste_primera_palabra($apellido,7,'.');
                     ?>
                 </td>
-                <td>
+                <td class="<?php echo $class;?>" >
                     <?php
-                    cuadro_amonestaciones_int($amonestaciones, $id_persona, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                    cuadro_amonestaciones_int($amonestaciones, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_inasistencias_int($asistencias, $id_persona, $temporadas, $id_temporada,20,15,'home_aux.php',0)
+                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_inasistencias_int($asistencias, $id_persona, $temporadas, $id_temporada,20,15,'home_aux.php',0)
+                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>		
                 </td>
                 <?php
@@ -71,6 +78,43 @@ if($acceso == 1) {
             <?php
             }
             ?>
+            <tr >
+            <?php
+            for ($i=0 ; $i<$rest_row ; $i++){
+                $datos_integrantes = $tabla_integrante->retornar_SELECT();
+                $id_persona_env = $datos_integrantes["id_persona"];
+                if(($num_row+$i)%2 == 0){ $class="item1";}
+                    else {$class="item2";}
+                
+                ?>
+                <td class="<?php echo $class;?>" >
+                    <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
+                </td>
+                <td width="100" class="<?php echo $class;?>" >
+                    <?php
+                    $nombre = $integrantes_env->ver_nombre($id_persona_env);
+                    $apellido = $integrantes_env->ver_apellido($id_persona_env);
+                    echo ajuste_primera_palabra($nombre,7,'.');
+                    echo "<br>";
+                    echo ajuste_primera_palabra($apellido,7,'.');
+                    ?>
+                </td>
+                <td class="<?php echo $class;?>" >
+                    <?php
+                    cuadro_amonestaciones_int($amonestaciones, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                ?>
+                <?php
+                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                ?>
+                <?php
+                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                ?>		
+                </td>
+                
+            <?php
+            }
+            ?>
+            </tr>
         </table>
 <?php
 	}

@@ -39,7 +39,7 @@ class integrantes {
 		
 	}
     
-	public function foto() {
+	public function foto_int() {
 		return "../foto_integrantes/".$this->_datos_integrante["foto"];
 	}
     
@@ -56,10 +56,29 @@ class integrantes {
     }
     
     public function ver_nombre_completo ($id_persona){
-        $sql = "SELECT * FROM personas WHERE id_persona='".$id_persona."' ";
-        $this->_conexion->ejecutar_sentencia($sql);
-        $persona = $this->retornar_SELECT();
+        $persona = $this->_personas->ver_persona($id_persona);
         return $persona["apellidos"]." ".$persona["nombres"];
+    }
+    
+    public function ver_nombre ($id_persona){
+        $persona = $this->_personas->ver_persona($id_persona);
+        return $persona["nombres"];
+    }
+    
+    public function ver_apellido ($id_persona){
+        $persona = $this->_personas->ver_persona($id_persona);
+        return $persona["apellidos"];
+    }
+    
+    public function ver_datos_integrante ($id_persona){
+        $sql = "SELECT * FROM datos_integrantes WHERE id_persona='".$id_persona."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
+    }
+    
+    public function ver_foto ($id_persona){
+        $datos_integrante = $this->ver_datos_integrante($id_persona);
+        return "../foto_integrantes/".$datos_integrante["foto"];
     }
     
     public function ver_apellido_int (){
@@ -104,16 +123,31 @@ class integrantes {
     
 	public function ver_integrantes (){
 		/* datos_integrantes.id_cond_int=1 es considerado como integrante inactivo */
-		$sql = "SELECT * FROM personas, datos_integrantes WHERE datos_integrantes.id_cond_int=1 AND personas.id_persona=datos_integrantes.id_persona ORDER BY personas.apellidos ASC";
+		$sql = "SELECT * FROM personas, datos_integrantes WHERE datos_integrantes.id_cond_int!=1 AND personas.id_persona=datos_integrantes.id_persona ORDER BY personas.apellidos ASC";
 		$this->_conexion->ejecutar_sentencia($sql);	
 	}
     
+    public function num_integrantes (){
+        $this->ver_integrantes();
+        return $this->_conexion->tam_respuesta();
+    }
+    
 	public function ver_nombres (){ 
         /* datos_integrantes.id_cond_int=1 es considerado como integrante inactivo */
-		$sql = "SELECT personas.id_persona, personas.nombres, personas.apellidos datos_integrantes.id_persona datos_integrantes.id_cond_int FROM personas, datos_integrantes WHERE datos_integrantes.id_cond_int=1 AND datos_integrantes.id_persona=pesonas.id_persona ORDER BY personas.apellidos ASC";
+		$sql = "SELECT personas.id_persona, personas.nombres, personas.apellidos datos_integrantes.id_persona datos_integrantes.id_cond_int FROM personas, datos_integrantes WHERE datos_integrantes.id_cond_int!=1 AND datos_integrantes.id_persona=pesonas.id_persona ORDER BY personas.apellidos ASC";
 		$this->_conexion->ejecutar_sentencia($sql);	
 	}
 	
+    public function ver_datos_integrantes (){
+        $sql = "SELECT * FROM datos_integrantes,cond_int WHERE datos_integrantes.id_cond_int=cond_int.id_cond_int AND cond_int.id_tipo_cond!='1'";
+        $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function num_datos_integrantes (){
+        $this->ver_datos_integrantes();
+        return $this->_conexion->tam_respuesta();
+    }
+    
 	public function cambiar_trabajo ($id_persona, $id_trabajo){
 		$sql = "UPDATE `datos_integrantes` SET `id_trabajo`='".$id_trabajo."' WHERE `id_persona`= '".$id_persona."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);

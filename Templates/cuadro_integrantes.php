@@ -44,7 +44,7 @@ if($id_persona) {
     }
     
     window.onload = function(){
-	   cargar_cuadro_integrantes(300);
+	   cargar_cuadro_integrantes(3000);
     }
 </script>
 

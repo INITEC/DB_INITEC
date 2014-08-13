@@ -4,7 +4,7 @@ function ajuste_primera_palabra($texto,$num_letras=8,$add='...'){
             $long = strlen($new_texto[0]);
             if($long > $num_letras){
                 $palabra = substr($new_texto[0],0,$num_letras);
-                $palabra = $palabra."...";
+                $palabra = $palabra.$add;
             } else {
                 $palabra = $new_texto[0];
             }

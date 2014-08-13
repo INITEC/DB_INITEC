@@ -12,18 +12,25 @@ if($acceso == 1) {
         require_once ("../require/asistencias_class.php");
         require_once ("../require/temporadas_class.php");
         require_once ("../require/amonestaciones_class.php");
+        require_once ("../require/pagos_class.php");
+        require_once ("../require/cond_pagos_class.php");
         
         require_once ("../require/ajuste_primera_palabra_func.php");
         
         include_once("../Include/cuadro_amonestaciones_int_func.php");
         include_once("../Include/cuadro_inasistencias_int_func.php");
+        include_once("../Include/cuadro_pagos_int_func.php");
         
         $div_ancho = $_POST["div_ancho"];
         $tabla_integrante = new integrantes();
         $asistencias = new asistencias();
         $temporadas = new temporadas();
         $amonestaciones = new amonestaciones();
+        $pagos = new pagos();
+        $pagos_aux = new pagos();
         $integrantes_env = new integrantes();
+        
+        
         
         $num_integrantes = $tabla_integrante->num_datos_integrantes();
         $num_col = (int)($div_ancho/330);
@@ -68,7 +75,7 @@ if($acceso == 1) {
                     cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                    cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
                 ?>		
                 </td>
                 <?php
@@ -107,7 +114,7 @@ if($acceso == 1) {
                     cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
+                    cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
                 ?>		
                 </td>
                 

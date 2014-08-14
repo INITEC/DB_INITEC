@@ -1,27 +1,49 @@
-<?php
-if($acceso == 1) {
+<?php 
+session_start();
+$id_persona = $_SESSION["id_persona"];
+if($id_persona) {
+	require_once ("../require/obligaciones_int_class.php");
+	require_once ("../require/integrantes_class.php");
+	require_once ("../require/trabajos_int_class.php");
+	require_once ("../require/tareas_int_class.php");
+	
+	$tarea_actual = "AMONESTACIONES";	
+	$obligaciones = new obligaciones_int();
+	$integrante = new integrantes();
+	$integrante->establecer_integrante($id_persona);
+    $id_trabajo = $integrante->retornar_id_trabajo();
+    
+	if($obligaciones->verificar_tarea($id_trabajo,$tarea_actual)) {
+		$trabajos = new trabajos_int();
+		$tareas = new tareas_int();
+/* ..................................................................................................................... */
 ?>
-
 <html>
 <head>
 <title>..::<?php echo $tarea_actual; ?>::..</title>
 <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 <script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/from_2_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/eval_select.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/enviar_form_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="home/home_editar.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-    var integrante = new enviar_form('mensaje_registro_integrante', 'datos_integrante', 'home_aux.php');
-    
-    callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona_editar');
+	function cargar_cuadro_integrantes (){
+        $parametros = {'amonestaciones_int' : true };
+        $.ajax({
+            url: 'amonestaciones_aux.php',
+            type: 'POST',
+            async: true,
+            data: $parametros,
+            success: function (datos){
+                $("#cuadro").html(datos);
+            }
+        });
+    }
     window.onload = function(){
-	   integrante.loadform();
+	   cargar_cuadro_integrantes();
     }
 </script>
 
@@ -42,12 +64,9 @@ if($acceso == 1) {
 			</div>
 			<div >
 <!-- *************************************************************************************************** -->
-				<form id="datos_integrante" action="javascript:void(0);" method="POST" enctype="multipart/form-data" >
-                    <div id="cuadro">
-                        <!-- Este div usa AJAX para mostrar informacion -->
-                    </div>
-                    <!-- <input type="hidden" name="id_persona_editar" value="" /> -->
-				</form>
+				<div id="cuadro">
+                    <!-- Este div usa AJAX para mostrar informacion -->
+				</div>
 <!-- *************************************************************************************************** -->
 			</div>
 		</div>	
@@ -58,6 +77,14 @@ if($acceso == 1) {
 		</div>
 	</body>
 </html>
-<?php
+
+<?php 
+/* ................................................................................................................. */
+	} else {
+        include_once ("../Include/no_tarea.php");
+    }	
+} else {
+    include_once ("../Include/no_acceso.php");
 }
+
 ?>

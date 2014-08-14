@@ -82,13 +82,13 @@ if($acceso == 1) {
 				$integrantes_editar->guardar_nom_usuario_int($nom_usuario)
 				){
 				?>
-				<div id="dato_correcto">
+				<div class="dato_correcto" id="mensaje" >
 								SE GUARDARON LOS DATOS CORRECTAMENTE 
 				</div>
 				<?php 
 				} else {
 				?>
-				<div id="dato_incorrecto">
+				<div class="dato_incorrecto" id="mensaje" >
 								NO SE HA PODIDO GUARDAR LOS DATOS, INTENTE DE NUEVO
 				</div>
 				<?php 

@@ -1,1 +1,4 @@
-<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa".$_POST["div_ancho"];?>
+<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--";
+if(isset($_POST["boton-crear-reunion"])){echo "hola";}
+
+?>

@@ -4,6 +4,43 @@ if($acceso = 1) {
     $horas_trabajo = new horas_trabajo();
     $horas_trabajo_aux = new horas_trabajo();
 ?>
+	<script>
+        function validar_horas_trabajo (id_div, id_horas_trab){
+            $parametros = {
+                'boton-validar-horas-trabajo' : true,
+                'id_horas_trab' : id_horas_trab
+            };
+            
+            $.ajax({
+                url: 'prueba2.php',
+                type: 'POST',
+                async: true,
+                data: $parametros,
+                success: function (datos){
+                    $(id_div).html(datos);
+                }
+            });
+            setTimeout(function(){cuadro_horas_trabajo ();},3000);
+            return false;
+        };
+    
+        function rechazar_horas_trabajo (id_div, id_horas_trab){
+            $parametros = {
+                'boton-rechazar-horas-trabajo' : true,
+                'id_horas_trab' : id_horas_trab    
+            };
+            $.ajax({
+                type: "POST",
+                url: "prueba2.php",
+                data: $parametros,
+                success: function(data){
+                    $(id_div).html(data);
+                }
+            });
+            setTimeout(function(){cuadro_horas_trabajo ();},3000);
+            return false;
+        };
+    </script>
 	<table align="center">
 		<tr id="tabla2_encabezado">
 			<td>
@@ -36,7 +73,7 @@ if($acceso = 1) {
 	?>	
 		<tr>
 			<td colspan="7">
-				<div id="div_resul<?php echo $rel_horas['persona'].'_'.$id_grupo;?>">
+				<div id="div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>">
 				</div>
 			</td>
 		</tr>
@@ -61,11 +98,11 @@ if($acceso = 1) {
 			</td>
 			<td>
 				<input type="button" id="validar_horas_trabajo" value="Validar" 
-				onclick="validar_horas_trabajo('div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>' ">
+				onclick="validar_horas_trabajo('#div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
 			</td>
 			<td>
 				<input type="button" id="rechazar_horas_trabajo" value="Rechazar" 
-				onclick="rechazar_horas_trabajo('div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>' ">
+				onclick="rechazar_horas_trabajo('#div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
 			</td>
 		</tr>	
 	<?php 

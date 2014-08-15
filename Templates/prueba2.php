@@ -1,4 +1,4 @@
-<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--".$_POST["id_grupo_env"];
+<?php echo "holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--";
 if(isset($_POST["id_grupo"])){echo "hola";}
 
 ?>

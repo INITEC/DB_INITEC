@@ -1,8 +1,9 @@
 <?php 
 if($acceso = 1) {
-	$id_grupo = $_GET["id_grupo"];
+	$id_grupo = $_POST["id_grupo"];
+    $horas_trabajo = new horas_trabajo();
+    $horas_trabajo_aux = new horas_trabajo();
 ?>
-	<br>
 	<table align="center">
 		<tr id="tabla2_encabezado">
 			<td>
@@ -25,15 +26,17 @@ if($acceso = 1) {
 			</td>
 			<td>
 			</td>
+			<td>
+			</td>
 		</tr>
 	<?php 
-		$horas_trabajo->ver_horas_no_validadas($id_grupo);
+		$horas_trabajo->ver_horas_en_espera($id_grupo);
 		$cont_horas = 1;
 		while($rel_horas = $horas_trabajo->retornar_SELECT()) {
 	?>	
 		<tr>
 			<td colspan="7">
-				<div id="div_resul<?php echo $rel_horas['id_integrante'].'_'.$id_grupo;?>">
+				<div id="div_resul<?php echo $rel_horas['persona'].'_'.$id_grupo;?>">
 				</div>
 			</td>
 		</tr>
@@ -42,30 +45,28 @@ if($acceso = 1) {
 				<?php echo $cont_horas;?>
 			</td>
 			<td>
-				<img src="../foto_integrantes/<?php echo $rel_horas['foto'];?>" width="60" height="48" border="0" >
+				<img src="<?php echo $integrante->ver_foto($rel_horas["id_persona"]);?>" width="60" height="48" border="0" >
 			</td>
 			<td>
-				<?php echo $rel_horas["integrante"];?>
+				<?php echo $integrante->ver_nombre_completo($rel_horas["id_persona"]);?>
 			</td>
 			<td>
 				<?php echo $rel_horas["comentario"];?>
 			</td>
 			<td>
-				<?php echo $horas_trabajo->ver_fecha($rel_horas["id_dia_trabajo"]);?>
+				<?php echo $horas_trabajo_aux->ver_fecha($rel_horas["id_dia_trabajo"]);?>
 			</td>
 			<td>
 				<?php echo $rel_horas["n_horas"];?>
 			</td>
 			<td>
-			<form action="javascript:void(0);" id="form_<?php echo $rel_horas['id_integrante'].'_'.$id_grupo;?>" >
-				<input type="hidden" name="id_integrante_env" value="<?php echo $rel_horas['id_integrante'];?>" >
-				<input type="hidden" name="id_grupo_env" value="<?php echo $id_grupo; ?>">
-				<input type="hidden" name="id_horas_trab" value="<?php echo $rel_horas['id_horas_trab'];?>">
-				<input type="button" name="Validar_horas_trabajo" value="Validar" 
-				onclick="enviar_int('div_resul<?php echo $rel_horas['id_integrante'].'_'.$id_grupo;?>','form_<?php echo $rel_horas['id_integrante'].'_'.$id_grupo;?>', 1);">				
-			</form>
+				<input type="button" id="validar_horas_trabajo" value="Validar" 
+				onclick="validar_horas_trabajo('div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>' ">
 			</td>
-
+			<td>
+				<input type="button" id="rechazar_horas_trabajo" value="Rechazar" 
+				onclick="rechazar_horas_trabajo('div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>' ">
+			</td>
 		</tr>	
 	<?php 
 		$cont_integrante++;}

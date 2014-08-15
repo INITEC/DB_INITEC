@@ -61,7 +61,7 @@ if($id_persona) {
         }
         
         window.onload = function(){
-           cargar_cuadro_ingreso_horas();
+            cargar_cuadro_ingreso_horas();
             cargar_lista_horas_integrante ();
         }
     </script>

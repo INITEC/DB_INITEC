@@ -6,8 +6,47 @@ if($acceso == 1) {
 	<title>..::<?php echo $tarea_actual; ?>::..</title>
 	<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 	<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
-	<script type="text/javascript" languaje="javascript" src="../JavaScript/EnvForm_ajax.js"></script>
-	<script type="text/javascript" languaje="javascript" src="horas_trabajo/validar_horas_trabajo.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	
+	<script type='text/javascript' languaje='javascript'>
+        function cuadro_horas_trabajo (){
+            $id_grupo = $("#id_grupo").val();
+            $parametros = {
+                'boton-ver-horas-trabajo-grupo' : true,
+                'id_grupo' : $id_grupo
+            };
+            
+            $.ajax({
+                url: 'horas_trabajo_aux.php',
+                type: 'POST',
+                async: true,
+                data: $parametros,
+                success: function (datos){
+                    $("#cuadro").html(datos);
+                }
+            });
+        };
+        
+        $(function(){
+            $("#id_grupo").change(function(){
+                $id_grupo = $("#id_grupo").val();
+                if($id_grupo == ""){
+                    $("#cuadro").empty();
+                } else {
+                    cuadro_horas_trabajo();
+                }
+            });
+        });
+        
+        window.onload = function(){
+            $id_grupo = $("#id_grupo").val();
+            if($id_grupo == ""){
+                $("#cuadro").empty();
+            } else {
+                cuadro_horas_trabajo();
+            }
+        };
+    </script>
 	</head>
 	<body style="background-color:#88A6DC">
 	<div id="contenedor_tr">
@@ -36,8 +75,16 @@ if($acceso == 1) {
 									<input type="hidden" name="select_grupo" value="1">
 								<td>
 									<select name="id_grupo" id="id_grupo" onchange="eval_select('id_grupo')">
+										<?php
+                                            if($grupo->num_grupos_encargado($id_persona)==0){
+                                        ?>
+                                        <option value="">Ningun grupo</option>
+                                        <?php
+                                            }
+                                        ?>
+										
 										<?php  												
-											$grupo->ver_grupos_encargado($id_integrante);
+											$grupo->ver_grupos_encargado($id_persona);
 											while($op_grupo = $grupo->retornar_SELECT()) {
 										?>
 										<option value="<?php echo $op_grupo['id_grupo'];?>"><?php echo $op_grupo['nom_grupo']?></option>
@@ -48,8 +95,9 @@ if($acceso == 1) {
 							</tr>
 						</table>
 					</div>
-					<div id="tabla_horas_trabajo">
-					
+					<hr>
+					<div id="cuadro">
+					    <!-- Aca aparecera la respuesta del ajax -->
 					</div>
 				</div>
 			</div>	

@@ -31,6 +31,11 @@ class grupos {
 		$sql = "SELECT * FROM grupos WHERE estado ='1' AND encargado='".$id_persona."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
+    
+    public function num_grupos_encargado ($id_persona){
+        $this->ver_grupos_encargado($id_persona);
+        return $this->_conexion->tam_respuesta();
+    }
 	
 	public function datos_grupo ($id_grupo){
 		$sql = "SELECT * FROM grupos WHERE id_grupo = '".$id_grupo."' ";

@@ -31,13 +31,13 @@ if($id_persona) {
 				include_once ("horas_trabajo/validar_horas_trabajo.php");
 			} elseif(isset($_POST['boton-cuadro-ingreso-horas'])) {
 				include_once ("horas_trabajo/cuadro_ingreso_horas.php");
-                //echo "boton-cuadro-ingreso-horas";
 			} elseif(isset($_POST['boton-lista-horas-integrante'])) {
-				//include_once ("horas_trabajo/lista_horas_integrante.php");
-                echo "boton-lista-horas-integrante";
+				include_once ("horas_trabajo/lista_horas_integrante.php");
 			} elseif(isset($_POST['boton-registrar-horas-trabajo'])) {
 				include_once ("horas_trabajo/registrar_horas_trabajo_integrante.php");
-                //echo "boton-registrar-horas-trabajo";
+			} elseif(isset($_POST['boton-ver-horas-trabajo-grupo'])) {
+				include_once ("horas_trabajo/tabla_horas_trabajo.php");
+                //echo "boton-ver-horas-trabajo-grupo";
 			} else {
                 echo "Algo salio mal";
             } 

@@ -1,3 +1,6 @@
+<?php
+if ($accesso == 1){
+?>
 <script>
     $(function(){
         $("#boton-crear").click(function(){
@@ -129,3 +132,6 @@
 			</tr>
 		</table>
 </form>
+<?php
+}
+?>

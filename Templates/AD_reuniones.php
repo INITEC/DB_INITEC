@@ -71,6 +71,7 @@ if($id_persona) {
 <!-- *************************************************************************************************** -->
 				<div>
 				    <?php
+                        $accesso=1;
                         include_once("AD_reuniones/cuadro_crear_reunion.php");
                     ?>
 				</div>

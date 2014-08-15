@@ -36,7 +36,7 @@ class horas_trabajo {
     }
     
 	private function verificar_registro_horas($id_persona, $id_grupo, $fecha){
-		$id_dia_trab = $this->obtener_id_dia($fecha);
+		$id_dia_trab = $this->_dias_trabajo->obtener_id_dia($fecha);
 		$sql = "SELECT * FROM `horas_trabajo` WHERE id_dia_trabajo='".$id_dia_trab."' AND id_persona='".$id_persona."' AND id_grupo ='".$id_grupo."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 		return $this->_conexion->tam_respuesta();
@@ -61,11 +61,14 @@ class horas_trabajo {
 	
 	public function registrar_horas_trabajo ($id_persona, $id_grupo, $comentario, $fecha, $n_horas){
         // id_cond_hora = 2  ---> equivale a condicion EN ESPERA
-		if($this->verificar_registro_horas($id_integrante, $id_grupo, $fecha) == 0 ) {
-            $id_dia_trabajo = $this->obtener_id_dia($fecha);
+		if($this->verificar_registro_horas($id_persona, $id_grupo, $fecha) == 0 ) {
+            $id_dia_trabajo = $this->_dias_trabajo->obtener_id_dia($fecha);
 			$sql = "INSERT INTO `horas_trabajo`(`id_horas_trab`, `id_persona`, `id_grupo`, `id_cond_hora`, `comentario`, `id_dia_trabajo`, `n_horas`) VALUES (null, '".$id_persona."', '".$id_grupo."', '2', '".$comentario."', '".$id_dia_trabajo."', '".$n_horas."') ";
 			return $this->_conexion->ejecutar_sentencia($sql);
-		}
+		}else {
+            return 0;
+        }
+            
 	}
 	
 	public function validar_horas_trabajo ($id_horas_trab,$id_temporada){

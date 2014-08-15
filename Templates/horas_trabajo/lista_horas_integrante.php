@@ -1,5 +1,14 @@
 <?php 
 if($acceso == 1) {
+    $horas_trabajo = new horas_trabajo();
+    $horas_trabajo_aux = new horas_trabajo();
+    
+    if(isset($_POST['id_persona_env'])){
+        $id_persona_env = $_POST["id_persona_env"];
+    } else {
+        $id_persona_env = $id_persona;
+    }
+    
 ?>
 	<table align="center">
 		<tr id="tabla2_encabezado">
@@ -17,7 +26,7 @@ if($acceso == 1) {
 			</td>
 		</tr>
 	<?php 
-		$horas_trabajo->ver_horas_trabajo_int($id_integrante_env);
+		$horas_trabajo->ver_horas_trabajo_int($id_persona_env);
 		$cont_horas = 1;
 		while($dt_trabajo = $horas_trabajo->retornar_SELECT() ) {
 	?>	

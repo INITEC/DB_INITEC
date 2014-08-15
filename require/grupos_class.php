@@ -140,7 +140,12 @@ class grupos {
 			return 1;
 		}
 	}
-
+    
+    public function cambio ($id_grupo, $nom_grupo, $encargado){
+        $sql = "UPDATE `grupos` SET nom_grupo='".$nom_grupo."', encargado='".$encargado."' WHERE id_grupo='".$id_grupo."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
 	public function retornar_SELECT (){
 		return $this->_conexion->retornar_array();
 	}

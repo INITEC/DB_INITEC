@@ -19,6 +19,22 @@ if($acceso == 1 ) {
             return false;
         }
         
+        function editar_grupo (id_div, id_grupo){
+            $parametros = {
+                'boton-cambiar-datos-grupo' : true,
+                'id_grupo_env' : id_grupo
+            };
+            $.ajax({
+                type: "POST",
+                url: "AD_grupos_aux.php",
+                data: $parametros,
+                success: function(data){
+                    $(id_div).html(data);
+                }
+            });
+            return false;
+        }
+        
         
         
     </script>
@@ -43,6 +59,9 @@ if($acceso == 1 ) {
 			<td>
 				
 			</td>
+			<td>
+				
+			</td>
 		</tr>
 		<?php 
 			$grupo->ver_grupos_todos();
@@ -50,9 +69,9 @@ if($acceso == 1 ) {
 			while($op_grupo = $grupo->retornar_SELECT()) {
 		?>
 		<tr>
-			<td colspan="6">
+			<td colspan="7">
 				<div id="div_resul<?php echo $op_grupo['id_grupo']; ?>">
-		
+		             <!--  Aca aparecera la respuesta ajax -->
 				</div>
 			</td>
 		</tr>
@@ -89,14 +108,18 @@ if($acceso == 1 ) {
 				>
 			</td>
 			<td >
+                <img title="Ocultar info" src="../Imagenes/desplazar_arriba.png" width="25px"
+                onclick="limpiar_elemento('div_editar_grupo_<?php echo $op_grupo['id_grupo'];?>');">
+            </td>
+			<td >
                 <img title="Editar" src="../Imagenes/editar.png" width="20px"
-                onClick="editar_grupo('#div_editar_grupo_<?php echo $datos_reunion["id_reunion"]; ?>','<?php echo $datos_reunion["id_reunion"]; ?>' )">
+                onClick="editar_grupo('#div_editar_grupo_<?php echo $op_grupo['id_grupo'];?>','<?php echo $op_grupo['id_grupo'];?>' )">
             </td>
 		</tr>
         <tr>
-			<td colspan="6">
-				<div id="div_editar_grupo_<?php echo $datos_reunion["id_reunion"]; ?>">
-		
+			<td colspan="7">
+				<div id="div_editar_grupo_<?php echo $op_grupo['id_grupo'];?>">
+		            <!--  Aca aparecera la respuesta ajax -->
 				</div>
 			</td>
 		</tr>

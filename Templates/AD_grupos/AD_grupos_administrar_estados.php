@@ -6,6 +6,7 @@ if($acceso == 1) {
 	<title>..::<?php echo $tarea_actual; ?>::..</title>
 	<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 	<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
+	<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 	
 	<script type='text/javascript' languaje='javascript'>

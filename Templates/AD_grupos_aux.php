@@ -32,7 +32,11 @@ if($id_persona) {
                 include_once ("AD_grupos/cuadro_grupos.php");
             } elseif(isset($_POST["boton-cambiar-estado-grupo"])){
                 include_once ("AD_grupos/cambiar_estado_grupo.php");
-                //echo "boton-cambiar-estado-grupo";
+            } elseif(isset($_POST["boton-cambiar-datos-grupo"])){
+                include_once ("AD_grupos/cuadro_editar_datos_grupo.php");
+            } elseif(isset($_POST["boton-guardar-cambios-grupo"])){
+                include_once ("AD_grupos/guardar_cambios_grupo.php");
+                //echo "boton-guardar-cambios-grupo";
             } else {
                 echo "Algo salio mal";
 		    }

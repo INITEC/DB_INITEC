@@ -139,7 +139,7 @@ class integrantes {
 	}
 	
     public function ver_datos_integrantes (){
-        $sql = "SELECT * FROM datos_integrantes,cond_int WHERE datos_integrantes.id_cond_int=cond_int.id_cond_int AND cond_int.id_tipo_cond!='1'";
+        $sql = "SELECT * FROM datos_integrantes,cond_int,personas WHERE datos_integrantes.id_cond_int=cond_int.id_cond_int AND personas.id_persona=datos_integrantes.id_persona AND cond_int.id_tipo_cond!='1' ORDER BY personas.apellidos ASC ";
         $this->_conexion->ejecutar_sentencia($sql);
     }
     

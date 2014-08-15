@@ -17,9 +17,9 @@ class reuniones {
             return $this->_conexion->ejecutar_sentencia($sql);
     }
 
-    public function cambio ($id_reunion, $fecha, $hora_inicio, $hora_final, $id_grupo){
+    public function cambio ($id_reunion, $fecha, $hora_inicio, $hora_final, $lugar, $asunto, $id_grupo){
         $id_dia_trabajo = $this->_dias_trabajo->obtener_id_dia ($fecha);
-        $sql = "UPDATE `reuniones` SET id_dia_trabajo='".$id_dia_trabajo."', hora_inicio='".$hora_inicio."', hora_final='".$hora_final."', id_grupo='".$id_grupo."'  WHERE id_reunion='".$id_reunion."' ";
+        $sql = "UPDATE `reuniones` SET id_dia_trabajo='".$id_dia_trabajo."', hora_inicio='".$hora_inicio."', hora_final='".$hora_final."', lugar='".$lugar."', asunto='".$asunto."', id_grupo='".$id_grupo."'  WHERE id_reunion='".$id_reunion."' ";
             return $this->_conexion->ejecutar_sentencia($sql);
     }
     

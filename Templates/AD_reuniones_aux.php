@@ -22,9 +22,16 @@ if($id_persona) {
 			$acceso = 1;
 			if (isset($_POST["boton-crear-reunion"])){	
 				include_once ("AD_reuniones/guardar_datos_reunion.php");
-			}elseif(isset($_POST['editar_datos'])) {
-				//include_once ("home/home_editar.php");
-			} else {
+			}elseif(isset($_POST['boton-ver-reuniones'])) {
+				include_once ("AD_reuniones/tabla_reuniones.php");
+			}elseif(isset($_POST['boton-ver-datos-reunion'])){
+                include_once ("AD_reuniones/cuadro_datos_reunion.php");
+            }elseif(isset($_POST['boton-editar-reunion'])){
+                include_once ("AD_reuniones/cuadro_editar_reunion.php");
+            }elseif(isset($_POST['boton-guardar-cambios-reunion'])){
+                include_once ("AD_reuniones/guardar_cambios_reunion.php");
+                //echo "guardar_cambios_reunion";
+            } else {
                 echo "Algo ha salido mal";
                 //header("Location: AD_reuniones.php");
             }
@@ -33,7 +40,7 @@ if($id_persona) {
 			if (isset($_GET['estado'])) {
 				//include_once ("AD_grupos/cambiar_estado_grupo.php");
 			}elseif (isset($_GET['id_persona'])) {
-				include_once ("asistencias/tabla_asistencias_integrante.php");
+				//include_once ("asistencias/tabla_asistencias_integrante.php");
 			} else {
                 echo "Algo ha salido mal";
             }

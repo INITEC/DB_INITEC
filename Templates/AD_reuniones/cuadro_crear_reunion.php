@@ -10,7 +10,7 @@
                     $("#resultado_nueva_reunion").html(data);
                 }
             });
-            
+            setTimeout(function(){cargar_cuadro_reuniones();},3000);
             return false;
         });
     });

@@ -154,10 +154,10 @@ class integrantes {
 	}
     
     public function ver_condicion_integrante($id_persona){
-        $sql = "SELECT id_persona,id_condicion_int FROM datos_integrante WHERE id_persona ='".$id_persona."' ";
+        $sql = "SELECT datos_integrantes.*, cond_int.id_cond_int, cond_int.id_tipo_cond FROM datos_integrantes, cond_int WHERE datos_integrantes.id_persona ='1' AND cond_int.id_cond_int=datos_integrantes.id_cond_int";
 		$this->_conexion->ejecutar_sentencia($sql);
 		$integrante = $this->retornar_SELECT();
-        return $integrante["id_cond_int"];
+        return $integrante["id_tipo_cond"];
     }
     
     public function cambiar_condicion_integrante($id_persona, $id_cond_int){

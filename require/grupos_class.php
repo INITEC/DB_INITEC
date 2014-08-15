@@ -12,7 +12,7 @@ class grupos {
 	}
 
 	public function numero_grupos (){
-		$sql = "SELECT estado_grupo FROM grupos WHERE estado_grupo ='1' ";
+		$sql = "SELECT estado FROM grupos WHERE estado ='1' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 		return $this->_conexion->tam_respuesta();
 	}
@@ -22,8 +22,13 @@ class grupos {
 		return $grupo["nom_grupo"];
 	}
 	
-	public function ver_grupos_encargado ($id_integrante){
-		$sql = "SELECT * FROM grupos WHERE estado_grupo ='1' AND encargado='".$id_integrante."' ";
+    public function ver_nom_grupo ($id_grupo){
+        $grupo = $this->datos_grupo($id_grupo);
+		return $grupo["nom_grupo"];
+    }
+    
+	public function ver_grupos_encargado ($id_persona){
+		$sql = "SELECT * FROM grupos WHERE estado ='1' AND encargado='".$id_persona."' ";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
 	
@@ -34,7 +39,7 @@ class grupos {
 	}
 	
 	private function crear_grupo ($nom_grupo){
-		$sql = "INSERT INTO `grupos`(`id_grupo`, `nom_grupo`, `cantidad`, `fecha_creada`, `estado_grupo`) 
+		$sql = "INSERT INTO `grupos`(`id_grupo`, `nom_grupo`, `cantidad`, `fecha_creada`, `estado`) 
 					VALUES (null, '".$nom_grupo."', '0', now(), '1')";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
@@ -53,16 +58,29 @@ class grupos {
 	}
 	
 	private function cambiar_estado ($id_grupo,$estado){
-		$sql = "UPDATE `grupos` SET `estado_grupo`='".$estado."' WHERE id_grupo ='".$id_grupo."' ";
+		$sql = "UPDATE `grupos` SET `estado`='".$estado."' WHERE id_grupo ='".$id_grupo."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
 	
+    public function ver_estado_grupo ($id_grupo){
+        $grupo = $this->datos_grupo($id_grupo);
+        return $grupo["estado"];
+    }
+    
+    public function cambiar_estado_grupo ($id_grupo){
+        if($this->ver_estado_grupo($id_grupo) == 1 ){
+            return $this->desactivar_grupo($id_grupo);
+        }else {
+            return $this->activar_grupo($id_grupo);
+        }
+    }
+    
 	public function activar_grupo ($id_grupo){
 		return $this->cambiar_estado($id_grupo,1);
 	}
 
 	public function desactivar_grupo ($id_grupo){
-		return $this->cambiar_estado($id_grupo,0);
+		return $this->cambiar_estado($id_grupo,2);
 	}
 	
 	public function nuevo_grupo ($nom_grupo){
@@ -72,7 +90,7 @@ class grupos {
 	}
 	
 	public function ver_grupos (){
-		$sql = "SELECT * FROM grupos WHERE estado_grupo ='1'";
+		$sql = "SELECT * FROM grupos WHERE estado ='1'";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
 	
@@ -90,32 +108,34 @@ class grupos {
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
 	
-	public function retirar_integrante ($id_persona, $id_grupo){
+	public function cambiar_estado_integrante ($id_persona, $id_grupo){
 		if($this->verificar_integrante($id_persona, $id_grupo) != 0 ) {
-            if($this->_lista_grupos->retirar_integrante($id_integrante, $id_grupo)){
-                if($this->verificar_integrante ($id_persona, $id_grupo) == 0){
-                    $this->variar_cantidad($id_grupo, -1);
-                    return 1;
-                }else {
-                    $this->retirar_integrante ($id_persona, $id_grupo);
-                }
-            }else {
-                return 0;
-            }
+            return $this->retirar_integrante($id_persona, $id_grupo);
         }
 		else {
-			return 1;
+			return $this->agregar_integrante($id_persona, $id_grupo);
 		}
 	}
 	
+    private function retirar_integrante ($id_persona, $id_grupo){
+        if($this->_lista_grupos->retirar_integrante($id_persona, $id_grupo)){
+            return $this->variar_cantidad($id_grupo, -1);
+        }else {
+            return 0;
+        }
+    }
+    
 	private function agregar_integrante ($id_persona,$id_grupo){
-        $this->_lista_grupos->agregar_integrante($id_persona, $id_grupo);
-        return $this->variar_cantidad($id_grupo,1);
+        if ($this->_lista_grupos->agregar_integrante($id_persona, $id_grupo)){
+            return $this->variar_cantidad($id_grupo,1);
+        } else {
+            return 0;
+        }
 	}
 	
-	public function verificar_registrar ($id_integrante, $id_grupo) {
-		if ($this->verificar_integrante($id_integrante, $id_grupo) == 0){
-			return $this->agregar_integrante($id_integrante, $id_grupo);
+	public function verificar_registrar ($id_persona, $id_grupo) {
+		if ($this->verificar_integrante($id_persona, $id_grupo) == 0){
+			return $this->agregar_integrante($id_persona, $id_grupo);
 		} else {
 			return 1;
 		}

@@ -1,8 +1,27 @@
 <?php 
-if($acceso = 1) {
-	$id_grupo = $_GET["id_grupo"];
+if($acceso == 1) {
+
+    if( !empty($_POST)){
+	$id_grupo = $_POST["id_grupo"];
+    
+    $tabla_integrantes = new integrantes();
+        
 ?>
-	<br>
+    <script>
+        function cambiar_estado_integrante (id_div, id_form){
+            $.ajax({
+                type: "POST",
+                url: "AD_grupos_aux.php",
+                data: $(id_form).serialize(),
+                success: function(data){
+                    $(id_div).html(data);
+                }
+            });
+            setTimeout(function(){cuadro_integrantes_grupo ();},3000);
+            return false;
+        }
+    </script>
+    
 	<table align="center" >
 		<tr id="tabla1_encabezado">
 			<td>
@@ -47,41 +66,55 @@ if($acceso = 1) {
 			</td>
 		</tr>
 	<?php 
-		$integrante->ver_integrantes();
+		$tabla_integrantes->ver_datos_integrantes();
 		$cont_integrante = 1;
-		while($rel_integrante = $integrante->retornar_SELECT()) {
+		while($rel_integrante = $tabla_integrantes->retornar_SELECT()) {
 	?>	
 		<tr>
 			<td colspan="5">
-				<div id="div_resul<?php echo $rel_integrante['id_integrante'];?>">
+				<div id="div_resul<?php echo $rel_integrante['id_persona'];?>">
 				</div>
 			</td>
 		</tr>
-		<tr id="tabla1_informacion">
+		<?php 
+			if($grupo->verificar_integrante($rel_integrante['id_persona'], $id_grupo) != 0 ) {
+                $class = "item3";
+            }else {
+                $class = "item4";
+            }
+        ?>
+		<tr class="<?php echo $class; ?>">
 			<td>
 				<?php echo $cont_integrante;?>
 			</td>
 			<td>
-				<img src="../foto_integrantes/<?php echo $rel_integrante['foto'];?>" width="60" height="48" border="0" >
+				<img src="<?php echo $integrante->ver_foto($rel_integrante["id_persona"]);?>" width="60" height="48" border="0" >
 			</td>
 			<td>
-				<?php echo $rel_integrante["integrante"];?>
+				<?php echo $integrante->ver_nombre_completo($rel_integrante["id_persona"]);?>
 			</td>
 			
 			<td>
-			<form action="javascript:void(0);" id="form_<?php echo $rel_integrante['id_integrante'];?>" >
-				<input type="hidden" name="id_integrante_env" value="<?php echo $rel_integrante['id_integrante'];?>" >
+			<form  id="estado_<?php echo $rel_integrante['id_persona'];?>" method="POST" >
+				<input type="hidden" name="id_persona_env" value="<?php echo $rel_integrante['id_persona'];?>" >
 				<input type="hidden" name="id_grupo_env" value="<?php echo $id_grupo; ?>">
-			
+				<input type="hidden" name="boton-cambiar-estado-integrante" value="boton">
+				
+				<input type="button" id="cambiar-estado-integrante" 
+				onclick="cambiar_estado_integrante('#div_resul<?php echo $rel_integrante['id_persona'];?>','#estado_<?php echo $rel_integrante['id_persona'];?>');"
 				<?php 
-					if($grupo->verificar_integrante($rel_integrante['id_integrante'], $id_grupo) != 0 ) {
+				if($grupo->verificar_integrante($rel_integrante['id_persona'], $id_grupo) != 0 ) {
 				?>
-				<input type="button" name="Quitar_integrante" value="Quitar" 
-				onclick="enviar_int('div_resul<?php echo $rel_integrante['id_integrante'];?>','form_<?php echo $rel_integrante['id_integrante'];?>', 1);">
-				<?php }else{?>
-				<input type="button" name="Agregar_integrante" value="Agregar" 
-				onclick="enviar_int('div_resul<?php echo $rel_integrante['id_integrante'];?>','form_<?php echo $rel_integrante['id_integrante'];?>', 1);">
-				<?php }?>
+				    value="Quitar" title="Quitar Integrante"
+				<?php
+                } else {
+                ?>
+				    value="Agregar" title="Agregar Integrante"
+				<?php
+                }
+                ?>
+				>
+				
 			</form>
 			</td>
 
@@ -91,5 +124,9 @@ if($acceso = 1) {
 	?>
 	</table>
 <?php 
+    }
+    else {
+        echo "No se han recibido correctamente los datos.";
+    }
 }
 ?>

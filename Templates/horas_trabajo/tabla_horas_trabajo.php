@@ -12,7 +12,7 @@ if($acceso = 1) {
             };
             
             $.ajax({
-                url: 'prueba2.php',
+                url: 'horas_trabajo_aux.php',
                 type: 'POST',
                 async: true,
                 data: $parametros,
@@ -31,7 +31,7 @@ if($acceso = 1) {
             };
             $.ajax({
                 type: "POST",
-                url: "prueba2.php",
+                url: "horas_trabajo_aux.php",
                 data: $parametros,
                 success: function(data){
                     $(id_div).html(data);
@@ -72,8 +72,8 @@ if($acceso = 1) {
 		while($rel_horas = $horas_trabajo->retornar_SELECT()) {
 	?>	
 		<tr>
-			<td colspan="7">
-				<div id="div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>">
+			<td colspan="8">
+				<div id="div_resul<?php echo $rel_horas['id_horas_trab'];?>">
 				</div>
 			</td>
 		</tr>
@@ -98,11 +98,11 @@ if($acceso = 1) {
 			</td>
 			<td>
 				<input type="button" id="validar_horas_trabajo" value="Validar" 
-				onclick="validar_horas_trabajo('#div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
+				onclick="validar_horas_trabajo('#div_resul<?php echo $rel_horas['id_horas_trab'];?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
 			</td>
 			<td>
 				<input type="button" id="rechazar_horas_trabajo" value="Rechazar" 
-				onclick="rechazar_horas_trabajo('#div_resul<?php echo $rel_horas['id_persona'].'_'.$id_grupo;?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
+				onclick="rechazar_horas_trabajo('#div_resul<?php echo $rel_horas['id_horas_trab'];?>','<?php echo $rel_horas['id_horas_trab'];?>'); ">
 			</td>
 		</tr>	
 	<?php 

@@ -18,6 +18,9 @@ if($acceso == 1) {
 	           CONDICION 
 	        </td>
 	        <td>
+	            TOTAL
+	        </td>
+	        <td>
 	            HORAS TOTAL
 	        </td>
 	    </tr>
@@ -30,17 +33,19 @@ if($acceso == 1) {
                 <?php echo $horas_trabajo->ver_nom_cond($dato_cond["id_cond_hora"]); ?>
             </td>
             <td>
-                <?php echo $horas_trabajo->horas_total_cond($dato_cond["id_cond_hora"]); ?>
+                <?php echo $horas_trabajo->num_total_cond($dato_cond["id_cond_hora"],$id_persona_env); ?>
+            </td>
+            <td>
+                <?php echo $horas_trabajo->horas_total_cond($dato_cond["id_cond_hora"],$id_persona_env); ?>
             </td>
         </tr>
 	    <?php 
         }
         ?>
 	</table>
+	<hr>
 	
-	
-	
-	
+	<h2 class="tabla1_encabezado" >DETALLES</h2>
 	
 	<table align="center">
 		<tr id="tabla2_encabezado">

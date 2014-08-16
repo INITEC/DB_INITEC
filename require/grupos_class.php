@@ -32,6 +32,12 @@ class grupos {
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
     
+    public function verificar_encargado ($encargado, $id_grupo){
+        $sql = "SELECT * FROM grupos WHERE estado='1' AND encargado='".$encargado."' AND id_grupo='".$id_grupo."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function num_grupos_encargado ($id_persona){
         $this->ver_grupos_encargado($id_persona);
         return $this->_conexion->tam_respuesta();

@@ -4,6 +4,7 @@ require_once ("../require/trabajo_grupos_class.php");
 require_once ("../require/trabajo_total_class.php");
 require_once ("../require/dias_trabajo_class.php");
 require_once ("../require/cond_hora_class.php");
+require_once ("../require/grupos_class.php");
 
 class horas_trabajo {
 	private $_conexion;
@@ -11,6 +12,7 @@ class horas_trabajo {
 	private $_trab_total;
     private $_dias_trabajo;
     private $_cond_hora;
+    private $_grupos;
 	
 	public function __construct (){
 		$this->_conexion = new conexion();
@@ -18,6 +20,7 @@ class horas_trabajo {
 		$this->_trab_total = new trabajo_total();
         $this->_dias_trabajo = new dias_trabajo();
         $this->_cond_hora = new cond_hora();
+        $this->_grupos = new grupos();
 	}
 	
 	public function ver_horas_trabajo_int ($id_persona){
@@ -97,30 +100,40 @@ class horas_trabajo {
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
     
-    public function rechazar_horas_trabajo ($id_horas_trab){
-        return $this->cambiar_cond_hora ($id_cond_hora, 3);
+    public function rechazar_horas_trabajo ($id_horas_trab, $encargado){
+        $datos_horas = $this->datos_horas_trabajo($id_horas_trab);
+        $id_grupo = $datos_horas["id_grupo"];
+        if($this->_grupos->verificar_encargado($encargado,$id_grupo) != 0){
+            return $this->cambiar_cond_hora ($id_horas_trab, 3);
+        } else {
+            return false;
+        }
     }
     
-	public function validar_horas_trabajo ($id_horas_trab,$id_temporada){
+	public function validar_horas_trabajo ($id_horas_trab, $encargado, $id_temporada){
 		if($this->verificar_existe_horas($id_horas_trab) != 0 ) {
 			$datos_horas = $this->datos_horas_trabajo($id_horas_trab);
 			$id_persona = $datos_horas["id_persona"];
 			$id_grupo = $datos_horas["id_grupo"];
 			$n_horas = $datos_horas["n_horas"];
-			if($datos_horas["id_cond_hora"] == '2') {
-                $this->_trab_grupo->variar_horas_trab_grupo($id_persona, $id_grupo, $id_temporada, $n_horas);
-                $this->_trab_total->variar_horas_trab_total($id_persona, $id_temporada, $n_horas);
-                return $this->cambiar_cond_hora($id_horas_trab, 1);
-			}else {
-				return true;
-			}
+            if($this->_grupos->verificar_encargado($encargado,$id_grupo) != 0){
+                if($datos_horas["id_cond_hora"] == '2') {
+                    $this->_trab_grupo->variar_horas_trab_grupo($id_persona, $id_grupo, $id_temporada, $n_horas);
+                    $this->_trab_total->variar_horas_trab_total($id_persona, $id_temporada, $n_horas);
+                    return $this->cambiar_cond_hora($id_horas_trab, 1);
+                }else {
+                    return true;
+                }
+            } else {
+                return false;
+            }
 		}else {
 			return false;
 		}
 	}
 	
-    public function horas_total_cond ($id_cond_hora){
-        $sql = "SELECT *, SUM(n_horas) as total FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' ";
+    public function horas_total_cond ($id_cond_hora,$id_persona){
+        $sql = "SELECT *, SUM(n_horas) as total FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         $suma = $this->retornar_SELECT();
         if ($suma["total"] == ""){
@@ -128,6 +141,12 @@ class horas_trabajo {
         } else {
             return $suma["total"];
         }
+    }
+    
+    public function num_total_cond ($id_cond_hora, $id_persona){
+        $sql = "SELECT * FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->_conexion->tam_respuesta();
     }
     
 	public function retornar_SELECT(){

@@ -1,7 +1,7 @@
 <?php 
 session_start();
 $id_persona = $_SESSION["id_persona"];
-$id_temporada = $_SESSION["temporada"];
+$id_temporada = $_SESSION["id_temporada"];
 if($id_persona) {
 	require_once ("../require/obligaciones_int_class.php");
 	require_once ("../require/integrantes_class.php");
@@ -22,13 +22,9 @@ if($id_persona) {
 		if( !empty($_POST)) {
 			$acceso = 1;
 			if (isset($_POST['Registrar_horas_trab'])){	
-				$id_grupo = $_POST["id_grupo"];
-				$comentario = $_POST["comentario"];
-				$n_horas = $_POST["n_horas"];
-				$horas_trabajo->registrar_horas_trabajo ($id_integrante,$id_grupo,$comentario,$n_horas);
-				header("Location: horas_trabajo.php");
+                
 			} elseif(isset($_POST['Validar_horas_trab'])) {
-				include_once ("horas_trabajo/validar_horas_trabajo.php");
+				include_once ("horas_trabajo/cuadro_validacion_horas_trabajo.php");
 			} elseif(isset($_POST['boton-cuadro-ingreso-horas'])) {
 				include_once ("horas_trabajo/cuadro_ingreso_horas.php");
 			} elseif(isset($_POST['boton-lista-horas-integrante'])) {
@@ -37,7 +33,12 @@ if($id_persona) {
 				include_once ("horas_trabajo/registrar_horas_trabajo_integrante.php");
 			} elseif(isset($_POST['boton-ver-horas-trabajo-grupo'])) {
 				include_once ("horas_trabajo/tabla_horas_trabajo.php");
-                //echo "boton-ver-horas-trabajo-grupo";
+			} elseif(isset($_POST['boton-validar-horas-trabajo'])) {
+				include_once ("horas_trabajo/validar_horas_trabajo.php");
+                //echo "boton-validar-horas-trabajo";
+			} elseif(isset($_POST['boton-rechazar-horas-trabajo'])) {
+				include_once ("horas_trabajo/rechazar_horas_trabajo.php");
+                //echo "boton-rechazar-horas-trabajo";
 			} else {
                 echo "Algo salio mal";
             } 

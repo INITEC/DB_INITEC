@@ -28,8 +28,8 @@ class horas_trabajo {
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
     
-    public function ver_horas_trabajo_all_int ($id_persona){
-        $sql = "SELECT * FROM horas_trabajo WHERE id_persona='".$id_persona."' ORDER BY id_horas_trab DESC ";
+    public function ver_horas_trabajo_all_int ($id_persona, $id_temporada){
+        $sql = "SELECT * FROM horas_trabajo WHERE id_persona='".$id_persona."' AND id_temporada='".$id_temporada."' ORDER BY id_horas_trab DESC ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
@@ -38,8 +38,8 @@ class horas_trabajo {
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
-	public function ver_horas_en_espera ($id_grupo){
-        $sql = "SELECT * FROM `horas_trabajo` WHERE id_grupo='".$id_grupo."' AND id_cond_hora='2' ";
+	public function ver_horas_en_espera ($id_grupo, $id_temporada){
+        $sql = "SELECT * FROM `horas_trabajo` WHERE id_grupo='".$id_grupo."' AND id_cond_hora='2' AND id_temporada='".$id_temporada."' ";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
 
@@ -75,11 +75,11 @@ class horas_trabajo {
 		return $this->_conexion->retornar_array();
 	}
 	
-	public function registrar_horas_trabajo ($id_persona, $id_grupo, $comentario, $fecha, $n_horas){
+	public function registrar_horas_trabajo ($id_persona, $id_grupo, $comentario, $fecha, $n_horas, $id_temporada){
         // id_cond_hora = 2  ---> equivale a condicion EN ESPERA
 		if($this->verificar_registro_horas($id_persona, $id_grupo, $fecha) == 0 ) {
             $id_dia_trabajo = $this->_dias_trabajo->obtener_id_dia($fecha);
-			$sql = "INSERT INTO `horas_trabajo`(`id_horas_trab`, `id_persona`, `id_grupo`, `id_cond_hora`, `comentario`, `id_dia_trabajo`, `n_horas`) VALUES (null, '".$id_persona."', '".$id_grupo."', '2', '".$comentario."', '".$id_dia_trabajo."', '".$n_horas."') ";
+			$sql = "INSERT INTO `horas_trabajo`(`id_horas_trab`, `id_persona`, `id_grupo`, `id_cond_hora`, `comentario`, `id_dia_trabajo`, `n_horas`, `id_temporada`) VALUES (null, '".$id_persona."', '".$id_grupo."', '2', '".$comentario."', '".$id_dia_trabajo."', '".$n_horas."', '".$id_temporada."') ";
 			return $this->_conexion->ejecutar_sentencia($sql);
 		}else {
             return 0;
@@ -132,8 +132,8 @@ class horas_trabajo {
 		}
 	}
 	
-    public function horas_total_cond ($id_cond_hora,$id_persona){
-        $sql = "SELECT *, SUM(n_horas) as total FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' ";
+    public function horas_total_cond ($id_cond_hora,$id_persona, $id_temporada){
+        $sql = "SELECT *, SUM(n_horas) as total FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' AND id_temporada='".$id_temporada."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         $suma = $this->retornar_SELECT();
         if ($suma["total"] == ""){
@@ -143,8 +143,8 @@ class horas_trabajo {
         }
     }
     
-    public function num_total_cond ($id_cond_hora, $id_persona){
-        $sql = "SELECT * FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' ";
+    public function num_total_cond ($id_cond_hora, $id_persona, $id_temporada){
+        $sql = "SELECT * FROM horas_trabajo WHERE id_cond_hora='".$id_cond_hora."' AND id_persona='".$id_persona."' AND id_temporada='".$id_temporada."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->_conexion->tam_respuesta();
     }

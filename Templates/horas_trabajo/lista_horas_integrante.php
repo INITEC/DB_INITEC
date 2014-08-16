@@ -33,10 +33,10 @@ if($acceso == 1) {
                 <?php echo $horas_trabajo->ver_nom_cond($dato_cond["id_cond_hora"]); ?>
             </td>
             <td>
-                <?php echo $horas_trabajo->num_total_cond($dato_cond["id_cond_hora"],$id_persona_env); ?>
+                <?php echo $horas_trabajo->num_total_cond($dato_cond["id_cond_hora"],$id_persona_env, $id_temporada); ?>
             </td>
             <td>
-                <?php echo $horas_trabajo->horas_total_cond($dato_cond["id_cond_hora"],$id_persona_env); ?>
+                <?php echo $horas_trabajo->horas_total_cond($dato_cond["id_cond_hora"],$id_persona_env, $id_temporada); ?>
             </td>
         </tr>
 	    <?php 
@@ -66,7 +66,7 @@ if($acceso == 1) {
 			</td>
 		</tr>
 	<?php 
-		$horas_trabajo->ver_horas_trabajo_all_int($id_persona_env);
+		$horas_trabajo->ver_horas_trabajo_all_int($id_persona_env,$id_temporada);
 		$cont_horas = 1;
 		while($dt_trabajo = $horas_trabajo->retornar_SELECT() ) {
 	?>	

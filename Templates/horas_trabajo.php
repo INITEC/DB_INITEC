@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $id_persona = $_SESSION["id_persona"];
+$id_temporada = $_SESSION["id_temporada"];
 if($id_persona) {
 	require_once ("../require/obligaciones_int_class.php");
 	require_once ("../require/integrantes_class.php");

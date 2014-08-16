@@ -21,7 +21,7 @@ if($acceso == 1) {
 			<body>
 				<?php
                 if($integrante->verificar_activo($id_persona_env)) {
-                    if($horas_trabajo->registrar_horas_trabajo ($id_persona_env, $id_grupo, $comentario, $fecha, $n_horas)){
+                    if($horas_trabajo->registrar_horas_trabajo ($id_persona_env, $id_grupo, $comentario, $fecha, $n_horas,$id_temporada)){
                     ?>
                     <div class="dato_correcto" id="mensaje-registro-horas" >
                                     SE GUARDARON LOS DATOS CORRECTAMENTE 

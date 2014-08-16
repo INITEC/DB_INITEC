@@ -1,7 +1,7 @@
 <?php 
 session_start();
-$id_integrante = $_SESSION["id_integrante"];
-if($id_integrante) {
+$id_persona = $_SESSION["id_persona"];
+if($id_persona) {
 	require_once ("../require/obligaciones_int_class.php");
 	require_once ("../require/integrantes_class.php");
 	require_once ("../require/trabajos_int_class.php");
@@ -10,7 +10,7 @@ if($id_integrante) {
 	$tarea_actual = "AD_OBLIGACIONES";	
 	$obligaciones = new obligaciones_int();
 	$integrante = new integrantes();
-	$integrante->establecer_integrante($id_integrante);
+	$integrante->establecer_integrante($id_persona);
 	$id_trabajo = $integrante->retornar_id_trabajo();
 	if($obligaciones->verificar_tarea($id_trabajo,$tarea_actual)) {
 		

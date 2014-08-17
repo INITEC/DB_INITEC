@@ -67,7 +67,7 @@ if($acceso = 1) {
 			</td>
 		</tr>
 	<?php 
-		$horas_trabajo->ver_horas_en_espera($id_grupo);
+		$horas_trabajo->ver_horas_en_espera($id_grupo, $id_temporada);
 		$cont_horas = 1;
 		while($rel_horas = $horas_trabajo->retornar_SELECT()) {
 	?>	

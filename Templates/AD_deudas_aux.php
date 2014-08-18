@@ -26,10 +26,11 @@ if($id_persona) {
 			}elseif(isset($_POST['boton-cuadro-ver-deudas'])) {
 				//include_once ("AD_deudas/cuadro_ver_deudas.php");
                 echo "boton-cuadro-ver-deudas";
-			}elseif(isset($_POST['boton-ver-datos-reunion'])){
-                include_once ("AD_reuniones/cuadro_datos_reunion.php");
+			}elseif(isset($_POST['boton_crear_nueva_deuda'])){
+                include_once ("AD_deudas/crear_nueva_deuda.php");
+                //echo "boton_crear_nueva_deuda";
             }elseif(isset($_POST['boton-editar-reunion'])){
-                include_once ("AD_reuniones/cuadro_editar_reunion.php");
+                //include_once ("AD_reuniones/cuadro_editar_reunion.php");
             }elseif(isset($_POST['boton-guardar-cambios-reunion'])){
                 include_once ("AD_reuniones/guardar_cambios_reunion.php");
                 //echo "guardar_cambios_reunion";

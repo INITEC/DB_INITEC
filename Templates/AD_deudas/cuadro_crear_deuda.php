@@ -4,6 +4,7 @@ if ($acceso == 1){
         
         require_once ("../require/mes_text_func.php");
         
+        $grupo = new grupos();
         $integrantes_aux = new integrantes();
         
         date_default_timezone_set('America/Los_Angeles');
@@ -15,7 +16,7 @@ if ($acceso == 1){
 <script>
     $(function(){
         $("#boton_crear_nueva_deuda").click(function(){
-            $url = "prueba2.php";
+            $url = "AD_deudas_aux.php";
             $.ajax({
                 type: "POST",
                 url: $url,
@@ -53,7 +54,7 @@ if ($acceso == 1){
 			</tr>
 			<tr class="tabla2_informacion" >
                 <td colspan="2" >
-                    <input type="input" name="fecha" id="fecha" value="<?php echo $year."-".$mes."-".$dia; ?>" />
+                    <input type="input" name="fecha_final" id="fecha_final" value="<?php echo $year."-".$mes."-".$dia; ?>" />
                     <br>
                     <span style="background-color: #ffc; cursor:default; padding:.3em; border:thin solid #ff0; text-decoration:underline; color: blue;" 
     onmouseover="this.style.cursor='pointer'; this.style.cursor='hand'; this.style.backgroundColor='#ff8'; this.style.textDecoration='none';"
@@ -64,7 +65,7 @@ if ($acceso == 1){
                     
                     <script type="text/javascript">
                         Calendar.setup({
-                        inputField: "fecha",
+                        inputField: "fecha_final",
                         ifFormat:   "%Y-%m-%d",
                         weekNumbers: false,
                         displayArea: "fecha_usuario",
@@ -78,7 +79,7 @@ if ($acceso == 1){
 					Cantidad de Pago(Soles):
 				</td>
 			    <td class="tabla2_informacion" >
-					<input type="text" name="cantidad" value="20" >
+					<input type="text" name="monto_total" value="20" >
 					<div id="div_cantidad" ></div>
 				</td>
 			</tr>
@@ -89,7 +90,7 @@ if ($acceso == 1){
 			</tr>
 			<tr id="tabla2_informacion">
 			    <td colspan="2" >
-						<select name="cobrador" id="cobrador" >
+						<select name="id_cobrador" id="id_cobrador" >
                            <option value="" >Nadie</option>
                             <?php			
                             $integrantes_aux->ver_datos_integrantes();
@@ -101,6 +102,31 @@ if ($acceso == 1){
                             ?>
                         </select>
 				</td>
+			</tr>
+			<tr id="tabla2_encabezado" >
+				<td colspan="2" >
+					Grupo:
+				</td>
+			</tr>
+			<tr id="tabla2_informacion">
+			    <td colspan="2" >
+                    <select name="id_grupo" id="id_grupo" >
+                        <?php 
+                        if($grupo->numero_grupos() == 0) {
+                        ?>
+                        <option value="">Vacio</option>
+                        <?php
+                        } else { 												
+                            $grupo->ver_grupos();
+                            while($op_grupo = $grupo->retornar_SELECT()) {
+                        ?>
+                        <option value="<?php echo $op_grupo['id_grupo'];?>"><?php echo $op_grupo['nom_grupo']?></option>
+                        <?php 
+                                }
+                        }
+                        ?>
+                    </select>
+                </td>
 			</tr>
 			<tr>
 			    <td colspan="2" >

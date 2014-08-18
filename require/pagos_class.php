@@ -11,6 +11,11 @@ class pagos {
         $this->_cond_pagos = new cond_pagos();
 	}
     
+    public function nuevo ($id_persona, $id_deuda){
+        $sql = "INSERT INTO `pagos`(`id_pago`, `id_persona`, `pago`, `id_cond_pago`, `id_deuda`) VALUES (null, '".$id_persona."', '0', '1', '".$id_deuda."' )";
+        return $this->_conexion->ejecutar_sentencia($sql);       
+    }
+    
     public function ver_pagos_int ($id_persona, $id_temporada){
         $sql = "SELECT deudas.id_deuda,deudas.id_temporada,pagos.* FROM deudas,pagos WHERE deudas.id_deuda=pagos.id_deuda AND deudas.id_temporada='".$id_temporada."' AND pagos.id_persona='".$id_persona."' ORDER BY pagos.id_pago ASC ";
         $this->_conexion->ejecutar_sentencia($sql);

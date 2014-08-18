@@ -41,6 +41,11 @@ class lista_grupos {
         }
     }
     
+    public function ver_lista ($id_grupo){
+        $sql = "SELECT * FROM lista_grupos WHERE id_grupo='".$id_grupo."' AND estado='1' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
     public function ver_integrantes ($id_grupo){
 		$sql = "SELECT personas.*,lista_grupos.* FROM personas,lista_grupos WHERE personas.id_persona=lista_grupos.id_persona AND lista_grupos.id_grupo ='".$id_grupo."' AND lista_grupos.estado='1' ";
 		return $this->ejecutar_sentencia($sql);

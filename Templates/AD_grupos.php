@@ -110,7 +110,7 @@ if($id_persona) {
                                             $grupo->ver_grupos();
                                             while($op_grupo = $grupo->retornar_SELECT()) {
                                         ?>
-                                        <option value="<?php echo $op_grupo['id_grupo'];?>"><?php echo $op_grupo['nom_grupo']?></option>
+                                        <option value="<?php echo $op_grupo['id_grupo'];?>"><?php echo $op_grupo['nom_grupo']; ?></option>
                                         <?php 
                                                 }
                                         }

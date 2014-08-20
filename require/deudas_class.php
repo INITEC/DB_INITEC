@@ -26,7 +26,18 @@ class deudas {
     }
     
     public function ver_deudas ($id_temporada){
-        $sql = "SELECT * FROM `deudas` WHERE id_temporada='".$id_temporada."' AND estado='1' ";
+        $sql = "SELECT * FROM `deudas` WHERE id_temporada='".$id_temporada."' AND estado='1' ORDER BY id_deuda DESC ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function ver_deuda ($id_deuda){
+        $sql = "SELECT * FROM deudas WHERE id_deuda='".$id_deuda."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
+    }
+    
+    public function cambio ($id_deuda, $nombre_deuda, $fecha_final, $monto_total, $id_cobrador, $id_temporada){
+        $sql="UPDATE deudas SET nombre_deuda='".$nombre_deuda."', fecha_final='".$fecha_final."', monto_total='".$monto_total."', id_cobrador='".$id_cobrador."' WHERE id_deuda='".$id_deuda."' ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     

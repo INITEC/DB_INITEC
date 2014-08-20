@@ -15,7 +15,7 @@ if($acceso == 1) {
             'boton-editar-deuda' : true,
             'id_deuda' : id_deuda };
         $.ajax({
-            url: 'prueba2.php',
+            url: 'AD_deudas_aux.php',
             type: 'POST',
             async: true,
             data: $parametros,
@@ -29,7 +29,7 @@ if($acceso == 1) {
             'boton-ver-datos-deuda' : true,
             'id_deuda' : id_deuda };
         $.ajax({
-            url: 'prueba2.php',
+            url: 'AD_deudas_aux.php',
             type: 'POST',
             async: true,
             data: $parametros,
@@ -79,11 +79,11 @@ if($acceso == 1) {
 					<?php echo $dato_deuda["fecha_final"]; ?>
 				</td>
 				<td >
-					<?php echo $dato_deuda["cantidad"]; ?>
+					<?php echo $dato_deuda["monto_total"]; ?>
 				</td>
 				<td >
 					<img title="Ver mas" src="../Imagenes/desplazar_abajo.png"  width="25px"
-					onclick="tabla_datos_reunion('#ver_mas_<?php echo $dato_deuda["id_deuda"]; ?>','<?php echo $dato_deuda["id_deuda"]; ?>' )">
+					onclick="tabla_datos_deuda('#ver_mas_<?php echo $dato_deuda["id_deuda"]; ?>','<?php echo $dato_deuda["id_deuda"]; ?>' )">
 				</td>
 				<td >
 					<img title="Ocultar info" src="../Imagenes/desplazar_arriba.png" width="25px"
@@ -91,7 +91,7 @@ if($acceso == 1) {
 				</td>
 				<td >
 					<img title="Editar" src="../Imagenes/editar.png" width="20px"
-					onClick="tabla_editar_reunion('#ver_mas_<?php echo $dato_deuda["id_deuda"]; ?>','<?php echo $dato_deuda["id_deuda"]; ?>' )">
+					onClick="tabla_editar_deuda('#ver_mas_<?php echo $dato_deuda["id_deuda"]; ?>','<?php echo $dato_deuda["id_deuda"]; ?>' )">
 				</td>
 			</tr>
 			<tr>

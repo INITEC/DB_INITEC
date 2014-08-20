@@ -22,21 +22,18 @@ if($id_persona) {
 			$acceso = 1;
 			if (isset($_POST["boton-cuadro-crear-deuda"])){	
 				include_once ("AD_deudas/cuadro_crear_deuda.php");
-                //echo "boton-cuadro-crear-deuda";
 			}elseif(isset($_POST['boton-cuadro-ver-deudas'])) {
-				//include_once ("AD_deudas/cuadro_ver_deudas.php");
-                echo "boton-cuadro-ver-deudas";
+				include_once ("AD_deudas/tabla_deudas.php");
 			}elseif(isset($_POST['boton_crear_nueva_deuda'])){
                 include_once ("AD_deudas/crear_nueva_deuda.php");
-                //echo "boton_crear_nueva_deuda";
-            }elseif(isset($_POST['boton-editar-reunion'])){
-                //include_once ("AD_reuniones/cuadro_editar_reunion.php");
-            }elseif(isset($_POST['boton-guardar-cambios-reunion'])){
-                include_once ("AD_reuniones/guardar_cambios_reunion.php");
-                //echo "guardar_cambios_reunion";
+            }elseif(isset($_POST['boton-editar-deuda'])){
+                include_once ("AD_deudas/cuadro_editar_deuda.php");
+            }elseif(isset($_POST['boton-ver-datos-deuda'])){
+                include_once ("AD_deudas/cuadro_datos_deuda.php");
+            } elseif (isset($_POST["boton-guardar-cambios-deuda"])){
+                include_once ("AD_deudas/guardar_cambios_deuda.php");
             } else {
                 echo "Algo ha salido mal";
-                //header("Location: AD_reuniones.php");
             }
 		}elseif(!empty($_GET)) {
 			$acceso = 1;

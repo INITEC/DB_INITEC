@@ -218,6 +218,21 @@ class integrantes {
         return $this->_usuarios->cambiar_nom_usuario($id_persona, $nom_usuario);
     }
     
+    public function nuevo ($nombres, $apellidos, $usuario, $clave){
+        if (empty($usuario)){
+            return 0;
+        } elseif (empty($clave)){
+            return 0;
+        } elseif (empty($nombres) || empty($apellidos)){
+            return 0;
+        } else {
+            $this->_personas->ingresar_nuevo($nombres,$apellidos);
+            $id_persona = $this->_personas->ultima_persona();
+            return $this->_usuarios->ingresar_nuevo($id_persona, $usuario, $clave);
+        }
+    }
+    
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

@@ -8,7 +8,7 @@ if ($acceso == 1){
         $("#boton-registrar-integrante").click(function(){
             $cambio = 2;
             
-            $url = "prueba2.php";
+            $url = "registro_personas_aux.php";
             $.ajax({
                 type: "POST",
                 url: $url,
@@ -17,7 +17,9 @@ if ($acceso == 1){
                     $("#resultado_nuevo_integrante").html(data);
                 }
             });
-            setTimeout(function(){cargar_cuadro_registro_integrantes();},10000);
+            $("#boton-registrar-integrante").attr('type', 'hidden');
+            $("#resultado_nuevo_integrante").attr("class", "");
+            setTimeout(function(){cargar_cuadro_registro_integrantes();},3000);
             return false;
         });
     });
@@ -36,14 +38,15 @@ if ($acceso == 1){
             $("#resultado_nuevo_integrante").html('Las claves NO coinciden'+$cambio);
             $("#resultado_nuevo_integrante").attr("class", "dato_incorrecto_small" );
         }
-        if($cambio == 1){
-            setTimeout(function(){verificar_clave();},5000);
-        }
+        setTimeout(function(){
+            if($cambio == 1){
+                verificar_clave();
+            }
+        },300);
     }
     
     $(function(){
         $("#clave2").keypress(function(){
-            //$cambio = 1;
             verificar_clave();
         });
     });
@@ -77,7 +80,7 @@ if ($acceso == 1){
 			        Usuario
 			    </td>
 			    <td class="tabla2_informacion" >
-                    <input type="text" name="Usuario" >
+                    <input type="text" name="usuario" >
 					<div id="div_usuario" ></div>
 			    </td>
 			</tr>

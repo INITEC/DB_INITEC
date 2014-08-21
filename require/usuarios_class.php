@@ -67,14 +67,15 @@ class usuarios {
             if($this->buscar_usuario($usuario) > 0){
                 $this->ingresar_usuario($id_persona, $usuario);
                 $this->ingresar_clave($id_persona, $clave);
-                return "Usuario creado exitosamente";
+                return 1;
             }else {
-                return "El nombre de usuario ya existe";
+                return 0;
             }
         }else {
-            return "La persona ya tiene usuario";
+            return 0;
         }
     }
+    
     public function buscar_usuario ($usuario){
         $sql = "SELECT usuario FROM usuarios WHERE usuario='".$usuario."' ";
         $this->_conexion->ejecutar_sentencia($sql);

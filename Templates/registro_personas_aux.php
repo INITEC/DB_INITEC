@@ -22,8 +22,9 @@ if($id_persona) {
 			$acceso = 1;
 			if (isset($_POST["boton-cuadro-registro-integrantes"])){	
 				include_once ("registro_personas/cuadro_registro_persona.php");
-			}elseif(isset($_POST['boton-ver-reuniones'])) {
-				//include_once ("AD_reuniones/tabla_reuniones.php");
+			}elseif(isset($_POST['boton-registrar-integrante'])) {
+				//include_once ("registro_personas/registrar_integrante.php");
+                echo "boton-registrar-integrante";
 			}elseif(isset($_POST['boton-ver-datos-reunion'])){
                 //include_once ("AD_reuniones/cuadro_datos_reunion.php");
             }elseif(isset($_POST['boton-editar-reunion'])){

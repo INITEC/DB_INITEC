@@ -50,9 +50,9 @@ if($acceso == 1) {
         
         while ($dato_asistencia= $asistencias->retornar_SELECT()){
             $fecha = $dias->ver_fecha($dato_asistencia["id_dia_trabajo"]);
-            $color = $cond_asist->ver_cod_color($dato_asistencia["id_cond_asist"]);
+            $class = $cond_asist->ver_class_css($dato_asistencia["id_cond_asist"]);
         ?>
-                <tr bgcolor="<?php echo $color?>" >
+                <tr class="<?php echo $class?>" >
                     <td align="center" valign="top" width="100" >
                         <?php echo dia_text($fecha); ?>
                     </td>

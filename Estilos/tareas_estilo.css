@@ -16,14 +16,20 @@ body { background-color: #88A6DC;}
 #tabla1_informacion {background-color:#CDE8F3; text-align:center; color:#173872;}
 
 #tabla2_encabezado {background-color:#0B4756; text-align:center; color:#FFFFFF; valign:top; align:center;}
-#tabla2_informacion {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center;}
+#tabla2_informacion {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center; /*text-transform: uppercase;*/ }
 
 
 .tabla1_encabezado {background-color:#173872; text-align:center; color:#FFFFFF; font-weight:bold }
 .tabla1_informacion {background-color:#CDE8F3; text-align:center; color:#173872;}
 
+.mayuscula { text-transform: uppercase; }
+
+
 .tabla2_encabezado {background-color:#0B4756; text-align:center; color:#FFFFFF; valign:top; align:center;}
 .tabla2_informacion {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center;}
+.tabla2_informacion_M {background-color:#9AD7E6; text-align:center; color:#173872; valign:top; align:center; text-transform: uppercase; }
+
+
 
 .tabla2_informacion input[type=text]
 {

@@ -22,6 +22,7 @@ if($id_persona) {
 <head>
 <title>..::<?php echo $tarea_actual; ?>::..</title>
 <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
+<link href="../Estilos/asistencias.css" type="text/css" rel="stylesheet" >
 <script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/from_2_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>

@@ -7,7 +7,9 @@ if ($acceso == 1){
     $(function(){
         $("#boton-registrar-integrante").click(function(){
             $cambio = 2;
-            
+            $("#resultado_nuevo_integrante").empty();
+            $("#resultado_nuevo_integrante").attr("class", "");
+            $("#boton-registrar-integrante").attr('type', 'hidden');
             $url = "registro_personas_aux.php";
             $.ajax({
                 type: "POST",
@@ -17,8 +19,6 @@ if ($acceso == 1){
                     $("#resultado_nuevo_integrante").html(data);
                 }
             });
-            $("#boton-registrar-integrante").attr('type', 'hidden');
-            $("#resultado_nuevo_integrante").attr("class", "");
             setTimeout(function(){cargar_cuadro_registro_integrantes();},3000);
             return false;
         });
@@ -29,13 +29,13 @@ if ($acceso == 1){
         $clave2 = $("#clave2").val();
         if($clave1 == $clave2 && $clave1 != "" ){
             $("#boton-registrar-integrante").attr('type', 'submit');
-            $("#resultado_nuevo_integrante").html('Las claves coinciden'+$cambio);
+            $("#resultado_nuevo_integrante").html('Las claves coinciden');
             $("#resultado_nuevo_integrante").attr("class", "dato_correcto_small");
         } else if ($clave1 == "" && $clave2 == ""){
             $("#resultado_nuevo_integrante").empty();
         } else {
             $("#boton-registrar-integrante").attr('type', 'hidden');
-            $("#resultado_nuevo_integrante").html('Las claves NO coinciden'+$cambio);
+            $("#resultado_nuevo_integrante").html('Las claves NO coinciden');
             $("#resultado_nuevo_integrante").attr("class", "dato_incorrecto_small" );
         }
         setTimeout(function(){

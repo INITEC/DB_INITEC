@@ -8,14 +8,14 @@ class cond_asist {
 		$this->_conexion = new conexion();
 	}
     
-    public function nuevo($nom_condicion, $asistencia, $cod_color){
+    public function nuevo($nom_condicion, $asistencia, $class_css){
         if ($this->buscar($nom_condicion, $asistencia) == 0){
             // asistencia -> 1=asistio 2=no asistio
             if ($asistencia != 1){
                 $asistencia = 2;
             }
             $orden = $this->ultimo_orden() + 1 ;
-            $sql = "INSERT INTO `cond_asist` (`id_cond_asist`, `nom_condicion`, `asistencia`, `estado`, `orden`, `cod_color`) VALUES (null, '".$nom_condicion."', '".$asistencia."', '1', '".$orden."', '".$cod_color."' ) ";
+            $sql = "INSERT INTO `cond_asist` (`id_cond_asist`, `nom_condicion`, `asistencia`, `estado`, `orden`, `class_css`) VALUES (null, '".$nom_condicion."', '".$asistencia."', '1', '".$orden."', '".$class_css."' ) ";
             return $this->_conexion->ejecutar_sentencia($sql);
         } else {
             echo "<script type='text/javascript' language='javascript' >
@@ -45,9 +45,9 @@ class cond_asist {
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
-    public function ver_condiciones (){
+    public function ver_condiciones ($asistencia=1){
         // estado -> 1=activo ->2=inactivo
-		$sql = "SELECT * FROM `cond_asist` WHERE estado='1'  ORDER BY nom_condicion ASC";
+		$sql = "SELECT * FROM `cond_asist` WHERE estado='1' AND asistencia='".$asistencia."'  ORDER BY orden ASC ";
 		return $this->_conexion->ejecutar_sentencia($sql);
 	}
     
@@ -72,9 +72,9 @@ class cond_asist {
         }
     }
     
-    public function ver_cod_color ($id_cond_asist){
+    public function ver_class_css ($id_cond_asist){
         $condicion = $this->ver_condicion($id_cond_asist);
-        return $condicion["cod_color"];
+        return $condicion["class_css"];
     }
     
     public function retornar_SELECT(){

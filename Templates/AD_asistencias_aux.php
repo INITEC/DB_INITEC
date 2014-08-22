@@ -11,7 +11,7 @@ if($id_persona) {
 	require_once ("../require/tareas_int_class.php");
 	require_once ("../require/grupos_class.php");
 	
-	$tarea_actual = "REGISTRO_INTEGRANTES";	
+	$tarea_actual = "AD_ASISTENCIAS";	
 	$obligaciones = new obligaciones_int();
 	$integrante = new integrantes();
 	$integrante->establecer_integrante($id_persona);
@@ -20,20 +20,19 @@ if($id_persona) {
 
 		if( !empty($_POST)) {
 			$acceso = 1;
-			if (isset($_POST["boton-cuadro-registro-integrantes"])){	
-				include_once ("registro_personas/cuadro_registro_persona.php");
-			}elseif(isset($_POST['boton-registrar-integrante'])) {
-				include_once ("registro_personas/registrar_integrante.php");
-                //echo "boton-registrar-integrante";
-			}elseif(isset($_POST['boton-ver-datos-reunion'])){
-                //include_once ("AD_reuniones/cuadro_datos_reunion.php");
-            }elseif(isset($_POST['boton-editar-reunion'])){
-                //include_once ("AD_reuniones/cuadro_editar_reunion.php");
-            }elseif(isset($_POST['boton-guardar-cambios-reunion'])){
+			if (isset($_POST["boton-ver-reuniones"])){	
+				include_once ("AD_asistencias/tabla_reuniones.php");
+			} elseif(isset($_POST['boton-ver-datos-asistencia'])){
+                include_once ("AD_asistencias/cuadro_datos_asistencia.php");
+            } elseif(isset($_POST['boton-editar-asistencia'])){
+                include_once ("AD_asistencias/AD_asistencias_marcar.php");
+                //echo "boton-editar-asistencia";
+            } elseif(isset($_POST['boton-ver-cuadro-marcar-asistencia'])){
                 //include_once ("AD_reuniones/guardar_cambios_reunion.php");
+                echo "boton-ver-cuadro-marcar-asistencia";
             } else {
                 echo "Algo ha salido mal";
-                //header("Location: registro_personas.php");
+                //header("Location: AD_asistencias.php");
             }
 		}elseif(!empty($_GET)) {
 			$acceso = 1;

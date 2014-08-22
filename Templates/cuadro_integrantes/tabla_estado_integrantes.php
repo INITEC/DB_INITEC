@@ -42,7 +42,7 @@ if($acceso == 1) {
         $tabla_integrante->ver_datos_integrantes();
         
         ?>
-        <table align="center" width="100%" >
+        <table align="center" width="1000px" >
             <?php
             for ($i=0; $i<$num_row; $i++){
             ?>

@@ -7,6 +7,9 @@ require_once ("../require/universidades_class.php");
 require_once ("../require/facultades_class.php");
 require_once ("../require/especialidades_class.php");
 require_once ("../require/usuarios_class.php");
+require_once ("../require/cond_int_class.php");
+
+require_once ("../require/ajuste_primera_palabra_func.php");
 
 class integrantes {
 	private $_conexion;
@@ -19,6 +22,7 @@ class integrantes {
     private $_usuarios;
 	public $_persona;
 	public $_datos_integrante;
+    public $_cond_int;
     
 	public function __construct () {
 		$this->_conexion = new conexion();
@@ -29,6 +33,7 @@ class integrantes {
         $this->_facultades = new facultades();
         $this->_especialidades = new especialidades();
         $this->_usuarios = new usuarios();
+        $this->_cond_int = new cond_int();
 	}
 
 	public function establecer_integrante ($id_persona){		
@@ -40,7 +45,11 @@ class integrantes {
 	}
     
 	public function foto_int() {
-		return "../foto_integrantes/".$this->_datos_integrante["foto"];
+        if(empty($this->_datos_integrante["foto"])){
+          return "../foto_integrantes/user.jpg";  
+        }else{
+		  return "../foto_integrantes/".$this->_datos_integrante["foto"];
+        }
 	}
     
 	public function retornar_id_trabajo (){
@@ -58,6 +67,14 @@ class integrantes {
     public function ver_nombre_completo ($id_persona){
         $persona = $this->_personas->ver_persona($id_persona);
         return $persona["apellidos"]." ".$persona["nombres"];
+    }
+    
+    public function ver_nombre_corto ($id_persona){
+        $persona = $this->_personas->ver_persona($id_persona);
+        $apellidos = ajuste_primera_palabra($persona["apellidos"],15,".");
+        $nombres = ajuste_primera_palabra($persona["nombres"],15,".");
+        $nombre_corto = $apellidos." ".$nombres;
+        return $nombre_corto;
     }
     
     public function ver_nombre ($id_persona){
@@ -119,6 +136,11 @@ class integrantes {
     
     public function ver_usuario_int (){
         return $this->_usuarios->ver_nom_usuario($this->_persona["id_persona"]);
+    }
+    
+    public function ver_id_trabajo ($id_persona){
+        $integrante = $this->ver_datos_integrante($id_persona);
+        return $integrante["id_trabajo"];
     }
     
 	public function ver_integrantes (){
@@ -218,20 +240,28 @@ class integrantes {
         return $this->_usuarios->cambiar_nom_usuario($id_persona, $nom_usuario);
     }
     
-    public function nuevo ($nombres, $apellidos, $usuario, $clave){
+    public function ingresar_nuevo ($nombres, $apellidos, $usuario, $clave){
         if (empty($usuario)){
             return 0;
         } elseif (empty($clave)){
             return 0;
-        } elseif (empty($nombres) || empty($apellidos)){
+        } elseif (empty($nombres) && empty($apellidos)){
             return 0;
         } else {
             $this->_personas->ingresar_nuevo($nombres,$apellidos);
             $id_persona = $this->_personas->ultima_persona();
-            return $this->_usuarios->ingresar_nuevo($id_persona, $usuario, $clave);
+            $this->_usuarios->ingresar_nuevo($id_persona, $usuario, $clave);
+            return $this->nuevo($id_persona);
         }
     }
     
+    public function nuevo ($id_persona, $id_tipo_cond=3, $id_trabajo=2){
+        $this->_cond_int->nuevo($id_tipo_cond,$id_persona);
+        $cond_int = $this->_cond_int->ver_ultimo ($id_persona);
+        $id_cond_int = $cond_int["id_cond_int"];
+        $sql = "INSERT INTO `datos_integrantes` (`id_dato_int`, `id_persona`, `id_cond_int`, `id_trabajo` ) VALUES (null, '".$id_persona."', '".$id_cond_int."', '".$id_trabajo."' ) ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
     
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();

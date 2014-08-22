@@ -112,7 +112,7 @@ if($id_persona) {
 										</tr>
 										<tr id="tabla1_informacion">
 											<td>
-												<select name="id_integrante">
+												<select name="id_persona">
 													<?php
                                                     $integrante_aux = new integrantes();
 													$integrante->ver_datos_integrantes();

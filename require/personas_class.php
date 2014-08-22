@@ -17,7 +17,7 @@ class personas {
     public function ultima_persona(){
         $sql = "SELECT `id_persona` FROM `personas` ORDER BY id_persona DESC LIMIT 1";
         $this->_conexion->ejecutar_sentencia($sql);
-        $persona = $this->_conexion->retornar_array();
+        $persona = $this->retornar_SELECT();
         return $persona["id_persona"];
     }
     public function cambiar_nombre($id_persona, $nombre){

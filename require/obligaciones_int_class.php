@@ -13,6 +13,14 @@ class obligaciones_int {
 					AND obligaciones_int.id_tarea = tareas_int.id_tarea ORDER BY tareas_int.orden ASC ";
 		$this->_conexion->ejecutar_sentencia($sql);
 	}
+    
+    public function ver_primera_obligacion ($id_trabajo){
+        $sql = "SELECT * FROM obligaciones_int,tareas_int WHERE obligaciones_int.id_trabajo = '".$id_trabajo."' 
+					AND obligaciones_int.id_tarea = tareas_int.id_tarea ORDER BY tareas_int.orden ASC LIMIT 1 ";
+		$this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
+    }
+    
 	public function retornar_SELECT (){
 		return $this->_conexion->retornar_array();
 	}

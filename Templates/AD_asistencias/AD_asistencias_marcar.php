@@ -18,6 +18,7 @@ if($id_persona) {
 		$trabajos = new trabajos_int();
 		$tareas = new tareas_int();
         $grupo = new grupos();
+        $id_reunion_env = $_POST["id_reunion"];
 /* ..................................................................................................................... */
 ?>
 <html>
@@ -25,13 +26,15 @@ if($id_persona) {
 <title>..::<?php echo $tarea_actual; ?>::..</title>
 <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 <link href="../Estilos/asistencias.css" type="text/css" rel="stylesheet" >
-<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
+<script type="text/javascript" languaje="javascript" src="AD_asistencias/mueveReloj.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-	function cargar_cuadro_reuniones (){
-        $boton = "ver_reuniones";
-        $parametros = {'boton-ver-reuniones' : $boton};
+	function cargar_cuadro_marcar_asistencias (){
+        $parametros = {
+            'boton-ver-cuadro-marcar-asistencia' : true,
+            'id_reunion' : <?php echo $id_reunion_env; ?>
+        };
         $.ajax({
             url: 'AD_asistencias_aux.php',
             type: 'POST',
@@ -44,7 +47,7 @@ if($id_persona) {
     }
     
     window.onload = function(){
-	   cargar_cuadro_reuniones();
+	   cargar_cuadro_marcar_asistencias();
     }
 </script>
 

@@ -1,3 +1,6 @@
+<?php 
+header('Content-Type: text/html; charset=UTF-8');
+?>
 <link href="../Estilos/cabecera_tarea.css" type="text/css" rel="stylesheet" >
 <div id="cabecera_tarea">
 	<img src="../Imagenes/initec_presentacion.jpg" height="100%" align="left">

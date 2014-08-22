@@ -11,7 +11,7 @@ class usuarios {
     public function crear_usuario($id_persona){
         $sql = "SELECT id_persona FROM `usuarios` WHERE id_persona='".$id_persona."' ";
         $this->_conexion->ejecutar_sentencia($sql);
-        if($this->_conexion->tam_respuesta() > 0 ){
+        if($this->_conexion->tam_respuesta() == 0 ){
             $sql = "INSERT INTO `usuarios`(`id_usuario`,`id_persona`,`estado`) VALUES (null,'".$id_persona."', 1)";
             if($this->_conexion->ejecutar_sentencia($sql)){
                 return $this->ultimo_usuario();    
@@ -20,6 +20,18 @@ class usuarios {
             return 0;
         }
     }
+    
+    public function nuevo ($id_persona, $usuario, $clave){
+        $sql = "SELECT id_persona FROM `usuarios` WHERE id_persona='".$id_persona."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        if($this->_conexion->tam_respuesta() == 0 ){
+            $sql = "INSERT INTO `usuarios`(`id_usuario`,`id_persona`,`usuario`,`clave`,`estado`) VALUES (null,'".$id_persona."','".$usuario."','".$clave."', '1')";
+            return $this->_conexion->ejecutar_sentencia($sql);
+        }else {
+            return 0;
+        } 
+    }
+    
     public function ultimo_usuario(){
         $sql = "SELECT `id_usuario` FROM `usuarios` ORDER BY id_usuario DESC LIMIT 1";
         $this->_conexion->ejecutar_sentencia($sql);
@@ -62,22 +74,16 @@ class usuarios {
     }
     
     public function ingresar_nuevo ($id_persona, $usuario, $clave){
-        $id_usuario = $this->crear_usuario($id_persona);
-        if($id_usuario != 0){
-            if($this->buscar_usuario($usuario) > 0){
-                $this->ingresar_usuario($id_persona, $usuario);
-                $this->ingresar_clave($id_persona, $clave);
-                return 1;
-            }else {
-                return 0;
-            }
+        //$id_usuario = $this->crear_usuario($id_persona);
+        if($this->buscar_usuario($usuario) == 0){
+            return $this->nuevo($id_persona, $usuario, $clave); 
         }else {
             return 0;
         }
     }
     
     public function buscar_usuario ($usuario){
-        $sql = "SELECT usuario FROM usuarios WHERE usuario='".$usuario."' ";
+        $sql = "SELECT * FROM usuarios WHERE usuario='".$usuario."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->_conexion->tam_respuesta();
     }

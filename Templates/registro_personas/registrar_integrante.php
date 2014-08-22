@@ -20,7 +20,7 @@ if($acceso == 1) {
                 $clave2 = $_POST["clave2"];
                 
                 if(strcmp($clave1,$clave2) == 0){    
-                    if($integrantes_aux->nuevo($nombres, $apellidos, $usuario, $clave1)){
+                    if($integrantes_aux->ingresar_nuevo($nombres, $apellidos, $usuario, $clave1)){
                     ?>
                     <div class="dato_correcto" id="mensaje-nueva-reunion" >
                                     SE GUARDARON LOS DATOS CORRECTAMENTE 

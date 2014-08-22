@@ -11,9 +11,15 @@ class asistencias {
         $this->_cond_asist = new cond_asist();
 	}
     
-    public function nuevo($hora_asistencia, $id_cond_asist, $id_persona, $id_reunion){
+    public function nuevo($hora_asistencia, $id_cond_asist, $id_persona, $id_reunion, $inasistencia){
+        if($inasistencia==1){
+            $inasistencia = 3;
+        } else {
+            $inasistencia = 1;
+        }
+        
         if ($this->verificar_asistencia($id_persona, $id_reunion) == 0 ){
-            $sql = "INSERT INTO `asistencias`(`id_asistencia`, `hora_asistencia`, `id_cond_asist`, `id_persona`, `id_reunion`) VALUES (null, '".$hora_asistencia."', '".$id_cond_asist."', '".$id_persona."', '".$id_reunion."')";
+            $sql = "INSERT INTO `asistencias`(`id_asistencia`, `hora_asistencia`, `id_cond_asist`, `id_persona`, `id_reunion`, `inasistencia`) VALUES (null, '".$hora_asistencia."', '".$id_cond_asist."', '".$id_persona."', '".$id_reunion."', '".$inasistencia."' )";
             return $this->_conexion->ejecutar_sentencia($sql);
         } else {
             echo "<script type='text/javascript' language='javascript' >
@@ -39,6 +45,11 @@ class asistencias {
 		return $this->_conexion->ejecutar_sentencia($sql);		
 	}
     
+    public function num_asistentes ($id_reunion){
+        $this->ver_asistencias($id_reunion);
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function ver_asistencia ($id_asistencia){
         $sql = "SELECT * FROM asistencias WHERE id_asistencia='".$id_asistencia."' ";
         $this->_conexion->ejecutar_sentencia($sql);
@@ -51,6 +62,10 @@ class asistencias {
     
     public function ver_estado_asistencia ($id_cond_asist) {
         return $this->_cond_asist->ver_asistencia($id_cond_asist);
+    }
+    
+    public function ver_class_condicion ($id_cond_asist){
+        return $this->_cond_asist->ver_class_css($id_cond_asist);
     }
     
 	public function ver_asistencias_int ($id_persona, $id_temporada){

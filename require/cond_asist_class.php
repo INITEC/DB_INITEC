@@ -72,6 +72,8 @@ class cond_asist {
         }
     }
     
+    
+    
     public function ver_class_css ($id_cond_asist){
         $condicion = $this->ver_condicion($id_cond_asist);
         return $condicion["class_css"];

@@ -29,6 +29,12 @@ class asistencias {
         }
     }
     
+    public function ver_asistencia_int ($id_persona, $id_reunion){
+        $sql = "SELECT * FROM `asistencias` WHERE id_persona='".$id_persona."' AND id_reunion='".$id_reunion."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->retornar_SELECT();
+    }
+    
     public function verificar_asistencia($id_persona, $id_reunion){
         $sql = "SELECT id_persona, id_reunion FROM `asistencias` WHERE id_persona='".$id_persona."' AND id_reunion='".$id_reunion."' ";
         $this->_conexion->ejecutar_sentencia($sql);
@@ -62,6 +68,11 @@ class asistencias {
     
     public function ver_estado_asistencia ($id_cond_asist) {
         return $this->_cond_asist->ver_asistencia($id_cond_asist);
+    }
+    
+    public function ver_condicion_asistencia ($id_cond_asist){
+        $condicion = $this->_cond_asist->ver_condicion($id_cond_asist);
+        return $condicion["asistencia"];
     }
     
     public function ver_class_condicion ($id_cond_asist){

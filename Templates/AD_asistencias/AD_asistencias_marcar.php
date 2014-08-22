@@ -30,7 +30,7 @@ if($id_persona) {
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-	function cargar_cuadro_marcar_asistencias (){
+	function cargar_cuadro_marcar_asistencia (){
         $parametros = {
             'boton-ver-cuadro-marcar-asistencia' : true,
             'id_reunion' : <?php echo $id_reunion_env; ?>
@@ -46,8 +46,22 @@ if($id_persona) {
         });
     }
     
+    function Reloj (){
+        var now = new Date(); 
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        hour = ( hour < 10 )? "0"+hour : hour;
+        minute = ( minute < 10 )? "0"+minute : minute;
+        second = ( second < 10 )? "0"+second : second;
+        $("#hora_actual").html('Hora Actual: '+hour+':'+minute+':'+second);
+        setTimeout(function(){Reloj();},1000);
+    }
+    
     window.onload = function(){
-	   cargar_cuadro_marcar_asistencias();
+        cargar_cuadro_marcar_asistencia();
+        Reloj();
     }
 </script>
 
@@ -67,7 +81,12 @@ if($id_persona) {
                 <h1><?php echo $tarea_actual; ?></h1>
                 </div>
                 <div >
-<!-- *************************************************************************************************** -->  
+<!-- *************************************************************************************************** -->
+                <div>
+                    <div id="hora_actual" class="subtitulo2" >
+                        
+                    </div>
+                </div>  
                 <div id="cuadro">
                     <!-- Este div usa AJAX para mostrar informacion -->
 				</div>

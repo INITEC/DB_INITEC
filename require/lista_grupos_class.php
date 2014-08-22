@@ -47,8 +47,8 @@ class lista_grupos {
     }
     
     public function ver_integrantes ($id_grupo){
-		$sql = "SELECT personas.*,lista_grupos.* FROM personas,lista_grupos WHERE personas.id_persona=lista_grupos.id_persona AND lista_grupos.id_grupo ='".$id_grupo."' AND lista_grupos.estado='1' ";
-		return $this->ejecutar_sentencia($sql);
+		$sql = "SELECT personas.*,lista_grupos.* FROM personas,lista_grupos WHERE personas.id_persona=lista_grupos.id_persona AND lista_grupos.id_grupo ='".$id_grupo."' AND lista_grupos.estado='1' ORDER BY personas.apellidos ASC ";
+		return $this->_conexion->ejecutar_sentencia($sql);
 	}
 	
     public function retornar_SELECT (){

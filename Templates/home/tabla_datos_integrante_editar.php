@@ -30,7 +30,7 @@ if($acceso == 1) {
                 </td>
                 <td width="200" rowspan="4" >
                 <img src="<?php echo $tabla_integrante->foto_int(); ?>" width="200px" height="150">
-                <input type="file" name="foto" >
+
                 </td>
             </tr>
             <tr id="tabla2_informacion" >

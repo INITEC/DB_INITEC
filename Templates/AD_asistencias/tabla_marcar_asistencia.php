@@ -1,168 +1,104 @@
 <?php 
-require_once ("conexion1.php");
-$sql="select * from reuniones where id_fecha='".$_POST["id_fecha"]."'";
-$res=mysql_query($sql,$conexion);
-$reg=mysql_fetch_array($res)
-?>
-	<table align="center" width="700" >
-	<tr>
-		<td align="center" valign="top" width="700" colspan="7" style="color:#FFFFFF">
-			<h3>Toma de Asistencia (<?php echo $reg["dia_semana"];?> - <?php echo $reg["fecha"];?>)</h3>
-		</td>
-	</tr>
-	<tr>
-			<td align="center" valign="top" width="50" style="color:#FFFFFF" >
-				&nbsp;
-			</td>
-			<td align="right" valign="top" width="250" style="color:#FFFFFF" >
-				<h4>Inicio:</h4>
-			</td>
-			<td align="left" valign="top" width="100" style="color:#FFFFFF" >
-				<form name="inicio" >
-				<input type="text" name="hora_inicio" readonly="readonly" size="10" style="background-color : Black; color : White; font-family : Verdana, Arial, Helvetica; font-size : 8pt; text-align : center;" onfocus="window.document.form_reloj.reloj.blur()" value="<?php echo $reg["hora_inicio"];?>" >
-				</form>
-			</td>
-			<td align="right" valign="top" width="100" style="color:#FFFFFF" >
-				<h4>Hora Actual:</h4>
-			</td>
-			<td align="left" valign="top" width="100" style="color:#FFFFFF" >
-				<form name="form_reloj">
-				<input type="text" name="reloj" size="10" style="background-color : Black; color : White; font-family : Verdana, Arial, Helvetica; font-size : 8pt; text-align : center;" onfocus="window.document.form_reloj.reloj.blur()"> 
-				</form>
-			</td>
-			<td align="center" valign="top" width="80" style="color:#FFFFFF" >
-				&nbsp;
-			</td>
-			<td align="center" valign="top" width="80" style="color:#FFFFFF" >
-				&nbsp;
-			</td>
-			<td align="center" valign="top" width="80" style="color:#FFFFFF" >
-				&nbsp;
-			</td>
-	</tr>
+if($acceso == 1) {
 
-	<tr class="informacion_extra" >
-	<td align="center" valign="top" width="50" >
-	Foto
-	</td>
-	<td align="center" valign="top" width="250" >
-	Nombre
-	</td>
-	<td align="center" valign="top" width="100" >
-	Hora
-	</td>
-	<td align="center" valign="top" width="100" >
-	Asistencia
-	</td>
-	<td align="center" valign="top" width="100" >
-	Condicion
-	</td>
-	<td align="center" valign="top" width="80" >
-	&nbsp;
-	</td>
-	<td align="center" valign="top" width="80" >
-	&nbsp;
-	</td>
-	</tr>
-	<?php 
-	$sql2="select * from integrantes where estado='activo' order by integrante asc";
-	$res2=mysql_query($sql2,$conexion);
-	
-	while($reg2=mysql_fetch_array($res2)){
-	?>
-		<tr class="datos_extra" >
-			<td align="center" valign="top" width="50" >
-				<img src="../foto_integrantes/<?php echo $reg2["foto"];?>" width="50" heigth="50" border="0" >
-			</td>
-			<td align="center" valign="top" width="250" >
-				<?php 
-				echo $reg2["integrante"];
-				?>
-			</td>
-			<!-- ********************************************************************* -->
-			<?php 
-			$sql3="select * from asistencias where id_integrante='".$reg2["id_integrante"]."' AND 
-					id_fecha='".$_POST["id_fecha"]."' ";
-			$res3=mysql_query($sql3,$conexion);
-			if($reg3=mysql_fetch_array($res3)){
-			?>
-				<form action="AD_asistencias_editar_cambiar.php" method="post" name="form_<?php echo $reg2["id_integrante"]?>">
-				<td align="center" valign="top" width="100" >
-					<input type="text" name="hora" value="<?php echo $reg3["hora"];?>" >
-				</td>
-				<td align="center" valign="top" width="100" >
-					<select name="asistencia">
-						<option <?php if($reg3["asistencia"]=="Asistio"){echo "selected";}?> value="Asistio">Asistio</option>
-						<option <?php if($reg3["asistencia"]=="No Asistio"){echo "selected";}?> value="No Asistio">No Asistio</option>
-					</select>
-				</td>
-				<td align="center" valign="top" width="100" >
-					<select name="condicion">
-						<option <?php if($reg3["condicion"]=="Puntual"){echo "selected";}?> value="Puntual">Puntual</option>
-						<option <?php if($reg3["condicion"]=="Retrasado justificado"){echo "selected";}?> value="Retrasado justificado">Retrasado justificado</option>
-						<option <?php if($reg3["condicion"]=="Tarde justificado"){echo "selected";}?> value="Tarde justificado">Tarde justificado</option>
-						<option <?php if($reg3["condicion"]=="Justificado"){echo "selected";}?> value="Justificado">Justificado</option>
-						<option <?php if($reg3["condicion"]=="Retrasado"){echo "selected";}?> value="Retrasado">Retrasado</option>
-						<option <?php if($reg3["condicion"]=="Tarde"){echo "selected";}?> value="Tarde">Tarde</option>
-						<option <?php if($reg3["condicion"]=="Injustificado"){echo "selected";}?> value="Injustificado">Injustificado</option>
-						<option <?php if($reg3["condicion"]=="Apoyo"){echo "selected";}?> value="Apoyo">Apoyo</option>
-					</select>
-				</td>
-				<td align="center" valign="top" width="100" >
-					<input type="submit" value="Cambiar" title="Cambiar"/>
-				</td>
-				<td align="center" valign="top" width="100" >
-					&nbsp;
-				</td>
-			<?php 
-			} else {
-			?>
-				<form action="AD_asistencias_editar_enviar.php" method="post" name="form_<?php echo $reg2["id_integrante"]?>">
-				<td align="center" valign="top" width="100" class="datos_extra_2" >
-					<input type="text" name="hora" value="<?php echo $reg["hora_inicio"];?>" >
-				</td>
-				<td align="center" valign="top" width="100" class="datos_extra_2" >
-					<select name="asistencia">
-						<option value="Asistio">Asistio</option>
-						<option value="No Asistio">No Asistio</option>
-					</select>
-				</td>
-				<td align="center" valign="top" width="100" class="datos_extra_2" >
-					<select name="condicion">
-						<option value="Puntual">Puntual</option>
-						<option value="Retrasado justificado">Retrasado justificado</option>
-						<option value="Tarde justificado">Tarde justificado</option>
-						<option value="Justificado">Justificado</option>
-						<option value="Retrasado">Retrasado</option>
-						<option value="Tarde">Tarde</option>
-						<option value="Injustificado">Injustificado</option>
-						<option value="Apoyo">Apoyo</option>
-					</select>
-				</td>
-				<td align="center" valign="top" width="100" class="datos_extra_2" >
-					<input type="submit" value="Enviar" title="Enviar"/>
-				</td>
-				<td align="center" valign="top" width="100" class="datos_extra_2" >
-					<input type="button" value="Marcar" title="Marcar" onClick="Marcar(document.form_<?php echo $reg2["id_integrante"]?>)" />
-				</td>
-			<?php 
-			}
-			?>
-			<!-- *************************************************************************************** -->		
-				</tr>
-				<input type="hidden" name="id_integrante" value="<?php echo $reg2["id_integrante"];?>" >
-				<input type="hidden" name="id_fecha" value="<?php echo $_POST["id_fecha"];?>" >
-				<input type="hidden" name="tarea" value="<?php echo $_POST["tarea"];?>" >
-				</form>
-		<!-- ********************************************************************* -->
-	<?php 
-	}
-	?>
-	<form action="AD_asistencias.php" method="post" name="terminar" >
-	<tr>
-	<td align="center" valign="top" width="700" colspan="6">
-	<input type="submit" value="Terminar" title="Terminar de tomar asistencia"/>
-	</td>
-	</tr>
-	</form>
-	</table>
+    if( !empty($_POST)){
+        
+        require_once ("../require/reuniones_class.php");
+        require_once ("../require/lista_grupos_class.php");
+        require_once ("../require/fecha_text_func.php");
+        
+        $reuniones = new reuniones();
+        $lista_grupos = new lista_grupos();
+        $integrantes_aux = new integrantes();
+        $id_reunion = $_POST["id_reunion"];
+        $datos_reunion = $reuniones->ver_reunion($id_reunion);
+        
+?>        
+
+    <script>
+       
+        /*$(function(){
+            $("#boton-crear").click(function(){
+                $url = "AD_reuniones_aux.php";
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: $("#nueva_reunion").serialize(),
+                    success: function(data){
+                        $("#resultado_nueva_reunion").html(data);
+                    }
+                });
+                setTimeout(function(){cargar_cuadro_reuniones();},3000);
+                return false;
+            });
+        });
+        
+        function cargar_cuadro_reuniones (){
+            $boton = "ver_reuniones";
+            $parametros = {'boton-ver-reuniones' : $boton};
+            $.ajax({
+                url: 'AD_asistencias_aux.php',
+                type: 'POST',
+                async: true,
+                data: $parametros,
+                success: function (datos){
+                    $("#cuadro").html(datos);
+                }
+            });
+        }*/
+
+    </script>
+               
+    <div class="subtitulo3" >
+        Toma de Asistencia (<?php echo fecha_text($reuniones->ver_fecha_reunion($datos_reunion["id_reunion"]));?>)
+    </div>
+    <div class="subtitulo1" >
+        Hora Inicio: <?php echo $datos_reunion["hora_inicio"];?> - Hora Final: <?php echo $datos_reunion["hora_final"];?>
+    </div>
+    <br>
+    <table align="center" >
+        <tr class="tabla1_encabezado" >
+            <td >
+                Foto
+            </td>
+            <td >
+                Nombre
+            </td>
+            <td >
+                Hora
+            </td>
+            <td >
+                Asistencia
+            </td>
+            <td >
+                Condicion
+            </td>
+            <td >
+            
+            </td>
+        </tr>
+        <?php
+        $lista_grupos->ver_integrantes($datos_reunion["id_grupo"]);
+        while ($dato_grupo = $lista_grupos->retornar_SELECT() ){
+            $id_persona_env = $dato_grupo["id_persona"];
+        ?>
+        <tr class="tabla1_informacion" >
+            <td>
+                <img src="<?php echo $integrantes_aux->ver_foto($id_persona_env); ?>" width="50" height="40" >
+            </td>
+            <td>
+                <?php echo $integrantes_aux->ver_nombre_corto($id_persona_env); ?>
+            </td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
+   
+<?php		
+    }
+    else {
+        echo "No se han recibido correctamente los datos.";
+    }
+}
+?>

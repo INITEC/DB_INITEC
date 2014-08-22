@@ -28,8 +28,8 @@ if($id_persona) {
                 include_once ("AD_asistencias/AD_asistencias_marcar.php");
                 //echo "boton-editar-asistencia";
             } elseif(isset($_POST['boton-ver-cuadro-marcar-asistencia'])){
-                //include_once ("AD_reuniones/guardar_cambios_reunion.php");
-                echo "boton-ver-cuadro-marcar-asistencia";
+                include_once ("AD_asistencias/tabla_marcar_asistencia.php");
+                //echo "boton-ver-cuadro-marcar-asistencia";
             } else {
                 echo "Algo ha salido mal";
                 //header("Location: AD_asistencias.php");

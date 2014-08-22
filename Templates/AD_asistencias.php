@@ -30,8 +30,9 @@ if($id_persona) {
 
 <script type='text/javascript' languaje='javascript'>
 	function cargar_cuadro_reuniones (){
-        $boton = "ver_reuniones";
-        $parametros = {'boton-ver-reuniones' : $boton};
+        $parametros = {
+            'boton-ver-reuniones' : true
+        };
         $.ajax({
             url: 'AD_asistencias_aux.php',
             type: 'POST',

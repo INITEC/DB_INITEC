@@ -65,15 +65,6 @@ if($acceso == 1) {
 				} else {
 					$id_facultad = $_POST["id_facultad"];
 				}
-                
-                $foto_tipo=$_FILES["foto"]["type"];
-                
-                if($foto_tipo != ""){
-                    $foto_temp=$_FILES["foto"]["tmp_name"];
-                    $integrantes_editar->guardar_foto_int($foto_tipo, $foto_temp);
-                }
-                
-                
 				
 				if(
 				$integrantes_editar->guardar_datos_primarios_int ($nombres ,$apellidos) and

@@ -8,7 +8,7 @@ if($acceso == 1) {
 	</head>
 
 	<?php
-	if( !empty($_GET)) {
+	if( !empty($_POST)) {
         require_once ("../require/amonestaciones_class.php");
         require_once ("../require/asistencias_class.php");
         require_once ("../require/temporadas_class.php");
@@ -16,7 +16,11 @@ if($acceso == 1) {
         include_once("../Include/cuadro_amonestaciones_int_func.php");
         include_once("../Include/cuadro_inasistencias_int_func.php");
         
-        $id_persona_tabla = $_GET["id_persona"];
+        if(isset($_POST['id_persona'])){
+			$id_persona_tabla = $_POST["id_persona"];
+		} else {
+			$id_persona_tabla = $id_persona;
+        }
         $tabla_integrante = new integrantes();
         $amonestaciones = new amonestaciones();
         $asistencias = new asistencias();

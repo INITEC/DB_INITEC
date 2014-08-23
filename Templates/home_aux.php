@@ -24,24 +24,26 @@ if($id_persona) {
 				include_once ("home/home_editar.php");
 			}elseif(isset($_POST['cambiar_clave_cambiar'])){
                 include_once ("home/home_cambiar_clave_cambiar.php");
-            }elseif(isset($_POST["guardar_datos_integrante"])){
+            }elseif(isset($_POST["boton-ver-datos-integrante"])){
+                include_once ("home/tabla_datos_integrante.php");
+            }elseif(isset($_POST["boton-ver-cuadro-editar-integrante"])){
+                include_once ("home/tabla_datos_integrante_editar.php");
+            }elseif(isset($_POST["boton-guardar-datos-integrante"])){
                 include_once ("home/guardar_datos_integrante.php");
-            }
+            } else {
+                echo "Algo salio mal";
+            } 
 		}elseif(!empty($_GET)) {
 			$acceso = 1;
 			if (isset($_GET['estado'])) {
 				include_once ("AD_grupos/cambiar_estado_grupo.php");
-			}elseif (isset($_GET['id_persona'])) {
-				include_once ("home/tabla_datos_integrante.php");
-			}elseif(isset($_GET['id_persona_editar'])) {
-                include_once ("home/tabla_datos_integrante_editar.php");
-            }elseif (isset($_GET['id_amonestacion'])) {
+			}elseif (isset($_GET['id_amonestacion'])) {
 					include_once ("../Templates/amonestaciones/carta_amonestacion.php");
 			}elseif (isset($_GET['id_asistencia'])) {
 					include_once ("asistencias/carta_inasistencia.php");
-			}elseif (isset($_GET['Quitar_integrante'])) {
-					include_once ("AD_grupos/cambiar_estado_integrante.php");
-			}
+			} else {
+                echo "Algo salio mal";
+            }
 		}
 		else {
 			include_once ("../Include/no_dato_POST.php");

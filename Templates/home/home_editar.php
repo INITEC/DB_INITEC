@@ -6,22 +6,27 @@ if($acceso == 1) {
 <head>
 <title>..::<?php echo $tarea_actual; ?>::..</title>
 <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
-<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/from_2_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/eval_select.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/enviar_form_ajax.js"></script>
 <script type="text/javascript" languaje="javascript" src="home/home_editar.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
-    var integrante = new enviar_form('mensaje_registro_integrante', 'datos_integrante', 'home_aux.php');
+	function cargar_cuadro_editar_integrante (){
+        $parametros = {
+            'boton-ver-cuadro-editar-integrante' : true
+        };
+        $.ajax({
+            url: 'home_aux.php',
+            type: 'POST',
+            async: true,
+            data: $parametros,
+            success: function (datos){
+                $("#cuadro").html(datos);
+            }
+        });
+    }
     
-    callDivs_dato ('cuadro', 'home_aux.php', '<?php echo $id_persona; ?>', 'id_persona_editar');
     window.onload = function(){
-	   integrante.loadform();
+	   cargar_cuadro_editar_integrante();
     }
 </script>
 
@@ -46,7 +51,6 @@ if($acceso == 1) {
                     <div id="cuadro">
                         <!-- Este div usa AJAX para mostrar informacion -->
                     </div>
-                    <!-- <input type="hidden" name="id_persona_editar" value="" /> -->
 				</form>
 <!-- *************************************************************************************************** -->
 			</div>

@@ -6,9 +6,13 @@ if($acceso == 1) {
 	</head>
 
 	<?php
-	if( !empty($_GET)) {
+	if( !empty($_POST)) {
 
-        $id_persona_tabla = $_GET["id_persona_editar"];
+        if(isset($_POST['id_persona'])){
+			$id_persona_tabla = $_POST["id_persona"];
+		} else {
+			$id_persona_tabla = $id_persona;
+        }
         $tabla_integrante = new integrantes();
         $telefonos = new telefonos_personas();
         $correos = new correos_personas();
@@ -19,8 +23,27 @@ if($acceso == 1) {
         
         $tabla_integrante->establecer_integrante($id_persona_tabla);
         ?>
-    <body>    
-     <table width="700px" align="center">
+    <body>
+    
+    <script>
+        $(function(){
+            $("#boton-guardar-datos-integrante").click(function(){
+                $url = "home_aux.php";
+                $.ajax({
+                    type: "POST",
+                    url: $url,
+                    data: $("#formulario-datos-integrante").serialize(),
+                    success: function(data){
+                        $("#mensaje_registro_integrante").html(data);
+                    }
+                });
+                setTimeout(function(){cargar_cuadro_editar_integrante();},3000);
+                return false;
+            });
+        });
+    </script>    
+    <form id="formulario-datos-integrante" method="POST" >    
+    <table width="700px" align="center">
             <tr id="tabla2_encabezado" >
                 <td width="350">
                 Nombres
@@ -190,8 +213,10 @@ if($acceso == 1) {
             <!-- Aqui aparecera la respuesta del AJAX del formulario -->
         </div>
         <div id="subtitulo1">
-			<input type="submit" value="GUARDAR CAMBIOS" name="guardar_datos_integrante" />
+            <input type="hidden" name="boton-guardar-datos-integrante" value="boton" >
+			<input type="submit" id="boton-guardar-datos-integrante" value="GUARDAR CAMBIOS" />
         </div>
+        </form>
         <br>
 <?php
 	}

@@ -84,7 +84,7 @@ if($acceso = 1) {
 			<td>
 				<img src="<?php echo $integrante->ver_foto($rel_horas["id_persona"]);?>" width="60" height="48" border="0" >
 			</td>
-			<td>
+			<td class="mayuscula" >
 				<?php echo $integrante->ver_nombre_completo($rel_horas["id_persona"]);?>
 			</td>
 			<td>

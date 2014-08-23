@@ -36,13 +36,13 @@ if($acceso == 1) {
                 <img src="<?php echo $tabla_integrante->foto_int(); ?>" width="200px" height="150">
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
-                <td >
+            <tr class="tabla2_informacion" >
+                <td class="mayuscula" >
                 <?php 
                     echo $tabla_integrante->ver_nombre_int();
                 ?>
                 </td>
-                <td >
+                <td class="mayuscula" >
                 <?php
                     echo $tabla_integrante->ver_apellido_int();
                 ?>

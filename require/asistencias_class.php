@@ -13,7 +13,7 @@ class asistencias {
     
     public function nuevo($hora_asistencia, $id_cond_asist, $id_persona, $id_reunion, $inasistencia){
         if($inasistencia==1){
-            $inasistencia = 3;
+            $inasistencia = 2;
         } else {
             $inasistencia = 1;
         }
@@ -22,9 +22,6 @@ class asistencias {
             $sql = "INSERT INTO `asistencias`(`id_asistencia`, `hora_asistencia`, `id_cond_asist`, `id_persona`, `id_reunion`, `inasistencia`) VALUES (null, '".$hora_asistencia."', '".$id_cond_asist."', '".$id_persona."', '".$id_reunion."', '".$inasistencia."' )";
             return $this->_conexion->ejecutar_sentencia($sql);
         } else {
-            echo "<script type='text/javascript' language='javascript' >
-            alert ('La asistencia ya ha sido marcada antes');
-			</script>";
             return 0;
         }
     }
@@ -41,9 +38,14 @@ class asistencias {
         return $this->_conexion->tam_respuesta();
     }
     
-    public function cambio ($id_asistencia, $hora_asistencia, $id_cond_asist ){
-            $sql = "UPDATE `asistencias` SET hora_asistencia='".$hora_asistencia."', id_cond_asist='".$id_cond_asist."', id_persona='".$id_persona."', id_reunion='".$id_reunion."'  WHERE id_asistencia='".$id_asistencia."' ";
-            return $this->_conexion->ejecutar_sentencia($sql);
+    public function cambio ($id_asistencia, $hora_asistencia, $id_cond_asist, $inasistencia ){
+        if($inasistencia==1){
+            $inasistencia = 2;
+        } else {
+            $inasistencia = 1;
+        }
+        $sql = "UPDATE `asistencias` SET hora_asistencia='".$hora_asistencia."', id_cond_asist='".$id_cond_asist."', inasistencia='".$inasistencia."'  WHERE id_asistencia='".$id_asistencia."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function ver_asistencias ($id_reunion){

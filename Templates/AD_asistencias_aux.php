@@ -31,11 +31,9 @@ if($id_persona) {
             } elseif(isset($_POST['boton-actualizar-cuadro-condicion'])){
                 include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
             } elseif(isset($_POST['boton-enviar-asistencia'])){
-                //include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
-                echo "boton-enviar-asistencia";
+                include_once ("AD_asistencias/guardar_datos_asistencia.php");
             } elseif(isset($_POST['boton-cambiar-asistencia'])){
-                //include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
-                echo "boton-cambiar-asistencia";
+                include_once ("AD_asistencias/cambiar_datos_asistencia.php");
             }else {
                 echo "Algo ha salido mal";
                 //header("Location: AD_asistencias.php");

@@ -26,11 +26,17 @@ if($id_persona) {
                 include_once ("AD_asistencias/cuadro_datos_asistencia.php");
             } elseif(isset($_POST['boton-editar-asistencia'])){
                 include_once ("AD_asistencias/AD_asistencias_marcar.php");
-                //echo "boton-editar-asistencia";
             } elseif(isset($_POST['boton-ver-cuadro-marcar-asistencia'])){
                 include_once ("AD_asistencias/tabla_marcar_asistencia.php");
-                //echo "boton-ver-cuadro-marcar-asistencia";
-            } else {
+            } elseif(isset($_POST['boton-actualizar-cuadro-condicion'])){
+                include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
+            } elseif(isset($_POST['boton-enviar-asistencia'])){
+                //include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
+                echo "boton-enviar-asistencia";
+            } elseif(isset($_POST['boton-cambiar-asistencia'])){
+                //include_once ("AD_asistencias/actualizar_cuadro_condicion.php");
+                echo "boton-cambiar-asistencia";
+            }else {
                 echo "Algo ha salido mal";
                 //header("Location: AD_asistencias.php");
             }

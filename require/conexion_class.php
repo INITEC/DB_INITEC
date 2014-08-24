@@ -7,6 +7,7 @@ class conexion {
 	private $_result;	
 	
 	public function __construct () {
+        
         $this->_conexion = mysql_connect("localhost", "root", "jibf123");
 		$this->_base_datos = mysql_select_db("redwe_12350066_initec");
 		

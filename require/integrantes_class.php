@@ -95,7 +95,11 @@ class integrantes {
     
     public function ver_foto ($id_persona){
         $datos_integrante = $this->ver_datos_integrante($id_persona);
-        return "../foto_integrantes/".$datos_integrante["foto"];
+        if(empty($datos_integrante["foto"])){
+          return "../foto_integrantes/user.jpg";  
+        }else{
+		  return "../foto_integrantes/".$datos_integrante["foto"];
+        }
     }
     
     public function ver_apellido_int (){

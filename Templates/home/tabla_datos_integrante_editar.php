@@ -217,6 +217,11 @@ if($acceso == 1) {
 			<input type="submit" id="boton-guardar-datos-integrante" value="GUARDAR CAMBIOS" />
         </div>
         </form>
+        <div>
+            <form method="POST" id="formulario-foto-integrante" enctype="multipart/form-data" > 
+                
+            </form>
+        </div>
         <br>
 <?php
 	}

@@ -48,7 +48,7 @@ if($acceso == 1) {
                     $(id_div).html(data);
                 }
             });
-            setTimeout(function(){cargar_cuadro_marcar_asistencia ();},3000);
+            setTimeout(function(){cargar_cuadro_marcar_asistencia ();},1000);
             return false;
         }
         
@@ -89,7 +89,7 @@ if($acceso == 1) {
                 $(id_form+" :input[name='asistencia']").val(1);
                 actualizar_cuadro_condicion (select, div_respuesta,'1')
             }
-            setTimeout(function(){enviar_asistencia (id_form, id_div);},200);
+            setTimeout(function(){enviar_asistencia (id_form, id_div);},1000);
             
         }
         

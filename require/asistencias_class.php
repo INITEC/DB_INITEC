@@ -16,6 +16,7 @@ class asistencias {
             $inasistencia = 2;
         } else {
             $inasistencia = 1;
+            $hora_asistencia = "";
         }
         
         if ($this->verificar_asistencia($id_persona, $id_reunion) == 0 ){

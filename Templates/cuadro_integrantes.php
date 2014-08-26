@@ -28,23 +28,28 @@ if($id_persona) {
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
 <script type='text/javascript' languaje='javascript'>
+    
+    $div_ancho_ant = 0;
 	function cargar_cuadro_integrantes (msecs){
         $div_ancho = $("#cuadro").width();
-        $parametros = {'div_ancho' : $div_ancho};
-        $.ajax({
-            url: 'cuadro_integrantes_aux.php',
-            type: 'POST',
-            async: true,
-            data: $parametros,
-            success: function (datos){
-                $("#cuadro").html(datos);
-            }
-        });
+        if ($div_ancho != $div_ancho_ant){
+            $div_ancho_ant = $div_ancho;
+            $parametros = {'div_ancho' : $div_ancho};
+            $.ajax({
+                url: 'cuadro_integrantes_aux.php',
+                type: 'POST',
+                async: true,
+                data: $parametros,
+                success: function (datos){
+                    $("#cuadro").html(datos);
+                }
+            });
+        }
         setTimeout(function(){cargar_cuadro_integrantes(msecs);},msecs);
     }
     
     window.onload = function(){
-	   cargar_cuadro_integrantes(3000);
+	   cargar_cuadro_integrantes(500);
     }
 </script>
 

@@ -28,45 +28,48 @@ if($acceso == 1) {
     <script>
         $(function(){
             $("#boton-guardar-datos-integrante").click(function(){
+                var Datos = new FormData(document.forms.namedItem("formulario-datos-integrante")); 
                 $url = "home_aux.php";
                 $.ajax({
                     type: "POST",
                     url: $url,
-                    data: $("#formulario-datos-integrante").serialize(),
+                    data: Datos,
+                    contentType: false,   // tell jQuery not to set contentType
+                    processData: false,  // tell jQuery not to process the data
                     success: function(data){
                         $("#mensaje_registro_integrante").html(data);
                     }
                 });
-                setTimeout(function(){cargar_cuadro_editar_integrante();},3000);
+                setTimeout(function(){cargar_cuadro_editar_integrante();},5000);
                 return false;
             });
         });
     </script>    
-    <form id="formulario-datos-integrante" method="POST" >    
+    <form name="formulario-datos-integrante" method="POST" enctype="multipart/form-data" >
     <table width="700px" align="center">
-            <tr id="tabla2_encabezado" >
-                <td width="350">
+            <tr class="tabla2_encabezado" >
+                <td >
                 Nombres
                 </td>
-                <td width="50">
+                <td >
                 Apellidos
                 </td>
-                <td width="200" rowspan="4" >
+                <td rowspan="4" >
                 <img src="<?php echo $tabla_integrante->foto_int(); ?>" width="200px" height="150">
-
+                <input type="file" name="foto_perfil" >
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
+            <tr class="tabla2_informacion" >
                 <td >
-                    <input type="text" name="nombres" class="input_200" value="<?php echo $tabla_integrante->ver_nombre_int();?>" />
+                    <input type="text" name="nombres" value="<?php echo $tabla_integrante->ver_nombre_int();?>" />
                 </td>
                 <td >
-                    <input type="text" name="apellidos" class="input_200" value="<?php echo $tabla_integrante->ver_apellido_int();?>" />
+                    <input type="text" name="apellidos" value="<?php echo $tabla_integrante->ver_apellido_int();?>" />
                 </td>
             </tr>
-            <tr id="tabla2_encabezado" >
+            <tr class="tabla2_encabezado" >
                 <td width="100" >
-                Telefono
+                Teléfono
                 </td>
                 <td width="300" >
                 Correo
@@ -217,6 +220,7 @@ if($acceso == 1) {
 			<input type="submit" id="boton-guardar-datos-integrante" value="GUARDAR CAMBIOS" />
         </div>
         </form>
+        
         <div>
             <form method="POST" id="formulario-foto-integrante" enctype="multipart/form-data" > 
                 

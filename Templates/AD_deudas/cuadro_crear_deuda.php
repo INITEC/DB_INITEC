@@ -90,7 +90,7 @@ if ($acceso == 1){
 			</tr>
 			<tr id="tabla2_informacion">
 			    <td colspan="2" >
-						<select name="id_cobrador" id="id_cobrador" >
+						<select name="id_cobrador" id="id_cobrador" class="mayuscula" >
                            <option value="" >Nadie</option>
                             <?php			
                             $integrantes_aux->ver_datos_integrantes();

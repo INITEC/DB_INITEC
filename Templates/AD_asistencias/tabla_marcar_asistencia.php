@@ -89,7 +89,7 @@ if($acceso == 1) {
                 $(id_form+" :input[name='asistencia']").val(1);
                 actualizar_cuadro_condicion (select, div_respuesta,'1')
             }
-            setTimeout(function(){enviar_asistencia (id_form, id_div);},1000);
+            setTimeout(function(){enviar_asistencia (id_form, id_div);},1500);
             
         }
         

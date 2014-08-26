@@ -200,25 +200,46 @@ class integrantes {
        }	
 	}
     
+    public function verificar_nom_foto ($nom_foto){
+        $sql = "SELECT id_persona,foto FROM datos_integrantes WHERE foto='".$foto."' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->_conexion->tam_respuesta();
+    }
+    
     public function obtener_nom_foto_int (){
         if (empty($this->_datos_integrante["foto"])){
-            return idate().".jpg";
+            $new_name = idate("U").".jpg";
+            while ($this->verificar_nom_foto ($new_name) != 0 ){
+                $time = idate("U")+50;
+                $new_name = idate("U").".jpg";
+            }
+            return $new_name;
         } else {
             return $this->_datos_integrante["foto"];
         }
     }
     
+    public function guardar_dir_foto_int ($nom_foto){
+        $id_persona = $this->_datos_integrante["id_persona"];
+        $sql = "UPDATE `datos_integrantes` SET foto='".$nom_foto."' WHERE id_persona='".$id_persona."' ";
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
     
-    public function guardar_foto_int($foto_tipo, $foto_temp){
-        if($foto_tipo=="image/jpg"){
+    public function guardar_foto_int($foto){
+        $tipo = $foto["type"];
+        if($tipo == "image/jpeg" || $tipo == "image/jpg" ){
+            //$dimensiones = getimagesize ($ruta_provisional);
+            //$ancho = $dimensiones[0];
+            //$alto = $dimensiones[1];
+            $ruta_provisional = $foto["tmp_name"];
             $nom_foto_int = $this->obtener_nom_foto_int();
-            $ruta_foto = "foto_integrantes/".$nom_foto_int;
-            move_uploaded_file ($foto_temp,$ruta_foto);
-            echo "La foto fue guardada exitosamente";
+            $ruta_foto = "../foto_integrantes/".$nom_foto_int;
+            move_uploaded_file ($ruta_provisional ,$ruta_foto);
+            $this->guardar_dir_foto_int ($nom_foto_int);
+            return "La foto fue guardada exitosamente, Presiona F5";
         } else {
-            echo "La foto no ha podido ser guardada debido a que no es del tipo JPG";
+            return "La foto no se guardo, no es del tipo JPG o JPEG";
         }
-        
     }
     
     public function guardar_datos_primarios_int ($nombres, $apellidos){

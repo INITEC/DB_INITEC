@@ -65,7 +65,12 @@ if($acceso == 1) {
 				} else {
 					$id_facultad = $_POST["id_facultad"];
 				}
-				
+                
+                if($_FILES["foto_perfil"]["name"] != "" ){
+                    $foto_perfil = $_FILES["foto_perfil"];
+                    $mensaje_foto = $integrantes_editar->guardar_foto_int($foto_perfil);
+                }
+                
 				if(
 				$integrantes_editar->guardar_datos_primarios_int ($nombres ,$apellidos) and
 				$integrantes_editar->guardar_datos_secundarios_int($linkedin, $DNI, $direccion ) and
@@ -74,12 +79,14 @@ if($acceso == 1) {
 				){
 				?>
 				<div class="dato_correcto" id="mensaje" >
+                <?php if(isset($mensaje_foto)){echo $mensaje_foto."<br>";}?>
 								SE GUARDARON LOS DATOS CORRECTAMENTE 
 				</div>
 				<?php 
 				} else {
 				?>
 				<div class="dato_incorrecto" id="mensaje" >
+                <?php if(isset($mensaje_foto)){echo $mensaje_foto."<br>";}?>
 								NO SE HA PODIDO GUARDAR LOS DATOS, INTENTE DE NUEVO
 				</div>
 				<?php 

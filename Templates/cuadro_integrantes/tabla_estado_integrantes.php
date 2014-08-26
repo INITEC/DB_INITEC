@@ -42,7 +42,8 @@ if($acceso == 1) {
         $tabla_integrante->ver_datos_integrantes();
         
         ?>
-        <table align="center" width="1000px" >
+        <br>
+        <table align="center" width="90%" >
             <?php
             for ($i=0; $i<$num_row; $i++){
             ?>
@@ -59,13 +60,15 @@ if($acceso == 1) {
                     <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
                 </td>
                 <td width="100" class="<?php echo $class;?>" >
+                    <div class="mayuscula" >
                     <?php
                     $nombre = $integrantes_env->ver_nombre($id_persona_env);
                     $apellido = $integrantes_env->ver_apellido($id_persona_env);
-                    echo ajuste_primera_palabra($nombre,7,'.');
-                    echo "<br>";
                     echo ajuste_primera_palabra($apellido,7,'.');
+                    echo "<br>";
+                    echo ajuste_primera_palabra($nombre,7,'.');
                     ?>
+                    </div>
                 </td>
                 <td class="<?php echo $class;?>" >
                     <?php
@@ -98,13 +101,15 @@ if($acceso == 1) {
                     <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
                 </td>
                 <td width="100" class="<?php echo $class;?>" >
+                    <div class="mayuscula" >
                     <?php
                     $nombre = $integrantes_env->ver_nombre($id_persona_env);
                     $apellido = $integrantes_env->ver_apellido($id_persona_env);
-                    echo ajuste_primera_palabra($nombre,7,'.');
-                    echo "<br>";
                     echo ajuste_primera_palabra($apellido,7,'.');
+                    echo "<br>";
+                    echo ajuste_primera_palabra($nombre,7,'.');
                     ?>
+                    </div>
                 </td>
                 <td class="<?php echo $class;?>" >
                     <?php

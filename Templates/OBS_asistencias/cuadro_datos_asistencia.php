@@ -34,7 +34,7 @@ if($acceso == 1) {
                         Asistencia
                     </td>
                     <td align="center" valign="top" width="100" >
-                        Condición
+                        Condicion
                     </td>
                 <?php
                 }

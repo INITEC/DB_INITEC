@@ -114,12 +114,20 @@ class integrantes {
         return $this->_datos_integrante["DNI"];
     }
     
+    public function ver_telefono_predeterminado ($id_persona){
+        return $this->_telefonos_personas->ver_num_telefono($id_persona);
+    }
+    
     public function ver_telefono_predeterminado_int (){
-        return $this->_telefonos_personas->ver_num_telefono($this->_persona["id_persona"]);
+        return $this->ver_telefono_predeterminado($this->_persona["id_persona"]);
+    }
+    
+    public function ver_correo_predeterminado($id_persona){
+        return $this->_correos_personas->ver_direccion_correo($id_persona);
     }
     
     public function ver_correo_predeterminado_int (){
-        return $this->_correos_personas->ver_direccion_correo($this->_persona["id_persona"]);
+        return $this->ver_correo_predeterminado($this->_persona["id_persona"]);
     }
     
     public function ver_universidad_int (){

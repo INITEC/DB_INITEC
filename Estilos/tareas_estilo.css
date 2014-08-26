@@ -59,6 +59,8 @@ body { background-color: #88A6DC;}
 .subtitulo2 {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#173872;  }
 .subtitulo3 {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#275096;  }
 
+.subtitulo1_small {color:#173872; text-align: center;font-family: "Andele Mono"; font-size: 15px ; background-color:#88A6DC;  }
+
 
 .dato_correcto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#00FF00;  }
 .dato_incorrecto {color:#FFFFFF; text-align: center;font-family: "Andele Mono", monospace; font-size: 20px ; background-color:#FF0000;  }

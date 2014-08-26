@@ -117,7 +117,7 @@ if($acceso == 1) {
                     <input type="hidden" name="otro_correo" id="otro_correo">
                 </td>
             </tr>
-            <tr id="tabla2_encabezado" >
+            <tr class="tabla2_encabezado" >
                 <td width="400" colspan="2">
                 Linkedin
                 </td>
@@ -125,15 +125,15 @@ if($acceso == 1) {
                 DNI
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
+            <tr class="tabla2_informacion" >
                 <td width="400" colspan="2">
-                    <input type="text" name="linkedin" class="input_500" value="<?php echo $tabla_integrante->ver_linkedin_int();?>" />
+                    <input type="text" name="linkedin" value="<?php echo $tabla_integrante->ver_linkedin_int();?>" />
                 </td>
                 <td width="150" >
-                    <input type="text" name="DNI" class="input_200" value="<?php echo $tabla_integrante->ver_DNI_int(); ?>" />
+                    <input type="text" name="DNI" value="<?php echo $tabla_integrante->ver_DNI_int(); ?>" />
                 </td>
             </tr>
-            <tr id="tabla2_encabezado" >
+            <tr class="tabla2_encabezado" >
                 <td width="300" >
                 Universidad
                 </td>
@@ -144,7 +144,7 @@ if($acceso == 1) {
                 Facultad
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
+            <tr class="tabla2_informacion" >
                 <td width="300" >
                     <select name="id_universidad" id="id_universidad" onchange="eval_select('id_universidad','otro_universidad')">
 							<?php 
@@ -188,7 +188,7 @@ if($acceso == 1) {
 					<input type="hidden" name="otro_facultad" id="otro_facultad">
                 </td>
             </tr>
-            <tr id="tabla2_encabezado" >
+            <tr class="tabla2_encabezado" >
                 <td width="400">
                 Direccion
                 </td>
@@ -199,15 +199,15 @@ if($acceso == 1) {
                 Usuario
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
+            <tr class="tabla2_informacion" >
                 <td width="400" >
-                    <input type="text" name="direccion" class="input_200" value="<?php echo $tabla_integrante->ver_direccion_int();?>" />
+                    <input type="text" name="direccion" value="<?php echo $tabla_integrante->ver_direccion_int();?>" />
                 </td>
                 <td width="400">
-                    <input type="text" name="cod_universitario" class="input_200" value="<?php echo $tabla_integrante->ver_cod_universitario_int();?>" />
+                    <input type="text" name="cod_universitario" value="<?php echo $tabla_integrante->ver_cod_universitario_int();?>" />
                 </td>
                 <td width="150" >
-                    <input type="text" name="usuario" class="input_200" value="<?php echo $tabla_integrante->ver_usuario_int();?>" />
+                    <input type="text" name="usuario" value="<?php echo $tabla_integrante->ver_usuario_int();?>" />
                 </td>
             </tr>
         </table>
@@ -220,12 +220,6 @@ if($acceso == 1) {
 			<input type="submit" id="boton-guardar-datos-integrante" value="GUARDAR CAMBIOS" />
         </div>
         </form>
-        
-        <div>
-            <form method="POST" id="formulario-foto-integrante" enctype="multipart/form-data" > 
-                
-            </form>
-        </div>
         <br>
 <?php
 	}

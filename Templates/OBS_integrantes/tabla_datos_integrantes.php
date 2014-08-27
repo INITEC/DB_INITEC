@@ -45,12 +45,12 @@ if($acceso == 1) {
                 <?php } ?>
                 <?php if (isset($nombres_corto)){?>
                 <td>
-                    Nombre y Apellido
+                    Apellido y Nombre
                 </td>
                 <?php } ?>
                 <?php if (isset($nombres_completo)){?>
                 <td>
-                    Nombres y Apellidos
+                    Apellidos y Nombres
                 </td>
                 <?php } ?>
                 <?php if (isset($telefono)){?>
@@ -101,6 +101,7 @@ if($acceso == 1) {
         while ($dato_lista = $lista_grupos->retornar_SELECT()){
             $cont_lista++;
             $id_persona_list = $dato_lista["id_persona"];
+            $datos_integrante = $integrantes_aux->ver_datos_integrante($id_persona_list);
         ?>
             <tr class="tabla1_informacion" >
                 <td>
@@ -145,32 +146,34 @@ if($acceso == 1) {
                 <?php } ?>
                 <?php if (isset($linkedin)){?>
                 <td>
-                    Linkedin
+                    <a class="enlaces" target="_blank" href="https://<?php echo $datos_integrante["linkedin"]; ?>">
+                    <?php echo $datos_integrante["linkedin"]; ?>  
+                    </a>
                 </td>
                 <?php } ?>
                 <?php if (isset($DNI)){?>
                 <td>
-                    DNI
+                    <?php echo $datos_integrante["DNI"] ?>
                 </td>
                 <?php } ?>
                 <?php if (isset($universidad)){?>
                 <td>
-                    <?php echo $integrantes_aux->ver_telefono_predeterminado($id_persona_list); ?>
+                    <?php echo $integrantes_aux->ver_universidad($datos_integrante["id_universidad"]); ?>
                 </td>
                 <?php } ?>
                 <?php if (isset($facultad)){?>
                 <td>
-                    <?php echo $integrantes_aux->ver_telefono_predeterminado($id_persona_list); ?>
+                    <?php echo $integrantes_aux->ver_facultad($datos_integrante["id_facultad"]); ?>
                 </td>
                 <?php } ?>
                 <?php if (isset($especialidad)){?>
                 <td>
-                    <?php echo $integrantes_aux->ver_telefono_predeterminado($id_persona_list); ?>
+                    <?php echo $integrantes_aux->ver_especialidad($datos_integrante["id_especialidad"]); ?>
                 </td>
                 <?php } ?>
                 <?php if (isset($cod_universitario)){?>
                 <td>
-                    Cod. Universitario
+                    <?php echo $datos_integrante["cod_universitario"] ?>
                 </td>
                 <?php } ?>
             </tr>

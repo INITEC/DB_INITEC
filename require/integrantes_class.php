@@ -130,16 +130,28 @@ class integrantes {
         return $this->ver_correo_predeterminado($this->_persona["id_persona"]);
     }
     
+    public function ver_universidad ($id_universidad){
+        return $this->_universidades->ver_nom_universidad($id_universidad);
+    }
+    
     public function ver_universidad_int (){
-        return $this->_universidades->ver_nom_universidad($this->_datos_integrante["id_universidad"]);
+        return $this->ver_universidad($this->_datos_integrante["id_universidad"]);
+    }
+    
+    public function ver_facultad ($id_facultad){
+        return $this->_facultades->ver_nom_facultad($id_facultad);
     }
     
     public function ver_facultad_int (){
-        return $this->_facultades->ver_nom_facultad($this->_datos_integrante["id_facultad"]);
+        return $this->ver_facultad($this->_datos_integrante["id_facultad"]);
+    }
+    
+    public function ver_especialidad ($id_especialidad){
+        return $this->_especialidades->ver_nom_especialidad($id_especialidad);
     }
     
     public function ver_especialidad_int (){
-        return $this->_especialidades->ver_nom_especialidad($this->_datos_integrante["id_especialidad"]);
+        return $this->ver_especialidad($this->_datos_integrante["id_especialidad"]);
     }
     
     public function ver_cod_universitario_int (){

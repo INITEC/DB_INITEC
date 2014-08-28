@@ -27,7 +27,7 @@
                         while ($list_pagos = $pagos->retornar_SELECT()){
                             $id_pago = $list_pago["id_pago"];
                        ?>
-                        <td bgcolor="<?php echo $pagos_aux->ver_color_cond($list_pagos["id_cond_pago"]);?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" align="center" <?php if($ajax == 1){?> onmouseover="callDivs_dato ('pagos_<?php echo $id_persona;?>', '<?php echo $url; ?>', '<?php echo $id_pago;?>', 'id_pago')" <?php } ?> onClick ="limpiar_elemento('pago_<?php echo $id_persona;?>');" >
+                        <td class="<?php echo $pagos_aux->ver_class_cond($list_pagos["id_cond_pago"]);?>" width="<?php echo $width; ?>" height="<?php echo $height; ?>" align="center" <?php if($ajax == 1){?> onmouseover="callDivs_dato ('pagos_<?php echo $id_persona;?>', '<?php echo $url; ?>', '<?php echo $id_pago;?>', 'id_pago')" <?php } ?> onClick ="limpiar_elemento('pago_<?php echo $id_persona;?>');" >
                             <?php
                             //echo 1;
                             ?>

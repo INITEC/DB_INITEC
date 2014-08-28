@@ -4,7 +4,8 @@ if($acceso == 1) {
     <head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 		<link href="../Estilos/cuadro_amonestaciones.css" type="text/css" rel="stylesheet" >	
-		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >	
+		<link href="../Estilos/cuadro_inasistencias.css" type="text/css" rel="stylesheet" >
+		<link href="../Estilos/pagos.css" type="text/css" rel="stylesheet" >	
 	</head>
 
 	<?php

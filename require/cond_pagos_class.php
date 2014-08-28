@@ -14,9 +14,9 @@ class cond_pagos {
         return $this->retornar_SELECT();
     }
     
-    public function ver_color ($id_cond_pago){
+    public function ver_class_css ($id_cond_pago){
         $cond_pago = $this->ver_cond_pago($id_cond_pago);
-        return $cond_pago["cod_color"];
+        return $cond_pago["class_css"];
     }
     
     public function retornar_SELECT(){

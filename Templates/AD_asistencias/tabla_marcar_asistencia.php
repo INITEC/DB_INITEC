@@ -104,6 +104,9 @@ if($acceso == 1) {
     <br>
     <table align="center" width="95%" cellpadding="0" cellspacing="0" >
         <tr class="tabla1_encabezado" >
+            <td>
+                No
+            </td>
             <td width="50" >
                 Foto
             </td>
@@ -125,8 +128,10 @@ if($acceso == 1) {
         </tr>
         <?php
         $lista_grupos->ver_integrantes($datos_reunion["id_grupo"]);
+        $cont_int = 0;
         while ($dato_grupo = $lista_grupos->retornar_SELECT() ){
             $id_persona_env = $dato_grupo["id_persona"];
+            $cont_int++;
             if($asistencias->verificar_asistencia($id_persona_env, $id_reunion) != 0){
                 $dato_asistencia = $asistencias->ver_asistencia_int($id_persona_env,$id_reunion);
                 $class = $asistencias->ver_class_condicion($dato_asistencia["id_cond_asist"]);
@@ -149,10 +154,13 @@ if($acceso == 1) {
                 
         ?>
                 <tr>
-                    <td colspan="6" >
+                    <td colspan="7" >
                 <form id="asistencia<?php echo $id_persona_env;?>" method="POST">
                     <table width="100%" cellpadding="0" cellspacing="0" >
                     <tr class="<?php echo $class; ?>" >
+                        <td width="30" >
+                            <?php echo $cont_int; ?>
+                        </td>
                         <td width="50" >
                             <img src="<?php echo $integrantes_aux->ver_foto($id_persona_env); ?>" width="50" height="40" >
                         </td>
@@ -203,7 +211,7 @@ if($acceso == 1) {
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div id="respuesta_marcar_asistencia_<?php echo $id_persona_env;?>" >
 
                             </div>

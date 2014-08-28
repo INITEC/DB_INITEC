@@ -25,8 +25,8 @@ class deudas {
         return $this->retornar_SELECT();
     }
     
-    public function ver_deudas ($id_temporada){
-        $sql = "SELECT * FROM `deudas` WHERE id_temporada='".$id_temporada."' AND estado='1' ORDER BY id_deuda DESC ";
+    public function ver_deudas ($id_temporada, $order="DESC"){
+        $sql = "SELECT * FROM `deudas` WHERE id_temporada='".$id_temporada."' AND estado='1' ORDER BY id_deuda ".$order." ";
         return $this->_conexion->ejecutar_sentencia($sql);
     }
     
@@ -34,6 +34,23 @@ class deudas {
         $sql = "SELECT * FROM deudas WHERE id_deuda='".$id_deuda."' ";
         $this->_conexion->ejecutar_sentencia($sql);
         return $this->retornar_SELECT();
+    }
+    
+    public function ver_deudas_acargo($id_persona,$id_temporada){
+        $sql = "SELECT * FROM `deudas` WHERE id_temporada='".$id_temporada."' AND id_cobrador='".$id_persona."' AND estado='1' ORDER BY id_deuda DESC ";
+        echo $sql;
+        return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+    public function ver_monto_total ($id_deuda){
+        $deuda = $this->ver_deuda($id_deuda);
+        return $deuda["monto_total"];
+    }
+    
+    public function verificar_cobrador ($id_persona, $id_deuda){
+        $sql = "SELECT * FROM `deudas` WHERE id_cobrador='".$id_persona."' AND id_deuda='".$id_deuda."' AND estado='1' ";
+        $this->_conexion->ejecutar_sentencia($sql);
+        return $this->_conexion->tam_respuesta();
     }
     
     public function cambio ($id_deuda, $nombre_deuda, $fecha_final, $monto_total, $id_cobrador, $id_temporada){

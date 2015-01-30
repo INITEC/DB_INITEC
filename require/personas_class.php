@@ -29,7 +29,7 @@ class personas {
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
     public function ver_personas (){
-		$sql = "SELECT * FROM personas ORDER BY orden ASC";
+		$sql = "SELECT * FROM personas ORDER BY apellidos ASC";
 		return $this->_conexion->ejecutar_sentencia($sql);		
 	}
 	public function ver_persona ($id_persona){
@@ -37,6 +37,7 @@ class personas {
 		$this->_conexion->ejecutar_sentencia($sql);
         return $this->retornar_SELECT();
 	}
+    
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}

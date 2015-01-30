@@ -17,6 +17,15 @@ class cond_int {
 		return $this->_conexion->ejecutar_sentencia($sql);
     }
     
+    public function cambiar_condicion_persona ($id_persona, $id_tipo_cond){
+        $this->nuevo($id_tipo_cond, $id_persona);
+        $sql = "SELECT `id_cond_int`, `id_tipo_cond`, `id_persona`, `fecha_cond` FROM `cond_int` WHERE id_persona='".$id_persona."' ORDER BY `cond_int`.`id_cond_int` DESC  LIMIT 1";
+        $this->_conexion->ejecutar_sentencia($sql);
+        $condicion = $this->retornar_SELECT();
+        $sql = "UPDATE `datos_integrantes` SET `id_cond_int`='".$condicion["id_cond_int"]."' WHERE id_persona='".$id_persona."'";
+        return $this->_conexion->ejecutar_sentencia($sql);        
+    }
+    
     public function ver_ultimo ($id_persona){
         $sql = "SELECT * FROM `cond_int` WHERE id_persona='".$id_persona."' ORDER BY id_cond_int DESC LIMIT 1 ";
         $this->_conexion->ejecutar_sentencia($sql);
@@ -37,8 +46,10 @@ class cond_int {
         return $this->retornar_SELECT();
     }
     public function ver_cond_persona ($id_persona){
-        $sql = "SELECT * FROM `cond_int` WHERE id_persona='".$id_persona."' ";
-        return $this->_conexion->ejecutar_sentencia($sql);
+        $sql = "SELECT * FROM `cond_int` WHERE id_persona='".$id_persona."' ORDER BY id_cond_int DESC LIMIT 1";
+        $this->_conexion->ejecutar_sentencia($sql);
+        $cond_int = $this->retornar_SELECT();
+        return $cond_int["id_tipo_cond"];
     }
     protected function ver_id_tipo($id_cond_int){
         $cond = $this->ver_cond($id_cond_int);

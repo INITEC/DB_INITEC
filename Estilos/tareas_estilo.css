@@ -98,5 +98,8 @@ body { background-color: #88A6DC;}
 	.datos_debe {background-color:#FFA500; text-align:center; color:#FFFFFF; valign:top; align:center;}
 	.datos_pago {background-color:#32CD32; text-align:center; color:#FFFFFF; valign:top; align:center;}
 	.datos_deuda {background-color:#FFFFFF; text-align:center; color:#173872; valign:top; align:center;}
-	
+    .masthead-danger {
+  background-color: #d9534f;
+}
+
 

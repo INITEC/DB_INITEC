@@ -200,7 +200,7 @@ class integrantes {
 	}
     
     public function ver_condicion_integrante($id_persona){
-        $sql = "SELECT datos_integrantes.*, cond_int.id_cond_int, cond_int.id_tipo_cond FROM datos_integrantes, cond_int WHERE datos_integrantes.id_persona ='1' AND cond_int.id_cond_int=datos_integrantes.id_cond_int";
+        $sql = "SELECT datos_integrantes.*, cond_int.id_cond_int, cond_int.id_tipo_cond FROM datos_integrantes, cond_int WHERE datos_integrantes.id_persona ='".$id_persona."' AND cond_int.id_cond_int=datos_integrantes.id_cond_int";
 		$this->_conexion->ejecutar_sentencia($sql);
 		$integrante = $this->retornar_SELECT();
         return $integrante["id_tipo_cond"];
@@ -306,6 +306,11 @@ class integrantes {
         $id_cond_int = $cond_int["id_cond_int"];
         $sql = "INSERT INTO `datos_integrantes` (`id_dato_int`, `id_persona`, `id_cond_int`, `id_trabajo` ) VALUES (null, '".$id_persona."', '".$id_cond_int."', '".$id_trabajo."' ) ";
         return $this->_conexion->ejecutar_sentencia($sql);
+    }
+    
+        public function buscar_integrante_part_nombre ($part_nombre){
+        $sql = "SELECT * FROM personas WHERE nombres like '%".$part_nombre."%' OR apellidos like '%".$part_nombre."%' ";
+        $this->_conexion->ejecutar_sentencia($sql);
     }
     
     public function retornar_SELECT(){

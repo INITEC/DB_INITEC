@@ -2,7 +2,6 @@
 require_once ("../require/conexion_class.php");
 require_once ("../require/tipos_amonestacion_class.php");
 require_once ("../require/reglamentos_class.php");
-
 class amonestaciones {
 	private $_conexion;
     private $_tipos_amonestacion;
@@ -44,6 +43,5 @@ class amonestaciones {
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}
-   
 }  
 ?>

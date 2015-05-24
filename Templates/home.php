@@ -16,16 +16,23 @@ if($id_persona) {
 	if($obligaciones->verificar_tarea($id_trabajo,$tarea_actual)) {
 		$trabajos = new trabajos_int();
 		$tareas = new tareas_int();
-/* ..................................................................................................................... */
+/* ....................................................................... */
 ?>
-<html>
+<html lang="es">
 <head>
-<title>..::<?php echo $tarea_actual; ?>::..</title>
-<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
-<script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
-<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
-<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <?php include_once("../Include/head.meta.php"); ?>
+    
+    <title>..::<?php echo $tarea_actual; ?>::..</title>
+    
+    <!-- Including general JavaScript and CSS -->
+    <?php include_once("../Include/header.general.php"); ?>  
+    
+    
+    <link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
+    <script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
+    <script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
+    <script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
+
 
 <script type='text/javascript' languaje='javascript'>
 	function cargar_cuadro_datos_integrante (){
@@ -50,52 +57,47 @@ if($id_persona) {
 
 </head>
 
-<body style="background-color:#88A6DC">
-<div id="contenedor_tr">
-			<div id="cabecera_tr">
-				<?php include_once("../Include/cabecera_tarea.php");?>
-			</div>
-			<div id="cuerpo_tr">
-				<div id="menu_izquierda_tr">
-					<?php include_once("../Include/menu_obligaciones.php");?>
-				</div>
-		<div id="presentacion_tr" >
-			<div id="titulo_tr" >
-			<h1><?php echo $tarea_actual; ?></h1>
-			</div>
-			<div >
-<!-- *************************************************************************************************** -->
-				<div>
-				    <form action="home_aux.php" method="POST" name="opciones_home">
-                        <table width="700px" align="center">
-                            <tr>
-                                <td width="350px" align="left" >
-                                    <input type="submit" name="cambiar_clave" title="Cambiar Clave de usuario" value="..::Cambiar Clave::.." >
-                                </td>
-                                <td width="350px" align="right" >
-                                    <input type="submit" name="editar_datos" title="Editar Datos" value="..::Editar Datos::..">
-                                </td>
-                            </tr>
-                        </table>
-					</form> 
-				</div>
-
+<body>
+<div id="wrapper">
+    
+    <!-- Navigation -->
+    <?php include_once("../Include/navbar.general.php"); ?>
+    
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header" ><?php echo $tarea_actual; ?></h1>
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row -->
+            
+            <!-- Container Body -->
+			<div class="col-md-12" >
+<!-- ******************************************************************** -->
 				<div id="cuadro">
                     <!-- Este div usa AJAX para mostrar informacion -->
 				</div>
-<!-- *************************************************************************************************** -->
+<!-- ******************************************************************* -->
 			</div>
-		</div>	
-		</div>
-		</div>
-		<div id="pie_pagina_tr">
-			<?php include_once("../Include/pie_pagina.php");?>
-		</div>
-	</body>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+    
+    <div id="pie_pagina_tr">
+        <?php include_once("../Include/pie_pagina.php");?>
+    </div>
+    
+</div>
+<!-- /#wrapper -->
+
+    
+</body>
 </html>
 
 <?php 
-/* ................................................................................................................. */
+/* ...................................................................... */
 	} else {
         include_once ("../Include/no_tarea.php");
     }	

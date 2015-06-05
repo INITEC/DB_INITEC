@@ -24,6 +24,8 @@ if($id_persona) {
 				include_once ("AD_amonestaciones/cuadro_amonestacion.php");
 			} elseif(isset($_POST['boton-ver-lista-busqueda-nombre'])){
                 include_once ("AD_amonestaciones/lista_busqueda_integrantes.php");
+            } elseif(isset($_POST['boton-guardar-amonestaciones'])){
+                include_once ("AD_amonestaciones/guardar.amonestaciones.php");
             } else {
                 echo "Algo ha salido mal";
                 //header("Location: AD_asistencias.php");

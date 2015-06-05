@@ -3,6 +3,16 @@ if($acceso == 1) {
 ?>
 	<head>
 		<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
+        <script type="text/javascript" languaje="javascript" src="home/home_editar.js"></script>
+<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/from_2_ajax.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/eval_select.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_1_ajax.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/callDivs_dato_ajax.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/limpiar_elemento.js"></script>
+<script type="text/javascript" languaje="javascript" src="../JavaScript/enviar_form_ajax.js"></script>
+<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
+        
 	</head>
 
 	<?php
@@ -46,8 +56,8 @@ if($acceso == 1) {
         });
     </script>    
     <form name="formulario-datos-integrante" method="POST" enctype="multipart/form-data" >
-    <table width="700px" align="center">
-            <tr class="tabla2_encabezado" >
+    <table class="table table-bordered table-responsive col-md-12 text-center ">
+            <tr class="active" >
                 <td >
                 Nombres
                 </td>
@@ -59,7 +69,7 @@ if($acceso == 1) {
                 <input type="file" name="foto_perfil" >
                 </td>
             </tr>
-            <tr class="tabla2_informacion" >
+            <tr >
                 <td >
                     <input type="text" name="nombres" value="<?php echo $tabla_integrante->ver_nombre_int();?>" />
                 </td>
@@ -67,16 +77,16 @@ if($acceso == 1) {
                     <input type="text" name="apellidos" value="<?php echo $tabla_integrante->ver_apellido_int();?>" />
                 </td>
             </tr>
-            <tr class="tabla2_encabezado" >
-                <td width="100" >
+            <tr class="active" >
+                <td >
                 Teléfono
                 </td>
-                <td width="300" >
+                <td >
                 Correo
                 </td>
             </tr>
-            <tr id="tabla2_informacion" >
-                <td width="100" >
+            <tr >
+                <td >
                     <select name="id_telefono" id="id_telefono" onchange="eval_select('id_telefono','otro_telefono');" >
 				        <?php 
 						if($telefonos->cant_telefonos($id_persona_tabla) == 0) {
@@ -96,7 +106,7 @@ if($acceso == 1) {
 				    </select>
                     <input type="hidden" name="otro_telefono" id="otro_telefono">
                 </td>
-                <td width="300" >
+                <td >
                     <select name="id_correo" id="id_correo" onchange="eval_select('id_correo','otro_correo');" >
 				        <?php 
 						if($correos->cant_correos($id_persona_tabla) == 0) {
@@ -117,35 +127,32 @@ if($acceso == 1) {
                     <input type="hidden" name="otro_correo" id="otro_correo">
                 </td>
             </tr>
-            <tr class="tabla2_encabezado" >
-                <td width="400" colspan="2">
+            <tr class="active" >
+                <td colspan="2">
                 Linkedin
                 </td>
-                <td width="150" >
+                <td >
                 DNI
                 </td>
             </tr>
-            <tr class="tabla2_informacion" >
-                <td width="400" colspan="2">
+            <tr >
+                <td colspan="2" >
                     <input type="text" name="linkedin" value="<?php echo $tabla_integrante->ver_linkedin_int();?>" />
                 </td>
-                <td width="150" >
+                <td >
                     <input type="text" name="DNI" value="<?php echo $tabla_integrante->ver_DNI_int(); ?>" />
                 </td>
             </tr>
-            <tr class="tabla2_encabezado" >
-                <td width="300" >
+            <tr class="active" >
+                <td >
                 Universidad
                 </td>
-                <td width="100" >
+                <td colspan="2" >
                 Especialidad
                 </td>
-                <td width="150" >
-                Facultad
-                </td>
             </tr>
-            <tr class="tabla2_informacion" >
-                <td width="300" >
+            <tr >
+                <td >
                     <select name="id_universidad" id="id_universidad" onchange="eval_select('id_universidad','otro_universidad')">
 							<?php 
 							$universidades->ver_universidades();
@@ -159,7 +166,7 @@ if($acceso == 1) {
 				    </select>
 					<input type="hidden" name="otro_universidad" id="otro_universidad">
                 </td>
-                <td width="100" >
+                <td colspan="2">
                     <select name="id_especialidad" id="id_especialidad" onchange="eval_select('id_especialidad','otro_especialidad')">
 							<?php 
 							$especialidades->ver_especialidades();
@@ -173,7 +180,14 @@ if($acceso == 1) {
 				    </select>
 					<input type="hidden" name="otro_especialidad" id="otro_especialidad">
                 </td>
-                <td width="150" >
+            </tr>
+            <tr class="active">
+                <td colspan="3" >
+                Facultad
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" >
                     <select name="id_facultad" id="id_facultad" onchange="eval_select('id_facultad','otro_facultad')">
 							<?php 
 							$facultades->ver_facultades();
@@ -188,25 +202,25 @@ if($acceso == 1) {
 					<input type="hidden" name="otro_facultad" id="otro_facultad">
                 </td>
             </tr>
-            <tr class="tabla2_encabezado" >
-                <td width="400">
+            <tr class="active" >
+                <td >
                 Direccion
                 </td>
-                <td width="400">
+                <td >
                 Codigo Universitario
                 </td>
-                <td width="150" >
+                <td >
                 Usuario
                 </td>
             </tr>
-            <tr class="tabla2_informacion" >
-                <td width="400" >
+            <tr >
+                <td >
                     <input type="text" name="direccion" value="<?php echo $tabla_integrante->ver_direccion_int();?>" />
                 </td>
-                <td width="400">
+                <td >
                     <input type="text" name="cod_universitario" value="<?php echo $tabla_integrante->ver_cod_universitario_int();?>" />
                 </td>
-                <td width="150" >
+                <td >
                     <input type="text" name="usuario" value="<?php echo $tabla_integrante->ver_usuario_int();?>" />
                 </td>
             </tr>
@@ -215,12 +229,11 @@ if($acceso == 1) {
         <div id="mensaje_registro_integrante" >
             <!-- Aqui aparecera la respuesta del AJAX del formulario -->
         </div>
-        <div id="subtitulo1">
+        <div>
             <input type="hidden" name="boton-guardar-datos-integrante" value="boton" >
-			<input type="submit" id="boton-guardar-datos-integrante" value="GUARDAR CAMBIOS" />
+			<input type="submit" id="boton-guardar-datos-integrante" class="btn btn-success" value="GUARDAR CAMBIOS" />
         </div>
         </form>
-        <br>
 <?php
 	}
 }

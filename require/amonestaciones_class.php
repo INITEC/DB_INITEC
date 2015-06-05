@@ -13,6 +13,11 @@ class amonestaciones {
         $this->_reglamentos = new reglamentos();
 	}
     
+    public function nuevo ($id_receptor, $id_remitente, $id_tipo_amonestacion, $motivo, $id_reglamento, $id_temporada, $fecha_falta, $articulo = 18, $capitulo = 'V'  ){
+        $sql = "INSERT INTO `amonestaciones`(`id_amonestacion`, `id_receptor`, `id_remitente`, `fecha_emision`, `fecha_falta`, `id_tipo_amonestacion`, `motivo`, `id_reglamento`, `articulo`, `capitulo`, `id_temporada`) VALUES (null, '".$id_receptor."', '".$id_remitente."', now(), '".$fecha_falta."', '".$id_tipo_amonestacion."', '".$motivo."', '".$id_reglamento."', '".$articulo."', '".$capitulo."', '".$id_temporada."' )";
+        return $this->_conexion->ejecutar_sentencia($sql);       
+    }
+    
     public function ver_id_amonestaciones_int ($id_persona, $id_temporada){
         $sql = "SELECT id_amonestacion, id_tipo_amonestacion, id_receptor FROM amonestaciones WHERE id_receptor='".$id_persona."' AND id_temporada='".$id_temporada."' ORDER BY id_amonestacion ASC ";
         return $this->_conexion->ejecutar_sentencia($sql);
@@ -43,5 +48,7 @@ class amonestaciones {
     public function retornar_SELECT(){
 		return $this->_conexion->retornar_array();
 	}
+    
+    
 }  
 ?>

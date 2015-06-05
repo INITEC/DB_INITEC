@@ -42,7 +42,7 @@ if($acceso == 1) {
 			<br>
 			Directorio de Talento Humano
 			<br>
-            <br>
+            <br> 
 			</div>
         </div>
 <?php

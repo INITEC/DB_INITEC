@@ -17,7 +17,7 @@ if($acceso == 1) {
             $id_persona_date = $integrante_date["id_persona"];
             if ($integrante->verificar_activo($id_persona_date)){
     ?>
-            <a class="list-group-item text-uppercase" id="Per<?php echo $id_persona_date; ?>" onclick="AddIntAmon(<?php echo $id_persona_date; ?>, <?php echo $integrante->ver_nombre_corto($id_persona_date); ?>)" ><?php echo $integrante->ver_nombre_completo($id_persona_date); ?></a>
+            <a class="list-group-item text-uppercase" id="Per<?php echo $id_persona_date; ?>" onclick="AddIntAmon(<?php echo $id_persona_date; ?>, '<?php echo $integrante->ver_nombre_corto($id_persona_date); ?>');" ><?php echo $integrante->ver_nombre_completo($id_persona_date); ?></a>
     <?php
             }
         }

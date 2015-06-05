@@ -12,7 +12,7 @@ class conexion {
     
 	$this->_conexion = mysql_connect("localhost", "root", "jibf123");
 	$this->_base_datos = mysql_select_db("redwe_12350066_initec");
-        
+    
 	// Server Redwebmaster
 	/*
 	$this->_conexion = mysql_connect("sql307.redwebmaster.com.ar","redwe_12350066","jibf123");
@@ -20,10 +20,11 @@ class conexion {
 	*/
 	
 	// Hosting Godaddy
-        /*
+    /*    
 	$this->_conexion = mysql_connect("localhost", "JIBF", "jibf123") or die('No pudo conectarse: ' . mysql_error());
 	$this->_base_datos = mysql_select_db("redwe_12350066_initec");
-		*/
+    */  
+        
 	} 
 	public function ejecutar_sentencia ($sql) {
 		$this->_sql = $sql;

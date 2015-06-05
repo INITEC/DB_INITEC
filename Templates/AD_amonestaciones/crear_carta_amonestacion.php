@@ -36,10 +36,10 @@ if($acceso == 1) {
 			
 			Sin otro particular que manifestarle, se despide atentamente.<br><br>
 			<?php  echo $integrante_amo->ver_nombre_completo($amonestacion["id_remitente"]); ?>
-			<br>
+			<!-- <br>
 			Directorio de Talento Humano
 			<br>
-            <br>
+            <br> -->
 			</div>
         </div>
 <?php

@@ -37,7 +37,7 @@ if($id_persona) {
 <script type='text/javascript' languaje='javascript'>
 	function cargar_cuadro_datos_integrante (){
         $parametros = {
-            'boton-ver-datos-integrante' : true
+            'boton-ver-presentacion-integrante' : true
         };
         $.ajax({
             url: 'home_aux.php',

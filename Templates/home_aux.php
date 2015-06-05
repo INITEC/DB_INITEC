@@ -22,6 +22,8 @@ if($id_persona) {
 				include_once ("home/home_cambiar_clave.php");
 			}elseif(isset($_POST['editar_datos'])) {
 				include_once ("home/home_editar.php");
+			}elseif(isset($_POST['boton-ver-presentacion-integrante'])) {
+				include_once ("home/tabla.integrante.presentacion.php");
 			}elseif(isset($_POST['cambiar_clave_cambiar'])){
                 include_once ("home/home_cambiar_clave_cambiar.php");
             }elseif(isset($_POST["boton-ver-datos-integrante"])){

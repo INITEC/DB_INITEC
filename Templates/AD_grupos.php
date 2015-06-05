@@ -20,9 +20,14 @@ if($id_persona) {
 		$grupo = new grupos();
 /* ..................................................................................................................... */
 ?>
-<html>
-	<head>
-	<title>..::<?php echo $tarea_actual; ?>::..</title>
+<html lang="es">
+<head>
+    <?php include_once("../Include/head.meta.php"); ?>
+    
+    <title>..::<?php echo $tarea_actual; ?>::..</title>
+    
+    <!-- Including general JavaScript and CSS -->
+    <?php include_once("../Include/header.general.php"); ?> 
 	<link href="../Estilos/tareas_estilo.css" type="text/css" rel="stylesheet" >
 	<script type="text/javascript" language="javascript" src="../JavaScript/validacion_input_1.js" ></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -70,20 +75,25 @@ if($id_persona) {
     </script>
 	
 	</head>
-	<body style="background-color:#88A6DC">
-	<div id="contenedor_tr">
-		<div id="cabecera_tr">
-				<?php include_once("../Include/cabecera_tarea.php");?>
-		</div>
-		<div id="cuerpo_tr">
-				<div id="menu_izquierda_tr">
-					<?php include_once("../Include/menu_obligaciones.php");?>
-				</div>
-		<div id="presentacion_tr" >
-			<div id="titulo_tr" >
-			<h1><?php echo $tarea_actual; ?></h1>
-			</div>
-			<br>
+
+<body>
+<div id="wrapper">
+    
+    <!-- Navigation -->
+    <?php include_once("../Include/navbar.general.php"); ?>
+    
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header" ><?php echo $tarea_actual; ?></h1>
+                </div><!-- /.col-lg-12 -->
+            </div><!-- /.row -->
+            
+            <!-- Container Body -->
+			<div class="col-md-12" >
+<!-- ******************************************************************** -->
 			<div>
 				<div>
 					<table align="center">
@@ -143,24 +153,31 @@ if($id_persona) {
 					
 				</div>
 			</div>
-		</div>	
-		</div>
-	</div>
-		<div id="pie_pagina_tr">
-			<?php include_once("../Include/pie_pagina.php");?>
-		</div>
-	</body>
+		<!-- ******************************************************************* -->
+			</div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+    
+    <div id="pie_pagina_tr">
+        <?php include_once("../Include/pie_pagina.php");?>
+    </div>
+    
+</div>
+<!-- /#wrapper -->
+
+    
+</body>
 </html>
 
 <?php 
-/* ................................................................................................................. */
-			}
-	else {
-			include_once ("../Include/no_tarea.php");
-			}	
-		}
-else {
-		include_once ("../Include/no_acceso.php");
-		}
+/* ...................................................................... */
+	} else {
+        include_once ("../Include/no_tarea.php");
+    }	
+} else {
+    include_once ("../Include/no_acceso.php");
+}
 
 ?>

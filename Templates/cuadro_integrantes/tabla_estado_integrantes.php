@@ -15,12 +15,14 @@ if($acceso == 1) {
         require_once ("../require/amonestaciones_class.php");
         require_once ("../require/pagos_class.php");
         require_once ("../require/cond_pagos_class.php");
+        require_once ("../require/notas_class.php");
         
         require_once ("../require/ajuste_primera_palabra_func.php");
         
         include_once("../Include/cuadro_amonestaciones_int_func.php");
         include_once("../Include/cuadro_inasistencias_int_func.php");
         include_once("../Include/cuadro_pagos_int_func.php");
+        include_once("../Include/cuadro_notas_int_func.php");
         
         $div_ancho = $_POST["div_ancho"];
         $tabla_integrante = new integrantes();
@@ -29,6 +31,8 @@ if($acceso == 1) {
         $amonestaciones = new amonestaciones();
         $pagos = new pagos();
         $pagos_aux = new pagos();
+        $notas = new notas();
+        $notas_aux = new notas();
         $integrantes_env = new integrantes();
         
         
@@ -72,7 +76,7 @@ if($acceso == 1) {
                     </div>
                 </td>
                 <td class="<?php echo $class;?>" >
-                    <?php
+                <?php
                     cuadro_amonestaciones_int($amonestaciones, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
@@ -80,6 +84,9 @@ if($acceso == 1) {
                 ?>
                 <?php
                     cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
+                ?>
+                <?php
+                    cuadro_notas_int($notas, $id_persona_env, $notas_aux, $id_temporada,20,15,'home_aux.php',0);
                 ?>		
                 </td>
                 <?php
@@ -113,7 +120,7 @@ if($acceso == 1) {
                     </div>
                 </td>
                 <td class="<?php echo $class;?>" >
-                    <?php
+                <?php
                     cuadro_amonestaciones_int($amonestaciones, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
@@ -121,7 +128,10 @@ if($acceso == 1) {
                 ?>
                 <?php
                     cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
-                ?>		
+                ?>
+                <?php
+                    cuadro_notas_int($notas, $id_persona_env, $notas_aux, $id_temporada,20,15,'home_aux.php',0);
+                ?>
                 </td>
                 
             <?php

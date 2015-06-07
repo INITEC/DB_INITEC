@@ -50,7 +50,7 @@ if($acceso == 1) {
                         $("#mensaje_registro_integrante").html(data);
                     }
                 });
-                setTimeout(function(){cargar_cuadro_editar_integrante();},5000);
+                setTimeout(function(){cargar_cuadro_editar_integrante(<?php echo $id_persona_tabla;?>);},5000);
                 return false;
             });
         });

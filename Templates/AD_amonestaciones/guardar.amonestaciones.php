@@ -35,7 +35,6 @@ if($acceso == 1) {
                 }
                 
 				if($estadoGuardado){
-                    echo "jo".$fecha_falta."ja";
 				?>
 				<div class="dato_correcto" id="mensaje-cambio-asistencia" >
 								SE GUARDARON LOS DATOS CORRECTAMENTE 

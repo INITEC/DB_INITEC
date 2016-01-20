@@ -251,12 +251,25 @@ class integrantes {
             //$dimensiones = getimagesize ($ruta_provisional);
             //$ancho = $dimensiones[0];
             //$alto = $dimensiones[1];
+            
             $ruta_provisional = $foto["tmp_name"];
             $nom_foto_int = $this->obtener_nom_foto_int();
             $ruta_foto = "../foto_integrantes/".$nom_foto_int;
-            move_uploaded_file ($ruta_provisional ,$ruta_foto);
-            $this->guardar_dir_foto_int ($nom_foto_int);
-            return "La foto fue guardada exitosamente, Presiona F5";
+            
+            if(file_exists($ruta_foto)){ //verifica que el archivo existe 
+                if(unlink($ruta_foto)){
+                    move_uploaded_file ($ruta_provisional ,$ruta_foto);
+                    $this->guardar_dir_foto_int ($nom_foto_int);
+                    return "La foto fue reemplazada exitosamente, Presiona F5.";
+                } else {
+                    return "La foto no pudo ser reemplazada.";
+                }  
+            } else {
+                move_uploaded_file ($ruta_provisional ,$ruta_foto);
+                $this->guardar_dir_foto_int ($nom_foto_int);
+                return "La foto fue guardada exitosamente, Presiona F5.";
+            }
+            
         } else {
             return "La foto no se guardo, no es del tipo JPG o JPEG";
         }

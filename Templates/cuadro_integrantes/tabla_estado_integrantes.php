@@ -83,10 +83,10 @@ if($acceso == 1) {
                     cuadro_inasistencias_int($asistencias, $id_persona_env, $temporadas, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
+                    //cuadro_pagos_int($pagos, $id_persona_env, $pagos_aux, $id_temporada,20,15,'home_aux.php',0);
                 ?>
                 <?php
-                    cuadro_notas_int($notas, $id_persona_env, $notas_aux, $id_temporada,20,15,'home_aux.php',0);
+                    //cuadro_notas_int($notas, $id_persona_env, $notas_aux, $id_temporada,20,15,'home_aux.php',0);
                 ?>		
                 </td>
                 <?php

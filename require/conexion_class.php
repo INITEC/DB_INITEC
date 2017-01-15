@@ -9,15 +9,15 @@ class conexion {
 	public function __construct () {
         
 	//Localhost
-    	
+    /*	
 	$this->_conexion = mysql_connect("localhost", "root", "jibf123");
 	$this->_base_datos = mysql_select_db("redwe_12350066_initec");
-    	
+    */	
 	//Digital Ocean
-    	/*
+    
 	$this->_conexion = mysql_connect("localhost", "root", "Waposat1_UNI");
 	$this->_base_datos = mysql_select_db("redwe_12350066_initec");
-	*/
+	
 	// Server Redwebmaster
 	/*
 	$this->_conexion = mysql_connect("sql307.redwebmaster.com.ar","redwe_12350066","jibf123");

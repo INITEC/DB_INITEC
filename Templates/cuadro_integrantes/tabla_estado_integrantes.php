@@ -61,9 +61,9 @@ if($acceso == 1) {
                     else {$class="item2";}
                     
                 ?>
-                <!-- <td class="<?php //echo $class;?>" >
-                    <img src="<?php //echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
-                </td> -->
+                <td class="<?php echo $class;?>" >
+                    <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
+                </td>
                 <td width="100" class="<?php echo $class;?>" >
                     <div class="mayuscula" >
                     <?php
@@ -105,9 +105,9 @@ if($acceso == 1) {
                     else {$class="item2";}
                 
                 ?>
-                <!-- <td class="<?php //echo $class;?>" >
-                    <img src="<?php //echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
-                </td> -->
+                <td class="<?php echo $class;?>" >
+                    <img src="<?php echo $integrantes_env->ver_foto($id_persona_env);?>" width="70px" height="60px" >
+                </td>
                 <td width="100" class="<?php echo $class;?>" >
                     <div class="mayuscula" >
                     <?php

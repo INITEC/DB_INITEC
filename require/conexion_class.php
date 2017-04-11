@@ -15,8 +15,8 @@ class conexion {
     */	
 	//Digital Ocean
     
-	$this->_conexion = mysql_connect("localhost", "root", "Waposat1_UNI");
-	$this->_base_datos = mysql_select_db("redwe_12350066_initec");
+    $this->_conexion = mysqli_connect("localhost", "root","123","redwe_12350066_initec");
+
 	
 	// Server Redwebmaster
 	/*
@@ -33,16 +33,16 @@ class conexion {
 	} 
 	public function ejecutar_sentencia ($sql) {
 		$this->_sql = $sql;
-		return ($this->_result = mysql_query($this->_sql , $this->_conexion));
+		return ($this->_result = mysqli_query($this->_conexion , $this->_sql));
 	}
 	public function ejecutar_ultima_sentencia () {
-		return ($this->_result = mysql_query($this->_sql , $this->_conexion));
+		return ($this->_result = mysqli_query($this->_conexion, $this->_sql));
 	}
 	public function retornar_array() {
-		return mysql_fetch_array($this->_result);
+		return mysqli_fetch_array($this->_result);
 	}
 	public function tam_respuesta() {
-		return mysql_num_rows($this->_result);
+		return mysqli_num_rows($this->_result);
 	}
 }
 ?>

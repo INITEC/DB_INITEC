@@ -15,7 +15,7 @@ class conexion {
     */	
 	//Digital Ocean
     
-    $this->_conexion = mysqli_connect("localhost", "gherard","b793RhqzWZf6jxKc","redwe_12350066_initec");
+    $this->_conexion = mysqli_connect("45.55.150.245", "gherard","b793RhqzWZf6jxKc","redwe_12350066_initec");
 
 	
 	// Server Redwebmaster
